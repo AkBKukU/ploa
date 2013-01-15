@@ -2,6 +2,7 @@
 	//Load Configuration Files
 	include("./config.php");
 
+
 	//Begin sql connection
 	$mysqli = new mysqli($sqlhost, $sqluser, $sqlpass);
 	
@@ -45,6 +46,9 @@
 	
 	//Disconnect from database
 	mysqli_close($mysqli);
+	
+    //Check to see if number of posts to show is higher th number of posts the exist
+    if($blog_ps_count > count($posts)){$blog_ps_count = count($posts);}
 //------------------------------------Output------------------------------------\\
 	
     
@@ -70,7 +74,7 @@
 	    <'.$blog_ol_tag.'>
 		    <'.$blog_ol_htag.'>'.$blog_title.'</'.$blog_ol_htag.'>';
 			
-	    for($c = count($posts)-1; $c > -1; $c--){
+	    for($c = count($posts)-1; $c > (count($posts)-$blog_ps_count-1); $c--){
 		    echo '
 			    <'.$blog_ps_tag.'>
                 <'.$blog_ps_htag.'>'.$posts[$c]['title'].' - '.$posts[$c]['date'].'</'.$blog_ps_htag.'>

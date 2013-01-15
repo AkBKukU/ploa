@@ -53,7 +53,10 @@
                          */ $blog_title = 'Main Blog'; /*                  
                                                                             
                             Blog URL:                                          
-                         */ $blog_url = 'http://s-mine.org:8228/'; /*                 
+                         */ $blog_url = 'http://s-mine.org:8228/'; /*                             
+                                                                            
+                            Number of posts to show:                                
+                         */ $blog_ps_count = 8; /*                  
                                                                             
                             Blog Outline Tag:                               
                          */ $blog_ol_tag = 'section class="theme"'; /*                    
