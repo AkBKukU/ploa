@@ -44,6 +44,14 @@
 		}
 	}
 	
+    for($c = 0; $c < count($posts); $c++){	
+        $year = substr($posts[$c]['date'],0,4);
+        $month = substr($posts[$c]['date'],5,2);
+        $day = substr($posts[$c]['date'],8,2);
+        $posts[$c]['date'] = $month.'/'.$day.'/'.$year ;
+	
+    }
+	
 	//Disconnect from database
 	mysqli_close($mysqli);
 	
