@@ -5,7 +5,7 @@
 	$tags = $_REQUEST['tags'];
 	
 	$today = getdate();
-	$date=($today[mon]. "/".$today[mday]."/".$today[year].date(' g:i a'));
+	$date=date('Y-m-d H:i:s');
 
 //Load Configuration Fles
 	include("./config.php");

@@ -2,14 +2,13 @@
 <html lang="en-US">
 	<head>
 		<title>Ploa Blog Test</title>
-		<?php
-		session_start()
-		?>
 		<meta charset=utf-8>
-		<meta name="description" content="Ploa blog demonstration">
+		<link rel=StyleSheet href="global.css" type="text/css">
+		<link rel="alternate" href="/rss/" title="My RSS feed" type="application/rss+xml" />
 	</head>
  	<body>
  		<h1>Blog!</h1>
+ 		<a href="writer.php">go to writer</a>
 <?php include('./blog.php');?>
 
 	
