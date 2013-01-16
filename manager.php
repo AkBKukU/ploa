@@ -17,6 +17,7 @@
 		            <a href="?area=posts"><li>Posts</li></a>
 		            <a href="?area=settings"><li>Settings</li></a>
 		            <a href="?area=writer"><li>Writer</li></a>
+		            <a href="index.php"><li>Back to blog</li></a>
 	            </ul>
             </div>
      		<div id="content">
@@ -107,9 +108,12 @@
         if($_REQUEST['edit'] == 0){  
             $writetitle = 'Create a new' ;
             $writecheckbox = 'checked="checked"' ;
-            $writedefaulttext = 'Tell the world what you think here!' ;
-            $writedefaultitle = 'New Post Title' ;
-            $writedefaultags = 'Tags here (ie flowers, computers, first)' ;
+            $writedefaulttext = 'placeholder="Tell the world what you think here!">' ;
+            $writedefaultitle = 'placeholder="New Post Title' ;
+            $writedefaultags = 'placeholder="Tags here (ie flowers, computers, first)' ;
+            $writeaction = '?action=insert' ;
+            $writeeditid = '' ;
+            
         }else{
             $postid = $_REQUEST['edit'];
             for($c = count($posts)-1; $c > -1; $c--){
@@ -119,19 +123,22 @@
              }
             $writetitle = 'Edit a' ;
             if($posts[$postkey]['status']==1){$writecheckbox = 'checked="checked"' ;}else{$writecheckbox = '' ;}
-            $writedefaulttext = $posts[$postkey]['text'] ;
-            $writedefaultitle = $posts[$postkey]['title'] ;
-            $writedefaultags = $posts[$postkey]['tags'] ;
+            $writedefaulttext = '>'.$posts[$postkey]['text'] ;
+            $writedefaultitle = 'value="'.$posts[$postkey]['title'] ;
+            $writedefaultags = 'value="'.$posts[$postkey]['tags'] ;
+            $writeaction = '?action=update' ;
+            $writeeditid = '<input type="hidden" name="postid" value="'.$_REQUEST['edit'].'">' ;
             
         }
         echo'
         <fieldset>
 	        <legend>'.$writetitle.' post</legend>
-		            <form method="post" action="./post.php">
-			            <label for="title">Title </label><input name="title" id="title" type="text" class="title" placeholder="'.$writedefaultitle.'">
-			            <label for="tags">Tags </label><input name="tags" id="tags" type="text" class="tags"  placeholder="'. $writedefaultags.'"><br />
+		            <form method="post" action="./post.php'.$writeaction.'">
+			            <label for="title">Title </label><input name="title" id="title" type="text" class="title"'.$writedefaultitle.'">
+			            <label for="tags">Tags </label><input name="tags" id="tags" type="text" class="tags"  '. $writedefaultags.'"><br />
 			            <div class="separater"></div>
-			            <textarea name="text" id="text" type="text" class="text" placeholder="'.$writedefaulttext.'"></textarea><br />
+			            '.$writeeditid.'
+			            <textarea name="text" id="text" type="text" class="text" '.$writedefaulttext.'</textarea><br />
 			            <div class="inputs"><input type="submit" value="Save Post"  class="button"></input></div>
 					    <div class="inputs"> <input type="checkbox" name="status" id="status" value=1 '.$writecheckbox.' class="checkbox"><label for="status" >Publish Post </label></div>	
 		            </form>
