@@ -9,7 +9,9 @@
  	<body>
  		<h1>Blog!</h1>
  		<a href="writer.php">go to writer</a>
-<?php include('./blog.php');?>
+<?php include('./blog.php') ;
+//or die("Script Failed")
+?>
 
 	
 	</body>
