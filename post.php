@@ -4,7 +4,7 @@
 	$text = $_REQUEST['text'];
 	$tags = $_REQUEST['tags'];
 	$status = $_REQUEST['status'];
-	echo $status;
+	
 	$today = getdate();
 	$date=date('Y-m-d H:i:s');
 
