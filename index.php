@@ -9,6 +9,7 @@
  	<body>
  		<h1>Blog!</h1>
  		<a href="writer.php">go to writer</a>
+ 		<a href="manager.php?area=posts">go to manager</a>
 <?php include('./blog.php') ;
 //or die("Script Failed")
 ?>

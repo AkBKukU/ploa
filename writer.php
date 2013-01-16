@@ -4,6 +4,7 @@
 		<title>Ploa Blog Test</title>
 		<meta charset=utf-8>
 		<meta name="description" content="Ploa blog demonstration">
+		<link rel=StyleSheet href="styles/global.css" type="text/css">
 		<link rel=StyleSheet href="styles/writer.css" type="text/css">
 	</head>
  	<body>
