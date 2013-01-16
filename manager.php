@@ -85,7 +85,7 @@
                 <tbody'.$even.'>
 		            <tr>
 			            <td><p><strong><a title="Veiw Post" href="http://s-mine.org:8228/?post='.$posts[$c]['id'].'">'.$posts[$c]['title'].' - '.$posts[$c]['date'].'</a></strong></p></td>
-			            <td class="postctrl"><a title="Edit Post" href="?area=writer&amp;edit='.$posts[$c]['id'].'"><img alt="Edit" src="images/edit.png"></a></td>
+			            <td><a title="Edit Post" href="?area=writer&amp;edit='.$posts[$c]['id'].'"><img class="postctrl" alt="Edit" src="images/edit.png"></a> <a title="Delete Post" href="?area=posts&amp;edit='.$posts[$c]['id'].'&amp;delete=confirm"><img class="postctrl" alt="Delete" src="images/delete.png"></a></td>
 		            </tr>
 		            
 	                <tr>
@@ -93,11 +93,40 @@
                     </tr>
                 </tbody>';
 	    }
-        echo '</table>';    
+        echo '</table>';  
+        
+        //Find posts array key for post to edit
+        if($_REQUEST['delete'] == 'confirm'){ 
+            $postid = $_REQUEST['edit'];
+                for($c = count($posts)-1; $c > -1; $c--){
+                    if($posts[$c]['id'] == $postid){
+                        $postkey = $c;
+                    }
+                 }
+            echo '
+            <div class="coverpage"></div>
+            <table class="alerttable">
+                <tbody>
+                    <tr>
+                        <td class="alertheader">Confirm Delete</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="alertbody">Are shure that you want to delete the post "'.$posts[$postkey]['title'].'" from '.$posts[$postkey]['date'].'?</td>
+                    
+                    <tr>
+                        <td class="alertbuttons"><a href="post.php?action=delete&amp;postid='.$posts[$postkey]['id'].'">Yes</a><a href="manager.php?area=posts">No</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            '; 
+        
+        }
     }
     
 //----------------------------------------------------------------Writer----------------------------------------------------------------\\
-    if($_REQUEST['area'] == 'writer'){ 
+    elseif($_REQUEST['area'] == 'writer'){ 
         if($_REQUEST['edit'] == 0){  
             $writetitle = 'Create a new' ;
             $writecheckbox = 'checked="checked"' ;
@@ -108,6 +137,7 @@
             $writeeditid = '' ;
             
         }else{
+            //Find posts array key for post to edit
             $postid = $_REQUEST['edit'];
             for($c = count($posts)-1; $c > -1; $c--){
                 if($posts[$c]['id'] == $postid){
@@ -138,6 +168,13 @@
             </fieldset>
         ';
     
+    }
+    
+    
+//----------------------------------------------------------------404----------------------------------------------------------------\\	    
+    else{        
+        echo '<div class="notfound"><p class="huge">404</p>
+            <p>It looks like you were trying to get to "'.$_REQUEST['area'].'" but I cant find it</p></div> ' ;
     }
 ?>
      		</div>

@@ -58,6 +58,7 @@ tbody:hover{
     background: #eeeeee;
 }
 tr{
+    
 	background:transparent;
 }
 td{
@@ -67,11 +68,89 @@ td{
 strong a:link ,strong a:visited {
     color:#000000;
 }
+
 .postctrl{
-    width:4em;
+    visibility: hidden;
+}
+tbody:hover tr td a img.postctrl{
+    visibility: visible;
+}
+.postctrl:hover{
+}
+
+.huge{
+    font-size:250px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    
+}
+.notfound{
+    font-size:25px;
+    color: #ffffff;
+    text-align:center;
+}
+.coverpage{
+    position: absolute;
+    background: #888888;
+    background: rgba(30,30,30,.6);
+    width:100%;
+    height:100%;
+	margin-left: -1px;
+	margin-top: -1px;
+    left: 1px;
+    top:1px;
+    
+}
+    
+.alerttable, table.alerttable:hover{
+    position: absolute;
+	margin-left: -200px;
+	top: 20em;
+	left:50%;
+    width: 400px;
+    box-shadow: 0px 0px 10px #000000;
+    background: #d2d2d2;
+}
+.alerttable tbody:hover{background: #d2d2d2;}
+.alertheader, .alertheader:hover{
+    background: #333333;
+    font-size: 2em;
+    color: #eeeeee;
+    padding:  .25em .5em;
+    margin: 0;
+    border: 0;
+}
+.alertbody{
+    height: 30px;
+    font-size: 1.1em;
+    padding:  1em 1em;
+}
+.alertbuttons{
+    height: 30px;
+}
+
+.alertbuttons a{
+    text-align:center;
+    
+    background: #888888;
+    border: 0;
+    display:inline;
+    color: #ffffff;
+    padding: 6px 20px;
+    margin:  1em;
+}
+.alertbuttons a:hover{
+    background: #999999;
+}
+
+.alertbuttons a:focus{
+    background: #999999;
+}
+
+.alertbuttons a:active{
+    background: #666666;
 }
 #content{
-    border-left: 1px solid #bbbbbb;
 }
 
 #sidebar{
@@ -83,11 +162,11 @@ strong a:link ,strong a:visited {
 /*------Layout------*/
 #content{
     float: right;
-    width:89em;
+    width:80%;
 }
 #sidebar {
     float: left;
-	width: 20em;
+	width: 20%;
  }
  
  footer{

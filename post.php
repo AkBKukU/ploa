@@ -7,7 +7,6 @@
 		<link rel=StyleSheet href="styles/global.css" type="text/css">
 		<link rel=StyleSheet href="styles/manager.css" type="text/css">
 		<link rel=StyleSheet href="styles/writer.css" type="text/css">
-		<meta http-equiv="REFRESH" content="0;url=manager.php?area=posts">
 	</head>
  	<body>
      	<div id="sitewrapper">
@@ -22,9 +21,7 @@
 	$status = $_REQUEST['status'];
 	$action = $_REQUEST['action'];
 	$postid = $_REQUEST['postid'];
-	
-	echo "Saving Post";
-	
+		
 	$today = getdate();
 	$date=date('Y-m-d H:i:s');
 
@@ -43,10 +40,17 @@
 //Write post to database
     if($action =="update"){
         $query = 'UPDATE '.$blog_tbname.' SET status="'.$status.'", title="'.$title.'", text="'.$text.'", tags="'.$tags.'" WHERE id="'.$postid.'"';	
+	    echo "Query: ".$query;
 	    $mysqli->query($query);
-	}else{
+	}elseif($action =="insert"){
 	
 	    $query = 'INSERT INTO '.$blog_tbname.' (title,text,date,tags,status) VALUES ("'.$title.'","'.$text.'","'.$date.'","'.$tags.'","'.$status.'")';
+	    echo "Query: ".$query;
+	    $mysqli->query($query);
+	}elseif($action =="delete"){
+	
+	    $query = 'DELETE FROM '.$blog_tbname.' WHERE id='.$postid;
+	    echo "Query: ".$query;
 	    $mysqli->query($query);
 	}
 	mysqli_close($mysqli);

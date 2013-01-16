@@ -85,5 +85,6 @@ div.inputs label{
 body {
 	margin: 0 auto;
 	padding: 2em;
-	width: 110em;
+	min-width:60em;
+	max-width: 110em;
  }
