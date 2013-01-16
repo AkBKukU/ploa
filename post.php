@@ -3,7 +3,8 @@
 	$title = $_REQUEST['title'];
 	$text = $_REQUEST['text'];
 	$tags = $_REQUEST['tags'];
-	
+	$status = $_REQUEST['status'];
+	echo $status;
 	$today = getdate();
 	$date=date('Y-m-d H:i:s');
 
@@ -20,7 +21,7 @@
 	$mysqli->select_db($sqldata);
 	
 //Write post to database	
-	$query = 'INSERT INTO '.$blog_tbname.' (title,text,date,tags) VALUES ("'.$title.'","'.$text.'","'.$date.'","'.$tags.'")';
+	$query = 'INSERT INTO '.$blog_tbname.' (title,text,date,tags,status) VALUES ("'.$title.'","'.$text.'","'.$date.'","'.$tags.'","'.$status.'")';
 	$mysqli->query($query);
 	
 	mysqli_close($mysqli);

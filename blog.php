@@ -35,12 +35,14 @@
 	$result =	$mysqli->query('SELECT * FROM '.$blog_tbname);
 	if($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
-			$posts[] = array(  
-				'title' => $row['title'], 
-				'text' => $row['text'], 
-				'id' => $row['id'],
-				"date" => $row['date']
-				);	
+			if($row['status'] != "0"){
+			    $posts[] = array(  
+				    'title' => $row['title'], 
+				    'text' => $row['text'], 
+				    'id' => $row['id'],
+				    "date" => $row['date']
+				    );	
+		    }
 		}
 	}
 	
