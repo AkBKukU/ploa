@@ -1,0 +1,89 @@
+body{
+    background: #cccccc;
+	font-size: 62.5%;
+	font-family: Arial, Helvetica, sans-serif;
+}
+#sitewrapper{
+    box-shadow: 0px 0px 10px #111111;
+    background: #eeeeee;
+}
+h1{
+    background: #333333;
+    font-size: 3em;
+    color: #eeeeee;
+    padding:  .25em .5em;
+    margin: 0;
+    border: 0;
+}
+
+fieldset{
+    background: #eeeeee;
+    padding: 2em;
+    border: 0;
+
+}
+
+legend{
+    background: #555555;
+    font-size: 2em;
+    color: #eeeeee;
+    padding:  .25em .5em;
+    text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.251);
+    margin-left: -1.1em;
+
+}
+
+
+label{
+    background: #555555;
+    color: #eeeeee;
+}
+/*------Input------*/
+
+div.inputs label{
+    background:inherit;
+    padding: .1em;
+    border: 0;
+    
+
+}
+
+.checkbox{
+    width: 1em;
+    
+}
+
+.inputs{
+    background: #888888;
+    border: 0;
+    display:inline;
+    color: #ffffff;
+    padding: 1em;
+
+}
+
+.button{
+    background:inherit;
+    border: 0;
+	font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    padding: .1em .3em;
+    width: 10em;
+}
+.inputs:hover{
+    background: #999999;
+}
+
+.inputs:focus{
+    background: #999999;
+}
+
+.inputs:active{
+    background: #dddddd;
+}
+/*------Layout------*/
+body {
+	margin: 0 auto;
+	padding: 2em;
+	width: 110em;
+ }
