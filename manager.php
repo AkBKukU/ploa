@@ -14,10 +14,10 @@
      		    
 		    <div id="sidebar">
 		        <ul>
-		            <a href="?area=posts"><li>Posts</li></a>
-		            <a href="?area=settings"><li>Settings</li></a>
-		            <a href="?area=writer"><li>Writer</li></a>
-		            <a href="index.php"><li>Back to blog</li></a>
+		            <a title="Manage all posts" href="?area=posts"><li>Posts</li></a>
+		            <a title="Configure ploa" href="?area=settings"><li>Settings</li></a>
+		            <a title="Write a new post" href="?area=writer"><li>Writer</li></a>
+		            <a title="Return to the blog home page" href="index.php"><li>Back to blog</li></a>
 	            </ul>
             </div>
      		<div id="content">
@@ -72,13 +72,6 @@
 		    }
 	    }
 	
-        for($c = 0; $c < count($posts); $c++){	
-            $year = substr($posts[$c]['date'],0,4);
-            $month = substr($posts[$c]['date'],5,2);
-            $day = substr($posts[$c]['date'],8,2);
-            $posts[$c]['date'] = $month.'/'.$day.'/'.$year ;
-	
-        }
 	
 	    //Disconnect from database
 	    mysqli_close($mysqli);
@@ -91,7 +84,7 @@
 		    echo '
                 <tbody'.$even.'>
 		            <tr>
-			            <td><p><strong><a title="Veiw Post" href="http://s-mine.org:8228/?post='.$posts[$c]['id'].'">'.$posts[$c]['title'].'</a></strong></p></td>
+			            <td><p><strong><a title="Veiw Post" href="http://s-mine.org:8228/?post='.$posts[$c]['id'].'">'.$posts[$c]['title'].' - '.$posts[$c]['date'].'</a></strong></p></td>
 			            <td class="postctrl"><a title="Edit Post" href="?area=writer&amp;edit='.$posts[$c]['id'].'"><img alt="Edit" src="images/edit.png"></a></td>
 		            </tr>
 		            
@@ -148,7 +141,7 @@
     }
 ?>
      		</div>
-            <footer>hi</footer>
+            <footer> </footer>
         </div>
 	</body>
 </html>

@@ -1,20 +1,34 @@
 ul{
 	list-style: none;
+    width:100%;
 	font-size: 1.5em;
-    border-top: 1px solid #bbbbbb;
+    margin-left: 0px;
+    margin-top: 0px;
+    padding:0;
+    padding-right:5em;
+    background: #888888;
 }
 
 li{
-    padding:.2em;
-    margin-left: -2.5em;
+    padding:1em 1em 1em 1em;
     border-bottom: 1px solid #bbbbbb;
     background: #dddddd;
+    background: #888888;
+    color: #ffffff;
 }
 a:link li , a:visited li {
-    color:#000000;
+    color: #ffffff;
 }
 li:hover{
-    background: #eeeeee;
+    background: #aaaaaa;
+
+}
+li:focus{
+    background: #aaaaaa;
+
+}
+li:active{
+    background: #666666;
 
 }
 
@@ -29,6 +43,7 @@ table{
 	font-size: 1.5em;
     border-collapse: collapse;
     border: none;
+    padding-left: .5em;
 
 }
 
@@ -47,6 +62,7 @@ tr{
 }
 td{
 	background:transparent;
+    padding-left: .5em;
 }
 strong a:link ,strong a:visited {
     color:#000000;
@@ -55,10 +71,9 @@ strong a:link ,strong a:visited {
     width:4em;
 }
 #content{
-    padding-left: .5em;
     border-left: 1px solid #bbbbbb;
-    width:88em;
 }
+
 #sidebar{
     
     color:#000000;
@@ -67,7 +82,8 @@ strong a:link ,strong a:visited {
 
 /*------Layout------*/
 #content{
-    float: left;
+    float: right;
+    width:89em;
 }
 #sidebar {
     float: left;

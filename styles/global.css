@@ -5,7 +5,7 @@ body{
 }
 #sitewrapper{
     box-shadow: 0px 0px 10px #111111;
-    background: #eeeeee;
+    background: #888888;
 }
 h1{
     background: #333333;
@@ -79,7 +79,7 @@ div.inputs label{
 }
 
 .inputs:active{
-    background: #dddddd;
+    background: #666666;
 }
 /*------Layout------*/
 body {
