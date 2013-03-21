@@ -112,7 +112,7 @@
                     </tr>
                     
                     <tr>
-                        <td class="alertbody">Are shure that you want to delete the post "'.$posts[$postkey]['title'].'" from '.$posts[$postkey]['date'].'?</td>
+                        <td class="alertbody">Are sure that you want to delete the post "'.$posts[$postkey]['title'].'" from '.$posts[$postkey]['date'].'?</td>
                     
                     <tr>
                         <td class="alertbuttons"><a href="post.php?action=delete&amp;postid='.$posts[$postkey]['id'].'">Yes</a><a href="manager.php?area=posts">No</a></td>
