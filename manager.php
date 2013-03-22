@@ -3,7 +3,7 @@
 	<head>
 		<title>Ploa Blog Test</title>
 		<?php session_start(); 
-        $cpass = "wholefoods";
+        $cpass = "password";
         if($cpass==$_REQUEST['pass']){
         
             $_SESSION['loggedin'] = 1;
@@ -33,10 +33,9 @@
  //--Action executed on logout
     if('kill'==$_REQUEST['kill']){
     
-        unset($_REQUEST['kill']);
         $_SESSION['loggedin'] = 0;
         session_destroy();
-        echo '<p>You have logged out.</p>';
+        
     }
     
     
@@ -211,16 +210,53 @@
     
         }else{
     
-
-    echo '
-        
-        <fieldset>
-	        <legend>Login</legend>
-            <form method="post" action="manager.php?area=posts">
-                <input name="pass" type="password" placeholder="Password"><input type="submit" value="Log in">
+    if('kill'==$_REQUEST['kill']){
+    
+        echo '
+            <div class="coverpage"></div>
+                <table class="alerttable">
+                    <tbody>
+                        <tr>
+                            <td class="alertheader">Logged out</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="alertbody">You have been successfully logged out.</td>
+                            
+                        
+                        <tr>
+                            <td class="alertbuttons"><a href="manager.php">Log back in</a>
+                            <a href="index.php">Back to blog</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </form>
-        </fieldset>
             ';
+        unset($_REQUEST['kill']);
+    
+    }else{
+        echo '
+            <div class="coverpage"></div>
+            <form method="post" action="manager.php?area=posts">
+                <table class="alerttable">
+                    <tbody>
+                        <tr>
+                            <td class="alertheader">Login</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="alertbody">Please login to continue<input name="pass" type="password" placeholder="Password"></td>
+                            
+                        
+                        <tr>
+                            <td class="alertbuttons">
+                            <input type="submit" value="Log in"><a href="index.php">Cancel</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            ';
+        }
     }
 
 ?>

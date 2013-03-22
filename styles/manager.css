@@ -101,7 +101,11 @@ tbody:hover tr td a img.postctrl{
     top:1px;
     
 }
-    
+.alertbuttons input{
+    width: 5em;
+    font-size: 1em;
+    font-weight:        normal;
+}    
 .alerttable, table.alerttable:hover{
     position: absolute;
 	margin-left: -200px;
@@ -125,11 +129,11 @@ tbody:hover tr td a img.postctrl{
     font-size: 1.1em;
     padding:  1em 1em;
 }
-.alertbuttons{
+.alertbuttons, .alertbuttons input{
     height: 30px;
 }
 
-.alertbuttons a{
+.alertbuttons a, .alertbuttons input{
     text-align:center;
     
     background: #888888;
@@ -139,15 +143,15 @@ tbody:hover tr td a img.postctrl{
     padding: 6px 20px;
     margin:  1em;
 }
-.alertbuttons a:hover{
+.alertbuttons a:hover, .alertbuttons input:hover{
     background: #999999;
 }
 
-.alertbuttons a:focus{
+.alertbuttons a:focus, .alertbuttons input:focus{
     background: #999999;
 }
 
-.alertbuttons a:active{
+.alertbuttons a:active, .alertbuttons input:active{
     background: #666666;
 }
 #content{
