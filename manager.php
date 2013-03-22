@@ -2,6 +2,13 @@
 <html lang="en-US">
 	<head>
 		<title>Ploa Blog Test</title>
+		<?php session_start(); 
+        $cpass = "wholefoods";
+        if($cpass==$_REQUEST['pass']){
+        
+            $_SESSION['loggedin'] = 1;
+            }
+        ?>
 		<meta charset=utf-8>
 		<meta name="description" content="Ploa blog demonstration">
 		<link rel=StyleSheet href="styles/global.css" type="text/css">
@@ -19,9 +26,34 @@
 		            <a title="Write a new post" href="?area=writer"><li>Writer</li></a>
 		            <a title="Return to the blog home page" href="index.php"><li>Back to blog</li></a>
 	            </ul>
+	            
             </div>
      		<div id="content">
 <?php
+ //--Action executed on logout
+    if('kill'==$_REQUEST['kill']){
+    
+        unset($_REQUEST['kill']);
+        $_SESSION['loggedin'] = 0;
+        session_destroy();
+        echo '<p>You have logged out.</p>';
+    }
+    
+    
+    if ($_SESSION['loggedin'] == 1){
+    
+        //--If they tried to go to another page but were not logged in, this sends them there
+        if(isset($_SESSION['dest'])){
+            
+            echo '
+            <script type="text/javascript">
+                <!--
+                   window.location="'.$_SESSION['dest'].'";
+                //-->
+            </script>
+                    ';
+            unset($_SESSION['dest']);
+        }
 
 
         //Load Configuration Files
@@ -176,9 +208,28 @@
         echo '<div class="notfound"><p class="huge">404</p>
             <p>It looks like you were trying to get to "'.$_REQUEST['area'].'" but I cant find it</p></div> ' ;
     }
+    
+        }else{
+    
+
+    echo '
+        
+        <fieldset>
+	        <legend>Login</legend>
+            <form method="post" action="manager.php?area=posts">
+                <input name="pass" type="password" placeholder="Password"><input type="submit" value="Log in">
+            </form>
+        </fieldset>
+            ';
+    }
+
 ?>
      		</div>
             <footer> </footer>
+	            <form class="logout" method="post" action="manager.php">
+                        <input name="kill" type="hidden" value="kill">
+                        <input type="submit" value="Log Out">
+                    </form>
         </div>
 	</body>
 </html>
