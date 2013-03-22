@@ -12,8 +12,8 @@
 		<meta charset=utf-8>
 		<meta name="description" content="Ploa blog demonstration">
 		<link rel=StyleSheet href="styles/global.css" type="text/css">
-		<link rel=StyleSheet href="styles/manager.css" type="text/css">
 		<link rel=StyleSheet href="styles/writer.css" type="text/css">
+		<link rel=StyleSheet href="styles/manager.css" type="text/css">
 	</head>
  	<body>
      	<div id="sitewrapper">
@@ -26,6 +26,10 @@
 		            <a title="Write a new post" href="?area=writer"><li>Writer</li></a>
 		            <a title="Return to the blog home page" href="index.php"><li>Back to blog</li></a>
 	            </ul>
+	            <form class="logout" method="post" action="manager.php">
+                        <input name="kill" type="hidden" value="kill">
+                        <input type="submit" value="Log Out">
+                    </form>
 	            
             </div>
      		<div id="content">
@@ -262,10 +266,6 @@
 ?>
      		</div>
             <footer> </footer>
-	            <form class="logout" method="post" action="manager.php">
-                        <input name="kill" type="hidden" value="kill">
-                        <input type="submit" value="Log Out">
-                    </form>
         </div>
 	</body>
 </html>

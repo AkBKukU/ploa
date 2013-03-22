@@ -1,4 +1,4 @@
-ul{
+ul, .logout input{
 	list-style: none;
     width:100%;
 	font-size: 1.5em;
@@ -9,29 +9,39 @@ ul{
     background: #888888;
 }
 
-li{
+li, .logout input{
     padding:1em 1em 1em 1em;
     border-bottom: 1px solid #bbbbbb;
     background: #dddddd;
     background: #888888;
     color: #ffffff;
 }
-a:link li , a:visited li {
+a:link li , a:visited li , .logout input{
     color: #ffffff;
 }
-li:hover{
+li:hover, .logout input:hover{
     background: #aaaaaa;
 
 }
-li:focus{
+li:focus, .logout input:focus{
     background: #aaaaaa;
 
 }
-li:active{
+li:active, .logout input:active{
     background: #666666;
 
 }
+.logout{
 
+    margin:             -1.5em 0 0 0;
+    padding:            0em;
+    
+}
+.logout input{
+    text-align:         left;
+    font-weight:        normal;
+    padding-right:            0em;
+}
 
 a{
     
@@ -155,8 +165,10 @@ tbody:hover tr td a img.postctrl{
     background: #666666;
 }
 #content{
+    
+    max-height:         800px;
+    overflow:       auto;
 }
-
 #sidebar{
     
     color:#000000;

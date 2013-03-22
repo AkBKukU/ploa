@@ -42,16 +42,37 @@
         $query = 'UPDATE '.$blog_tbname.' SET status="'.$status.'", title="'.$title.'", text="'.$text.'", tags="'.$tags.'" WHERE id="'.$postid.'"';	
 	    echo "Query: ".$query;
 	    $mysqli->query($query);
+            echo '
+            <script type="text/javascript">
+                <!--
+                   window.location="manager.php?area=posts";
+                //-->
+            </script>
+                    ';
 	}elseif($action =="insert"){
 	
 	    $query = 'INSERT INTO '.$blog_tbname.' (title,text,date,tags,status) VALUES ("'.$title.'","'.$text.'","'.$date.'","'.$tags.'","'.$status.'")';
 	    echo "Query: ".$query;
 	    $mysqli->query($query);
+            echo '
+            <script type="text/javascript">
+                <!--
+                   window.location="manager.php?area=posts";
+                //-->
+            </script>
+                    ';
 	}elseif($action =="delete"){
 	
 	    $query = 'DELETE FROM '.$blog_tbname.' WHERE id='.$postid;
 	    echo "Query: ".$query;
 	    $mysqli->query($query);
+            echo '
+            <script type="text/javascript">
+                <!--
+                   window.location="manager.php?area=posts";
+                //-->
+            </script>
+                    ';
 	}
 	mysqli_close($mysqli);
 ?>
