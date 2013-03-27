@@ -19,7 +19,9 @@ Installation
 
 0. Put all ploa files in the directory your blog will be in on your webserver.
 1. Open "config.php" and make all the changes you need in there.
-2. Add: 
+2. Add:
+
+        
         <?php 
             include ('class.blog.php');
             $blog = new blog();
