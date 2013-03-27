@@ -69,7 +69,7 @@
                          */ $blog_nav_show = true; /*           
                                                                             
                             Blog Navigation Type:          'horizontal' OR 'vertical'                      
-                         */ $blog_nav_type = 'horizontal'; /*       
+                         */ $blog_nav_type = 'vertical'; /*       
                                 
                                                                             
                          Blog Tags     
