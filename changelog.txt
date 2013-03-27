@@ -1,0 +1,39 @@
+
+    /*===================================================================='\
+    |                                                                      |
+    |                        lllllll                                       |
+    |                        l:::::l                                       |
+    |                        l:::::l                                       |
+    |                        l:::::l                                       |
+    |    ppppp   ppppppppp    l::::l    ooooooooooo     aaaaaaaaaaaaa      |
+    |    p::::ppp:::::::::p   l::::l  oo:::::::::::oo   a::::::::::::a     |
+    |    p:::::::::::::::::p  l::::l o:::::::::::::::o  aaaaaaaaa:::::a    |
+    |    pp::::::ppppp::::::p l::::l o:::::ooooo:::::o           a::::a    |
+    |     p:::::p     p:::::p l::::l o::::o     o::::o    aaaaaaa:::::a    |
+    |     p:::::p     p:::::p l::::l o::::o     o::::o  aa::::::::::::a    |
+    |     p:::::p     p:::::p l::::l o::::o     o::::o a::::aaaa::::::a    |
+    |     p:::::p    p::::::p l::::l o::::o     o::::oa::::a    a:::::a    |
+    |     p:::::ppppp:::::::pl::::::lo:::::ooooo:::::oa::::a    a:::::a    |
+    |     p::::::::::::::::p l::::::lo:::::::::::::::oa:::::aaaa::::::a    |
+    |     p::::::::::::::pp  l::::::l oo:::::::::::oo  a::::::::::aa:::a   |
+    |     p::::::pppppppp    llllllll   ooooooooooo     aaaaaaaaaa  aaaa   |
+    |     p:::::p                                                          |
+    |     p:::::p                                                          |
+    |    p:::::::p                                                         |
+    |    p:::::::p                                                         |
+    |    p:::::::p                                                         |
+    |    ppppppppp                                                         |                     
+    |                                                                      |
+    \'===================================================================='/
+
+
+v0.01 - Starting to log
+    Current Features:
+        - RSS feed of posts
+        - Post Editing
+        - SQL Storage
+        - Ability to change the HTML tags used to output blog posts
+        - Hidding posts
+        - Navigation menu for posts
+        
+Changelog start.

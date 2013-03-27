@@ -12,6 +12,7 @@ Features
 - SQL Storage
 - Ability to change the HTML tags used to output blog posts
 - Hidding posts
+- Navigation menu for posts
 
 
 Installation
