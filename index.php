@@ -9,8 +9,13 @@
      <body>
          <h1>Blog!</h1>
          <a href="manager.php?area=posts">go to manager</a>
-<?php include('./blog.php') ;
-//or die("Script Failed")
+<?php 
+
+include ('class.blog.php');
+$blog = new blog();
+
+echo $blog->posts();
+echo $blog->nav();
 ?>
 
     

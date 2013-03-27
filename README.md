@@ -19,7 +19,18 @@ Installation
 
 0. Put all ploa files in the directory your blog will be in on your webserver.
 1. Open "config.php" and make all the changes you need in there.
-2. Add <?php include('./blog.php');?> to your PHP file where you would like the blog to appear.
+2. Add: 
+        <?php 
+            include ('class.blog.php');
+            $blog = new blog();
+
+            echo $blog->nav();
+            echo $blog->posts();
+        ?>
+
+to your PHP file where you would like the blog to appear.
+
+You can include the class in the begining of the file and the add the "echo $blog->nav();" and "echo $blog->posts();" where ever you would like for more options.
 
 Downloading
 -----------
