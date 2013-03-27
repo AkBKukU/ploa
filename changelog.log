@@ -27,6 +27,9 @@
     \'===================================================================='/
 
 
+v0.21 - Starting to log
+    Added version checking to alert user to updates
+    
 v0.2 - Starting to log
     New Features:
         - RSS feed of posts

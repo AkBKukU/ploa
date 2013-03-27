@@ -3,7 +3,15 @@
     <head>
         <title>Ploa Blog Test</title>
         <?php session_start(); 
-        $cpass = "password";
+        
+        //Load Configuration Files
+        include("./config.php");
+        
+        $cpass = 'password';
+        $currentversion = floatval(file_get_contents('ver.txt'));
+        $releaseversion = floatval(file_get_contents('https://raw.github.com/AkBKukU/ploa/master/ver.txt'));
+        $upgrade = '';
+        if($currentversion < $releaseversion){$upgrade = '<a title="Update to Newest Release" href="'.$ploa_url.'"><li>Update Availible!</li></a>';}
         if($cpass==$_REQUEST['pass']){
         
             $_SESSION['loggedin'] = 1;
@@ -17,7 +25,7 @@
     </head>
      <body>
          <div id="sitewrapper">
-             <h1>ploa - Manage!</h1>
+             <h1>ploa v<?php echo $currentversion;?> - Manage!</h1>
                  
             <div id="sidebar">
                 <ul>
@@ -25,6 +33,7 @@
                     <a title="Configure ploa" href="?area=settings"><li>Settings</li></a>
                     <a title="Write a new post" href="?area=writer"><li>Writer</li></a>
                     <a title="Return to the blog home page" href="index.php"><li>Back to blog</li></a>
+                    <?php echo $upgrade; ?>
                 </ul>
                 <form class="logout" method="post" action="manager.php">
                         <input name="kill" type="hidden" value="kill">
@@ -59,8 +68,6 @@
         }
 
 
-        //Load Configuration Files
-        include("./config.php");
 
 
         //Begin sql connection
@@ -119,7 +126,7 @@
             echo '
                 <tbody'.$even.'>
                     <tr>
-                        <td><p><strong><a title="Veiw Post" href="http://s-mine.org:8228/?post='.$posts[$c]['id'].'">'.$posts[$c]['title'].' - '.$posts[$c]['date'].'</a></strong></p></td>
+                        <td><p><strong><a title="Veiw Post" href="'.$blog_url.'?post='.$posts[$c]['id'].'">'.$posts[$c]['title'].' - '.$posts[$c]['date'].'</a></strong></p></td>
                         <td><a title="Edit Post" href="?area=writer&amp;edit='.$posts[$c]['id'].'"><img class="postctrl" alt="Edit" src="images/edit.png"></a> <a title="Delete Post" href="?area=posts&amp;edit='.$posts[$c]['id'].'&amp;delete=confirm"><img class="postctrl" alt="Delete" src="images/delete.png"></a></td>
                     </tr>
                     

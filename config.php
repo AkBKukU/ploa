@@ -93,8 +93,8 @@
                          
                          
                          
-
-//------------------------------------Returns only first word of tags------------------------------------\\      
+//----------------------------------------------Do not modify!-------------------------------------------\\     
+//------------------------------------Returns only first word of tags------------------------------------\\
                          #This allows you to be able to define classes and id's
                                                                
                             Blog Outline Tag:              
@@ -116,5 +116,9 @@
                             Post Header Tag:                   
                          */ $blog_ps_htagar = explode(" ",$blog_ps_htag,2);
                              $blog_ps_htagst = $blog_ps_htagar[0]; /*                                 
-                                                                            
+                                                                             
+//-----------------------------------------------Ploa settings-------------------------------------------\\
+  
+                            Ploa Homepage:                                          
+                         */ $ploa_url = 'https://github.com/AkBKukU/ploa'; /*   
 */?>
