@@ -199,7 +199,7 @@
         <fieldset>
             <legend>'.$writetitle.' post</legend>
                     <form method="post" action="./post.php'.$writeaction.'">
-                        <label for="title">Title </label><input name="title" id="title" type="text" class="title"'.$writedefaultitle.'">
+                        <label for="title">Title </label><input name="title" id="title" type="text" class="title"'.$writedefaultitle.'" autofocus="">
                         <label for="tags">Tags </label><input name="tags" id="tags" type="text" class="tags"  '. $writedefaultags.'"><br />
                         <div class="separater"></div>
                         '.$writeeditid.'
@@ -256,7 +256,7 @@
                         </tr>
                         
                         <tr>
-                            <td class="alertbody">Please login to continue<input name="pass" type="password" placeholder="Password"></td>
+                            <td class="alertbody">Please login to continue<input name="pass" type="password" placeholder="Password" autofocus=""></td>
                             
                         
                         <tr>
