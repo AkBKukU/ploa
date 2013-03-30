@@ -28,10 +28,11 @@
              <h1>ploa v<?php echo $currentversion;?> - Manage!</h1>
                  
             <div id="sidebar">
-                <ul>
+                <ul id="nav">
                     <a title="Manage all posts" href="?area=posts"><li>Posts</li></a>
                     <a title="Configure ploa" href="?area=settings"><li>Settings</li></a>
                     <a title="Write a new post" href="?area=writer"><li>Writer</li></a>
+                    <a title="Veiw how to format posts" href="?area=help"><li>Help</li></a>
                     <a title="Return to the blog home page" href="index.php"><li>Back to blog</li></a>
                     <?php echo $upgrade; ?>
                 </ul>
@@ -211,6 +212,46 @@
         ';
     
     }
+    
+//----------------------------------------------------------------Help----------------------------------------------------------------\\
+    elseif($_REQUEST['area'] == 'help'){ 
+        echo'
+        <div class="textarea">
+            <h2>Help</h2>
+            <p>You can add formating such as being bold to you text when you post. To do it you put the text in braces and add codes like this:</p>
+            
+            <table>
+                <tr>
+                   <th></th>
+                   <th>Format Tags</th>
+                   <th></th>
+                   <th>Text</th>
+                   <th></th>
+                </tr>
+                
+                <tr>
+                    <td>[</td>
+                    <td>b,i,u</td>
+                    <td>;</td>
+                    <td>The text to display and format</td>
+                    <td>]</td>
+                </tr>
+            </table>
+            
+            <p>Here are the avaible tags:</p>
+            <ul>
+                <li>U: <u>Underlines the text</u></li>
+                <li>B: <strong>Make the text bold</strong></li>
+                <li>S: <strike>Strikes trough the text</strike></li>
+                <li>I: <em>Italisizes the text</em></li>
+            </ul>
+            
+        </div>
+        ';
+    
+    }
+    
+    
     
     
 //----------------------------------------------------------------404----------------------------------------------------------------\\        

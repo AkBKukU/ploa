@@ -99,7 +99,13 @@ class blog {
     }
     }
     function posts(){
-   include("loadsql.php");
+    
+    include ('class.format.php');
+    $format = new format();
+    
+    include("loadsql.php");
+    
+    
     if(isset($_REQUEST['post'])){
         $postid = $_REQUEST['post'];
         for($c = count($posts)-1; $c > -1; $c--){
@@ -113,7 +119,7 @@ class blog {
          echo   '<'.$blog_ps_tag.'>
                     <'.$blog_ps_htag.'>'.$posts[$postkey]['title'].' - '.$posts[$postkey]['formdate'].'</'.$blog_ps_htag.'>
                     
-                    <p>'.$posts[$postkey]['text'].'</p>
+                    '.$format->plain($posts[$postkey]['text']).'
                  </'.$blog_ps_tagst.'>
         </'.$blog_ol_tagst.'>';
         
@@ -126,7 +132,7 @@ class blog {
             echo '
                 <'.$blog_ps_tag.'>
                 <a href="?post='.$posts[$c]['id'].'"><'.$blog_ps_htag.'>'.$posts[$c]['title'].' - '.$posts[$c]['formdate'].'</'.$blog_ps_htag.'></a>
-                <p>'.$posts[$c]['text'].'</p>
+                '.$format->fancy($posts[$c]['text']).'
                 </'.$blog_ps_tagst.'>
                     ';
         }

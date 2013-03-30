@@ -1,4 +1,4 @@
-ul, .logout input{
+ul#nav , .logout input{
     list-style: none;
     width:100%;
     font-size: 1.5em;
@@ -9,25 +9,25 @@ ul, .logout input{
     background: #888888;
 }
 
-li, .logout input{
+ul#nav li, .logout input{
     padding:1em 1em 1em 1em;
     border-bottom: 1px solid #bbbbbb;
     background: #dddddd;
     background: #888888;
     color: #ffffff;
 }
-a:link li , a:visited li , .logout input{
+ul#nav a:link li ,ul#nav  a:visited li , .logout input{
     color: #ffffff;
 }
-li:hover, .logout input:hover{
+ul#nav li:hover, .logout input:hover{
     background: #aaaaaa;
 
 }
-li:focus, .logout input:focus{
+ul#nav li:focus, .logout input:focus{
     background: #aaaaaa;
 
 }
-li:active, .logout input:active{
+ul#nav li:active, .logout input:active{
     background: #666666;
 
 }
@@ -110,6 +110,8 @@ tbody:hover tr td a img.postctrl{
     left: 1px;
     top:1px;
     
+    
+    
 }
 .alertbuttons input{
     width: 5em;
@@ -163,6 +165,20 @@ tbody:hover tr td a img.postctrl{
 
 .alertbuttons a:active, .alertbuttons input:active{
     background: #666666;
+}
+.textarea h2{
+    margin: 0em 0em;
+}
+.textarea{
+    font-size: 1.5em;
+    height: 690px;
+    margin: 0em 0em;
+    padding: 1em;
+    background: #d2d2d2;
+}
+.textarea table th,.textarea table td{
+  border: 1px solid #000;
+    
 }
 #content{
     
