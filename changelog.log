@@ -25,9 +25,12 @@
     |    ppppppppp                                                         |                     
     |                                                                      |
     \'===================================================================='/
+v0.4
+    Load Setting from settings.cfg but aren't used yet
+    Fixed last letter being dropped from formatted text
 
 v0.31
-    Fixed Single post display bug
+    Fixed Single post display bug~
 
 v0.3
     Added text formating

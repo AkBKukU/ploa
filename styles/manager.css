@@ -1,3 +1,8 @@
+h3 a:link,h3 a:visited,h3 a:hover,h3 a:focus,h3 a:active{
+    color:#000000;
+
+}
+
 ul#nav , .logout input{
     list-style: none;
     width:100%;
@@ -169,14 +174,16 @@ tbody:hover tr td a img.postctrl{
 .textarea h2{
     margin: 0em 0em;
 }
+.textarea table tbody:hover{
+    background: #d2d2d2;
+}
 .textarea{
     font-size: 1.5em;
-    height: 690px;
     margin: 0em 0em;
     padding: 1em;
     background: #d2d2d2;
 }
-.textarea table th,.textarea table td{
+.textarea table th,.textarea table{
   border: 1px solid #000;
     
 }

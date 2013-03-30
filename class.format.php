@@ -39,7 +39,7 @@ class format {
                 $toFormatraw = substr($input,$first,$c - $first);
                 $toFormatArray = explode(";",$toFormatraw,2);
                 
-                $toFormatText = substr($toFormatArray[1],0,strlen($toFormatArray[1])-1);
+                $toFormatText = substr($toFormatArray[1],0,strlen($toFormatArray[1]));
                 $formatCodesArray = explode(",",strtoupper(substr($toFormatArray[0],1,strlen($toFormatArray[0]))));
                 
                 for($d = 0; $d != count($formatCodesArray);$d++){

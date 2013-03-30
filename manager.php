@@ -168,6 +168,115 @@
         }
     }
     
+//----------------------------------------------------------------Settings----------------------------------------------------------------\\
+    elseif($_REQUEST['area'] == 'settings'){ 
+        
+        include('class.ConfigHandler.php');
+        $config = new ConfigHandler('settings.cfg');
+        
+        echo'
+        <div class="textarea">
+            <h2>Settings</h2>
+            <hr />
+            <form>
+                <h3 id="configdatabase"><a href="#textformat">Database</a></h3>
+                <p>Configure database connection</p>
+               
+                <table>
+                    <tr>
+                       <th>Host</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('sql-host').'"></td>
+                    </tr>
+                    <tr>
+                       <th>Database</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('sql-database').'"></td>
+                    </tr>
+                    <tr>
+                       <th>Blog Table</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('sql-table').'"></td>
+                    </tr>
+                    
+                    <tr>
+                       <th>User</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('sql-user').'"></td>
+                    </tr>
+                    
+                    <tr>
+                       <th>Password</th>
+                       <td><input name="sqldatabase" type="password" value="'.$config->getValue('sql-password').'"></td>
+                    </tr>
+                    
+                    <tr>
+                       <th>Password Confirm</th>
+                       <td><input name="sqldatabase" type="password" value="'.$config->getValue('sql-password').'"></td>
+                    </tr>
+                    
+                </table>
+                
+                
+                <h3 id="configblog"><a href="#textformat">Blog</a></h3>
+                <p>Configure Blog info- WARNING: Changing these can mess up RSS!</p>
+                <table>
+                    <tr>
+                       <th>Blog Title</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-title').'"></td>
+                    </tr>
+                    <tr>
+                       <th>Blog URL</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-url').'"></td>
+                    </tr>
+                    <tr>
+                       <th>Number of Posts to Show</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-posts-to-show').'"></td>
+                    </tr>
+                    <tr>
+                       <th>Display Title?</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-show-title').'"></td>
+                    </tr>
+                    <tr>
+                       <th>Display Navigation?</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-show-nav').'"></td>
+                    </tr>
+                    <tr>
+                       <th>Navigation Type</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-nav-type').'"></td>
+                    </tr>
+                    
+                </table>
+                
+                
+                <h3 id="configblogtags"><a href="#textformat">Blog HTML Tags</a></h3>
+                <p>Configure Blog HTML Output</p>
+                <table>
+                    <tr>
+                       <th>Blog Surround</th>
+                       <td><input name="sqldatabase" type="text" value='."'".$config->getValue('blog-full')."'".'></td>
+                    </tr>
+                    <tr>
+                       <th>Blog Header</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-header').'"></td>
+                    </tr>
+                    <tr>
+                       <th>Blog Navigation</th>
+                       <td><input name="sqldatabase" type="text" value='."'".$config->getValue('blog-nav')."'".'></td>
+                    </tr>
+                    <tr>
+                       <th>Blog Post</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-post').'"></td>
+                    </tr>
+                    <tr>
+                       <th>Blog Post Header</th>
+                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-post-header').'"></td>
+                    </tr>
+                    
+                </table>
+            </form>
+            
+        </div>
+        ';
+    
+    }
+    
 //----------------------------------------------------------------Writer----------------------------------------------------------------\\
     elseif($_REQUEST['area'] == 'writer'){ 
         if($_REQUEST['edit'] == 0){  
@@ -218,7 +327,9 @@
         echo'
         <div class="textarea">
             <h2>Help</h2>
-            <p>You can add formating such as being bold to you text when you post. To do it you put the text in braces and add codes like this:</p>
+            <hr />
+            <h3 id="textformat"><a href="#textformat">Formatting Text</a></h3>
+            <p>You can add formating such as being bold to your text when you post. To do it you put the text in braces and add codes like this:</p>
             
             <table>
                 <tr>
@@ -231,12 +342,13 @@
                 
                 <tr>
                     <td>[</td>
-                    <td>b,i,u</td>
+                    <td>b,u</td>
                     <td>;</td>
-                    <td>The text to display and format</td>
+                    <td>This text would be bold and underlined</td>
                     <td>]</td>
                 </tr>
             </table>
+            <p>So typed into the writer page bold and underlined formated text would look like this, [b,u;This text would be bold and underlined], and would show up on the blog like this,  <strong><u>This text would be bold and underlined </u></strong></p>
             
             <p>Here are the avaible tags:</p>
             <ul>
