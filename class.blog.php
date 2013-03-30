@@ -119,7 +119,7 @@ class blog {
          echo   '<'.$blog_ps_tag.'>
                     <'.$blog_ps_htag.'>'.$posts[$postkey]['title'].' - '.$posts[$postkey]['formdate'].'</'.$blog_ps_htag.'>
                     
-                    '.$format->plain($posts[$postkey]['text']).'
+                    '.$format->fancy($posts[$postkey]['text']).'
                  </'.$blog_ps_tagst.'>
         </'.$blog_ol_tagst.'>';
         
