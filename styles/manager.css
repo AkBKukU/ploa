@@ -14,14 +14,17 @@ ul#nav , .logout input{
     background: #888888;
 }
 
-ul#nav li, .logout input{
+ul#nav li a, .logout input{
     padding:1em 1em 1em 1em;
+    margin: 0 0;
+    border: none;
     border-bottom: 1px solid #bbbbbb;
     background: #dddddd;
     background: #888888;
+    background: transparent;
     color: #ffffff;
 }
-ul#nav a:link li ,ul#nav  a:visited li , .logout input{
+ul#nav li  a:link,ul#nav  li  a:visited, .logout input{
     color: #ffffff;
 }
 ul#nav li:hover, .logout input:hover{
@@ -174,8 +177,8 @@ tbody:hover tr td a img.postctrl{
 .textarea h2{
     margin: 0em 0em;
 }
-.textarea table tbody:hover{
-    background: #d2d2d2;
+.textarea table tbody, .textarea table tbody:hover{
+    background: #dddddd;
 }
 .textarea{
     font-size: 1.5em;
@@ -184,12 +187,57 @@ tbody:hover tr td a img.postctrl{
     background: #d2d2d2;
 }
 .textarea table th,.textarea table{
-  border: 1px solid #000;
+    border: 1px solid #000;
     
 }
+#helppage table td{
+    text-align: center;
+}
+
+#settingspage table{
+    font-size: 1.25em;
+    margin: 1em 0em;
+
+}
+
+#settingspage h3,#settingspage p{
+    display: inline;
+
+}
+
+#settingspage table td p{
+    display: block;
+    margin: 0em 0em;
+
+}
+#settingspage table th, #settingspage table th label{
+    color:#000000;
+    background: transparent;
+    font-size: 1em;
+    width: 10em;
+    margin: 0em 0em;
+
+}
+#settingspage table td input{
+    padding: 0em 0em;
+    font-size: 1em;
+    padding-left: .5em;
+
+}
+
+#settingspage table td{
+    background:  #ffffff;
+
+}
+#settingspage table th,#settingspage table td{
+    border: 1px solid #000;
+    padding-left: 0em;
+    
+}
+
+
 #content{
     
-    max-height:         800px;
     overflow:       auto;
 }
 #sidebar{

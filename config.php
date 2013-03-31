@@ -27,67 +27,72 @@
     |                                            __/ |                     |
     |                                           |___/                      |
     |                                                                      |
+    |             */include('class.ConfigHandler.php');
+                    $config = new ConfigHandler(__DIR__.'/'.'settings.cfg');/*         |
     |                                                                      |
     \'===================================================================='/
                                                                                     
                         SQL                                              
-                            SQL User:                                       
-                         */ $sqluser = 'root'; /*                           
+                            SQL User:                
+                         */ $sqluser = $config->getValue('sql-user'); /*                           
                                                                             
                             SQL Pass:                                       
-                         */ $sqlpass = 'password'; /*                       
+                         */ $sqlpass = $config->getValue('sql-pass'); /*                       
                                                                             
                             SQL Host:                                       
-                         */ $sqlhost = 'localhost'; /*                      
+                         */ $sqlhost = $config->getValue('sql-host'); /*                      
                                                                             
                             SQL Database:                                   
-                         */ $sqldata = 'blog'; /*         
+                         */ $sqldata = $config->getValue('sql-database'); /*         
                                          
                             Table Name:                                     
-                         */ $blog_tbname = 'main';/*                         
+                         */ $blog_tbname = $config->getValue('sql-table');/*                         
                                                                             
                                                                             
                          Blog Info                                       
                                                                             
                             Title:                                          
-                         */ $blog_title = 'Main Blog'; /*                  
+                         */ $blog_title = $config->getValue('blog-title'); /*                  
                                                                             
                             Blog URL:                                          
-                         */ $blog_url = 'http://127.0.0.1:8124/'; /*   
+                         */ $blog_url = $config->getValue('blog-url'); /*   
                          
                                                    
                                                                             
                          Blog Settings                                     
                                                                             
                             Number of posts to show:                                
-                         */ $blog_ps_count = 5; /*                  
+                         */ $blog_ps_count = $config->getValue('blog-posts-to-show'); /*                  
                                                                             
                             Show blog title:                                
-                         */ $blog_title_show = true; /*           
+                         */ $blog_title_show = $config->getValue('blog-show-title'); /*           
                                                                             
                             Show blog Navigation:                                
-                         */ $blog_nav_show = true; /*           
+                         */ $blog_nav_show = $config->getValue('blog-show-nav'); /*           
                                                                             
                             Blog Navigation Type:          'horizontal' OR 'vertical'                      
-                         */ $blog_nav_type = 'vertical'; /*       
+                         */ $blog_nav_type = $config->getValue('blog-nav-type'); /*             
+                                                                            
+                            Manager Logmin Passwordn:                                
+                         */ $blog_pass = $config->getValue('blog-login-pass'); /*       
                                 
                                                                             
                          Blog Tags     
                                                                             
                             Blog Outline Tag:                               
-                         */ $blog_ol_tag = 'section class="theme"'; /*                    
+                         */ $blog_ol_tag = $config->getValue('blog-full'); /*                    
                                                                             
                             Blog Header Tag:                                
-                         */ $blog_ol_htag = 'h2'; /*                                 
+                         */ $blog_ol_htag = $config->getValue('blog-header'); /*                                 
                                                                             
                             Blog Nav Tag:                                
-                         */ $blog_ol_navtag = 'div class="nav"'; /*                        
+                         */ $blog_ol_navtag = $config->getValue('blog-nav'); /*                        
                                                                             
                             Post Tag:                                       
-                         */ $blog_ps_tag = 'article class="theme"'; /*                    
+                         */ $blog_ps_tag = $config->getValue('blog-post'); /*                    
                                                                             
                             Post Header Tag:                                
-                         */ $blog_ps_htag = 'h3'; /*               
+                         */ $blog_ps_htag = $config->getValue('blog-post-header'); /*               
                          
                          
                          
@@ -99,23 +104,23 @@
                                                                
                             Blog Outline Tag:              
                          */ $blog_ol_tagar = explode(" ",$blog_ol_tag,2);
-                             $blog_ol_tagst = $blog_ol_tagar[0]; /*                   
+                             $blog_ol_tagst = '</'.str_replace('>','',substr($blog_ol_tagar[0],1)).'>'; /*                   
                                                                             
                             Blog Header Tag:             
                          */ $blog_ol_htagar = explode(" ",$blog_ol_htag,2);
-                             $blog_ol_htagst = $blog_ol_htagar[0]; /*                
+                             $blog_ol_htagst = '</'.str_replace('>','',substr($blog_ol_htagar[0],1)).'>'; /*                
                                                                             
                             Blog Nav Tag:             
                          */ $blog_ol_navtagar = explode(" ",$blog_ol_htag,2);
-                             $blog_ol_navtagst = $blog_ol_htagar[0]; /*                     
+                             $blog_ol_navtagst = '</'.str_replace('>','',substr($blog_ol_htagar[0],1)).'>'; /*                     
                                                                             
                             Post Tag:                                       
                          */ $blog_ps_tagar = explode(" ",$blog_ps_tag,2);
-                             $blog_ps_tagst = $blog_ps_tagar[0]; /*                      
+                             $blog_ps_tagst = '</'.str_replace('>','',substr($blog_ps_tagar[0],1)).'>'; /*                      
                                                                             
                             Post Header Tag:                   
                          */ $blog_ps_htagar = explode(" ",$blog_ps_htag,2);
-                             $blog_ps_htagst = $blog_ps_htagar[0]; /*                                 
+                             $blog_ps_htagst = '</'.str_replace('>','',substr($blog_ps_htagar[0],1)).'>'; /*                                 
                                                                              
 //-----------------------------------------------Ploa settings-------------------------------------------\\
   

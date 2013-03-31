@@ -113,33 +113,44 @@ class blog {
                 $postkey = $c;
             }
         }
-        echo '
-        <'.$blog_ol_tag.'>';
-            if($blog_title_show){echo '<a href="'.$blog_url.'"><'.$blog_ol_htag.'>'.$blog_title.'</'.$blog_ol_htag.'></a>';}
-         echo   '<'.$blog_ps_tag.'>
-                    <'.$blog_ps_htag.'>'.$posts[$postkey]['title'].' - '.$posts[$postkey]['formdate'].'</'.$blog_ps_htag.'>
-                    
-                    '.$format->fancy($posts[$postkey]['text']).'
-                 </'.$blog_ps_tagst.'>
-        </'.$blog_ol_tagst.'>';
+        echo  
+        "\n         "
+         .$blog_ol_tag;
+            if($blog_title_show){echo '<a href="'.$blog_url.'">'.$blog_ol_htag.$blog_title.$blog_ol_htagst.'</a>';}
+         echo   
+         "\n            "
+         .$blog_ps_tag.
+                    $blog_ps_htag.$posts[$postkey]['title'].' - '.$posts[$postkey]['formdate'].$blog_ps_htagst                    
+                    .$format->fancy($posts[$postkey]['text'])
+         ."\n            "
+         .$blog_ps_tagst.
+        
+        "\n         "
+         .$blog_ol_tagst;
         
     }else{
-        echo '
-        <'.$blog_ol_tag.'>';
-            if($blog_title_show){echo '<'.$blog_ol_htag.'>'.$blog_title.'</'.$blog_ol_htag.'>';}
+        echo 
+        
+        "\n         "
+         .$blog_ol_tag;
+            if($blog_title_show){echo $blog_ol_htag.$blog_title.$blog_ol_htagst;}
             
         for($c = count($posts)-1; $c > (count($posts)-$blog_ps_count-1); $c--){
-            echo '
-                <'.$blog_ps_tag.'>
-                <a href="?post='.$posts[$c]['id'].'"><'.$blog_ps_htag.'>'.$posts[$c]['title'].' - '.$posts[$c]['formdate'].'</'.$blog_ps_htag.'></a>
-                '.$format->fancy($posts[$c]['text']).'
-                </'.$blog_ps_tagst.'>
-                    ';
+            echo 
+            "\n             "
+            .$blog_ps_tag.'
+                <a href="?post='.$posts[$c]['id'].'">'.$blog_ps_htag.$posts[$c]['title'].' - '.$posts[$c]['formdate'].$blog_ps_htagst.'</a>
+                '.$format->fancy($posts[$c]['text'])
+        ."\n             "
+         .$blog_ps_tagst
+         ."\n";
         }
     
     
-        echo '
-        </'.$blog_ol_tagst.'>';
+        echo 
+        
+        "\n         "
+         .$blog_ol_tagst;
     }
     }
 }

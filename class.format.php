@@ -16,11 +16,76 @@ class format {
 
     function plain($input){
     
+        $first = -1;
+        $formatFront = '';
+        $formatBack = '';
+        $letter = 'none';
+        $output = $input;
+        for($c = 0; $c <= strlen($input); $c++){
+            
+            
+            $letter = substr($input,$c,1);
+            
+            if($letter == '['){$first = $c;}
+            if($letter == ']' && $first != -1){
+                
+                $toFormatraw = substr($input,$first,$c - $first);
+                $toFormatArray = explode(";",$toFormatraw,2);
+                
+                $toFormatText = substr($toFormatArray[1],0,strlen($toFormatArray[1]));
+                
+                $output = str_replace($toFormatraw.']',$toFormatText, $output);
+                $first = -1;
+                $formatFront = '';
+                $formatBack = '';
+                
+                
+            }
+            
+        }
     
-    return '<p>'.$input.'</p>';
+        $output = str_replace("\n",'</p><p>', $output);
+        
+        return '<p>'.$output.'</p>';
     }
     
     
+    function oneline($input){
+    
+        $first = -1;
+        $formatFront = '';
+        $formatBack = '';
+        $letter = 'none';
+        $output = $input;
+        for($c = 0; $c <= strlen($input); $c++){
+            
+            
+            $letter = substr($input,$c,1);
+            
+            if($letter == '['){$first = $c;}
+            if($letter == ']' && $first != -1){
+                
+                $toFormatraw = substr($input,$first,$c - $first);
+                $toFormatArray = explode(";",$toFormatraw,2);
+                
+                $toFormatText = substr($toFormatArray[1],0,strlen($toFormatArray[1]));
+                
+                $output = str_replace($toFormatraw.']',$toFormatText, $output);
+                $first = -1;
+                $formatFront = '';
+                $formatBack = '';
+                
+                
+            }
+            
+        }
+        
+        if(strlen($output) > 100){
+            $output = substr($output,0,97).'...';
+        }
+        
+        return $output;
+    }
 
     function fancy($input){
         $first = -1;
@@ -33,8 +98,8 @@ class format {
             
             $letter = substr($input,$c,1);
             
-            if($letter == '['){$first = $c;echo 'found at: '.$c;}
-            if($letter == ']' && $first != -1){echo 'true';
+            if($letter == '['){$first = $c;}
+            if($letter == ']' && $first != -1){
                 
                 $toFormatraw = substr($input,$first,$c - $first);
                 $toFormatArray = explode(";",$toFormatraw,2);
@@ -44,11 +109,13 @@ class format {
                 
                 for($d = 0; $d != count($formatCodesArray);$d++){
                 
-                    if($formatCodesArray[$d] == 'I'){       $formatFront .= '<em>';     $formatBack .= '</em>';}
-                    elseif($formatCodesArray[$d] == 'B'){   $formatFront .= '<strong>'; $formatBack .= '</strong>';}
-                    elseif($formatCodesArray[$d] == 'U'){   $formatFront .= '<u>';      $formatBack .= '</u>';}
-                    elseif($formatCodesArray[$d] == 'S'){   $formatFront .= '<strike>'; $formatBack .= '</strike>';}
+                    if($formatCodesArray[$d] == 'I'){       $formatFront .= '<em>';     $formatBack = '</em>'.$formatBack;}
+                    elseif($formatCodesArray[$d] == 'B'){   $formatFront .= '<strong>'; $formatBack = '</strong>'.$formatBack;}
+                    elseif($formatCodesArray[$d] == 'U'){   $formatFront .= '<u>';      $formatBack = '</u>'.$formatBack;}
+                    elseif($formatCodesArray[$d] == 'S'){   $formatFront .= '<strike>'; $formatBack = '</strike>'.$formatBack;}
                 }
+    
+                $toFormatText = str_replace("\n",$formatBack.'</p><p>'.$formatFront,$toFormatText);
                 $output = str_replace($toFormatraw.']',$formatFront.$toFormatText.$formatBack, $output);
                 $first = -1;
                 $formatFront = '';
@@ -61,6 +128,6 @@ class format {
     
         $output = str_replace("\n",'</p><p>', $output);
         
-        return '<p>'.$output.'</p>'.$letter;
+        return '<p>'.$output.'</p>';
     }
 }

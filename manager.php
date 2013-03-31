@@ -7,12 +7,12 @@
         //Load Configuration Files
         include("./config.php");
         
-        $cpass = 'password';
+        ;
         $currentversion = floatval(file_get_contents('ver.txt'));
         $releaseversion = floatval(file_get_contents('https://raw.github.com/AkBKukU/ploa/master/ver.txt'));
         $upgrade = '';
         if($currentversion < $releaseversion){$upgrade = '<a title="Update to Newest Release" href="'.$ploa_url.'"><li>Update Availible!</li></a>';}
-        if($cpass==$_REQUEST['pass']){
+        if($blog_pass==$_REQUEST['pass']){
         
             $_SESSION['loggedin'] = 1;
             }
@@ -29,11 +29,11 @@
                  
             <div id="sidebar">
                 <ul id="nav">
-                    <a title="Manage all posts" href="?area=posts"><li>Posts</li></a>
-                    <a title="Configure ploa" href="?area=settings"><li>Settings</li></a>
-                    <a title="Write a new post" href="?area=writer"><li>Writer</li></a>
-                    <a title="Veiw how to format posts" href="?area=help"><li>Help</li></a>
-                    <a title="Return to the blog home page" href="index.php"><li>Back to blog</li></a>
+                    <li><a title="Manage all posts" href="?area=posts">Posts</a></li>
+                    <li><a title="Configure ploa" href="?area=settings">Settings</a></li>
+                    <li><a title="Write a new post" href="?area=writer">Writer</a></li>
+                    <li><a title="Veiw how to format posts" href="?area=help">Help</a></li>
+                    <li><a title="Return to the blog home page" href="index.php">Back to blog</a></li>
                     <?php echo $upgrade; ?>
                 </ul>
                 <form class="logout" method="post" action="manager.php">
@@ -121,6 +121,9 @@
 
 //----------------------------------------------------------------Posts----------------------------------------------------------------\\        
     if($_REQUEST['area'] == 'posts'){        
+    
+    include ('class.format.php');
+    $format = new format();
         echo '<table>';    
         for($c = count($posts)-1; $c > -1; $c--){
             if($c % 2 == 0){$even=' class="even"';}else{$even='';}
@@ -132,7 +135,7 @@
                     </tr>
                     
                     <tr>
-                        <td colspan=2 >'.substr($posts[$c]['text'],0,200).'</td>
+                        <td colspan=2 >'.$format->oneline($posts[$c]['text']).'</td>
                     </tr>
                 </tbody>';
         }
@@ -171,110 +174,150 @@
 //----------------------------------------------------------------Settings----------------------------------------------------------------\\
     elseif($_REQUEST['area'] == 'settings'){ 
         
-        include('class.ConfigHandler.php');
-        $config = new ConfigHandler('settings.cfg');
         
         echo'
-        <div class="textarea">
-            <h2>Settings</h2>
+        <div id="settingspage" class="textarea">
+            <h2>Settings';
+            
+        
+        if($_REQUEST['action'] == 'save'){
+        
+            $config->setValue('blog-posts-to-show',$_REQUEST['blog-posts-to-show']);
+            $config->setValue('sql-user',$_REQUEST['sql-user']);
+            if($_REQUEST['sql-pass'] == $_REQUEST['sql-pass-confirm']){
+                $config->setValue('sql-pass',$_REQUEST['sql-pass']);
+            }else{echo " - SQL Passwords Don't Match(Igorning Change)";}
+            $config->setValue('sql-host',$_REQUEST['sql-host']);
+            $config->setValue('sql-database',$_REQUEST['sql-database']);
+            $config->setValue('sql-table',$_REQUEST['sql-table']);
+            $config->setValue('blog-title',$_REQUEST['blog-title']);
+            $config->setValue('blog-url',$_REQUEST['blog-url']);
+            $config->setValue('blog-show-title',$_REQUEST['blog-show-title']);
+            $config->setValue('blog-show-nav',$_REQUEST['blog-show-nav']);
+            $config->setValue('blog-nav-type',$_REQUEST['blog-nav-type']);
+            if($_REQUEST['blog-login-pass'] == $_REQUEST['blog-login-pass-confirm']){
+                $config->setValue('blog-login-pass',$_REQUEST['blog-login-pass']);
+            }else{echo " - Login Passwords Don't Match(Igorning Change)";}
+            $config->setValue('blog-full',$_REQUEST['blog-full']);
+            $config->setValue('blog-header',$_REQUEST['blog-header']);
+            $config->setValue('blog-nav',$_REQUEST['blog-nav']);
+            $config->setValue('blog-post',$_REQUEST['blog-post']);
+            $config->setValue('blog-post-header',$_REQUEST['blog-post-header']);
+            echo ' - Saved';
+        }    
+            
+            
+            
+            
+            
+        echo '</h2>
             <hr />
-            <form>
+            <form method="post" action="?area=settings&amp;action=save">
                 <h3 id="configdatabase"><a href="#textformat">Database</a></h3>
-                <p>Configure database connection</p>
+                <p> - Configure database connection</p>
                
                 <table>
                     <tr>
-                       <th>Host</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('sql-host').'"></td>
+                       <th><label for="sql-host">Host:Port</label></th>
+                       <td><input id="sql-host" name="sql-host" type="text" value="'.$config->getValue('sql-host').'"></td>
                     </tr>
                     <tr>
-                       <th>Database</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('sql-database').'"></td>
+                       <th><label for="sql-database">Database</label></th>
+                       <td><input id="sql-database" name="sql-database" type="text" value="'.$config->getValue('sql-database').'"></td>
                     </tr>
                     <tr>
-                       <th>Blog Table</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('sql-table').'"></td>
-                    </tr>
-                    
-                    <tr>
-                       <th>User</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('sql-user').'"></td>
+                       <th><label for="sql-table">Blog Table</label></th>
+                       <td><input id="sql-table" name="sql-table" type="text" value="'.$config->getValue('sql-table').'"></td>
                     </tr>
                     
                     <tr>
-                       <th>Password</th>
-                       <td><input name="sqldatabase" type="password" value="'.$config->getValue('sql-password').'"></td>
+                       <th><label for="sql-user">User</label></th>
+                       <td><input id="sql-user" name="sql-user" type="text" value="'.$config->getValue('sql-user').'"></td>
                     </tr>
                     
                     <tr>
-                       <th>Password Confirm</th>
-                       <td><input name="sqldatabase" type="password" value="'.$config->getValue('sql-password').'"></td>
+                       <th><label for="sql-pass">Password</label></th>
+                       <td><input id="sql-pass" name="sql-pass" type="password" value="'.$config->getValue('sql-pass').'"></td>
+                    </tr>
+                    
+                    <tr>
+                       <th><label for="sql-pass-confirm">Password Confirm</label></th>
+                       <td><input id="sql-pass-confirm" name="sql-pass-confirm" type="password" value="'.$config->getValue('sql-pass').'"></td>
                     </tr>
                     
                 </table>
                 
                 
                 <h3 id="configblog"><a href="#textformat">Blog</a></h3>
-                <p>Configure Blog info- WARNING: Changing these can mess up RSS!</p>
+                <p> - Configure Blog info</p>
                 <table>
                     <tr>
-                       <th>Blog Title</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-title').'"></td>
+                       <th><label for="blog-login-pass">Manager Password</label></th>
+                       <td><input id="blog-login-pass" name="blog-login-pass" type="password" value="'.$config->getValue('blog-login-pass').'"></td>
                     </tr>
                     <tr>
-                       <th>Blog URL</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-url').'"></td>
+                       <th><label for="blog-login-pass-confirm">Manager Password Confrim</label></th>
+                       <td><input id="blog-login-pass-confirm" name="blog-login-pass-confirm" type="password" value="'.$config->getValue('blog-login-pass').'"></td>
                     </tr>
                     <tr>
-                       <th>Number of Posts to Show</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-posts-to-show').'"></td>
+                       <th><label for="blog-title">Blog Title</label></th>
+                       <td><input id="blog-title" name="blog-title" type="text" value="'.$config->getValue('blog-title').'"><p>WARNING: Changing this can mess up RSS!</p></td>
                     </tr>
                     <tr>
-                       <th>Display Title?</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-show-title').'"></td>
+                       <th><label for="blog-url">Blog URL</label></th>
+                       <td><input id="blog-url" name="blog-url" type="text" value="'.$config->getValue('blog-url').'"><p>WARNING: Changing this can mess up RSS!</p></td>
                     </tr>
                     <tr>
-                       <th>Display Navigation?</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-show-nav').'"></td>
+                       <th><label for="blog-posts-to-show">Number of Posts to Show</label></th>
+                       <td><input id="blog-posts-to-show" name="blog-posts-to-show" type="text" value="'.$config->getValue('blog-posts-to-show').'"></td>
                     </tr>
                     <tr>
-                       <th>Navigation Type</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-nav-type').'"></td>
+                       <th><label for="blog-show-title">Display Title?</label></th>
+                       <td><input id="blog-show-title" name="blog-show-title" type="text" value="'.$config->getValue('blog-show-title').'"></td>
+                    </tr>
+                    <tr>
+                       <th><label for="blog-show-nav">Display Navigation?</label></th>
+                       <td><input id="blog-show-nav" name="blog-show-nav" type="text" value="'.$config->getValue('blog-show-nav').'"></td>
+                    </tr>
+                    <tr>
+                       <th><label for="blog-nav-type">Navigation Type</label></th>
+                       <td><input id="blog-nav-type" name="blog-nav-type" type="text" value="'.$config->getValue('blog-nav-type').'"></td>
                     </tr>
                     
                 </table>
                 
                 
                 <h3 id="configblogtags"><a href="#textformat">Blog HTML Tags</a></h3>
-                <p>Configure Blog HTML Output</p>
+                <p> - Configure Blog HTML Output</p>
                 <table>
                     <tr>
-                       <th>Blog Surround</th>
-                       <td><input name="sqldatabase" type="text" value='."'".$config->getValue('blog-full')."'".'></td>
+                       <th><label for="blog-full">Blog Surround</label></th>
+                       <td><input id="blog-full" name="blog-full" type="text" value='."'".$config->getValue('blog-full')."'".'></td>
                     </tr>
                     <tr>
-                       <th>Blog Header</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-header').'"></td>
+                       <th><label for="blog-header">Blog Header</label></th>
+                       <td><input id="blog-header" name="blog-header" type="text" value="'.$config->getValue('blog-header').'"></td>
                     </tr>
                     <tr>
-                       <th>Blog Navigation</th>
-                       <td><input name="sqldatabase" type="text" value='."'".$config->getValue('blog-nav')."'".'></td>
+                       <th><label for="blog-nav">Blog Navigation</label></th>
+                       <td><input id="blog-nav" name="blog-nav" type="text" value='."'".$config->getValue('blog-nav')."'".'></td>
                     </tr>
                     <tr>
-                       <th>Blog Post</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-post').'"></td>
+                       <th><label for="blog-post">Blog Post</label></th>
+                       <td><input id="blog-post" name="blog-post" type="text" value="'.$config->getValue('blog-post').'"></td>
                     </tr>
                     <tr>
-                       <th>Blog Post Header</th>
-                       <td><input name="sqldatabase" type="text" value="'.$config->getValue('blog-post-header').'"></td>
+                       <th><label for="blog-post-header">Blog Post Header</label></th>
+                       <td><input id="blog-post-header" name="blog-post-header" type="text" value="'.$config->getValue('blog-post-header').'"></td>
                     </tr>
                     
                 </table>
+                <input type="submit" value="Save Changes"  class="button">
             </form>
             
         </div>
         ';
-    
+        
     }
     
 //----------------------------------------------------------------Writer----------------------------------------------------------------\\
@@ -282,9 +325,9 @@
         if($_REQUEST['edit'] == 0){  
             $writetitle = 'Create a new' ;
             $writecheckbox = 'checked="checked"' ;
-            $writedefaulttext = 'placeholder="Tell the world what you think here!">' ;
-            $writedefaultitle = 'placeholder="New Post Title' ;
-            $writedefaultags = 'placeholder="Tags here (ie flowers, computers, first)' ;
+            $writedefaulttext = ' placeholder="Tell the world what you think here!">' ;
+            $writedefaultitle = ' placeholder="New Post Title' ;
+            $writedefaultags = ' placeholder="Tags here (ie flowers, computers, first)' ;
             $writeaction = '?action=insert' ;
             $writeeditid = '' ;
             
@@ -313,8 +356,8 @@
                         <label for="tags">Tags </label><input name="tags" id="tags" type="text" class="tags"  '. $writedefaultags.'"><br />
                         <div class="separater"></div>
                         '.$writeeditid.'
-                        <textarea name="text" id="text" type="text" class="text" '.$writedefaulttext.'</textarea><br />
-                        <div class="inputs"><input type="submit" value="Save Post"  class="button"></input></div>
+                        <textarea name="text" id="text" class="text" '.$writedefaulttext.'</textarea><br />
+                        <div class="inputs"><input type="submit" value="Save Post"  class="button"></div>
                         <div class="inputs"> <input type="checkbox" name="status" id="status" value=1 '.$writecheckbox.' class="checkbox"><label for="status" >Publish Post </label></div>    
                     </form>
             </fieldset>
@@ -325,7 +368,7 @@
 //----------------------------------------------------------------Help----------------------------------------------------------------\\
     elseif($_REQUEST['area'] == 'help'){ 
         echo'
-        <div class="textarea">
+        <div id="helppage" class="textarea">
             <h2>Help</h2>
             <hr />
             <h3 id="textformat"><a href="#textformat">Formatting Text</a></h3>
@@ -333,11 +376,11 @@
             
             <table>
                 <tr>
-                   <th></th>
+                   <th>Open Brace</th>
                    <th>Format Tags</th>
-                   <th></th>
+                   <th>Semi-Colon</th>
                    <th>Text</th>
-                   <th></th>
+                   <th>Close Brace</th>
                 </tr>
                 
                 <tr>
@@ -348,9 +391,9 @@
                     <td>]</td>
                 </tr>
             </table>
-            <p>So typed into the writer page bold and underlined formated text would look like this, [b,u;This text would be bold and underlined], and would show up on the blog like this,  <strong><u>This text would be bold and underlined </u></strong></p>
+            <p>So typed into the writer page bold and underlined formated text would look like this, [b,u;This text would be bold and underlined], and would show up on the blog like this,  <strong><u>This text would be bold and underlined </u></strong>. Also note that you cannot nest braces so if you want to achive this, <strong> bold <u>bold and underlined</u> bold</strong>, you need to type it like this, [b; bold] [b,u;bold and underlined] [b;bold].</p>
             
-            <p>Here are the avaible tags:</p>
+            <p>Here are the avaible tags*:</p>
             <ul>
                 <li>U: <u>Underlines the text</u></li>
                 <li>B: <strong>Make the text bold</strong></li>
@@ -358,6 +401,7 @@
                 <li>I: <em>Italisizes the text</em></li>
             </ul>
             
+            <small>*Capitalization does not matter</small>
         </div>
         ';
     

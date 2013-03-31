@@ -16,10 +16,10 @@ Features
 
 
 Installation
-============
+------------
 
 0. Put all ploa files in the directory your blog will be in on your webserver.
-1. Open "config.php" and make all the changes you need in there.
+1. Open "settings.cfg" and make all the initial changes you need in there. You can make more changes later in the manager.
 2. Add:
 
         

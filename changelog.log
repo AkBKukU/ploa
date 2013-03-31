@@ -25,6 +25,13 @@
     |    ppppppppp                                                         |                     
     |                                                                      |
     \'===================================================================='/
+    
+v0.5    
+    Settings Page Can Change Settings!
+    Validated all html - with the exeption of strike
+    actually settings that are used are now loaded from settings.cfg
+    You now declare the full tag (ie "<h2>" instead of "h2")
+    
 v0.4
     Load Setting from settings.cfg but aren't used yet
     Fixed last letter being dropped from formatted text
