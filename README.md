@@ -24,7 +24,7 @@ Installation
 
         
         <?php 
-            include ('class.blog.php');
+            include ('./classes/class.blog.php');
             $blog = new blog();
 
             echo $blog->nav();

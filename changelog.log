@@ -1,4 +1,4 @@
-Current Version:0.6
+Current Version:0.61
 
     /*===================================================================='\
     |                                                                      |
@@ -27,6 +27,10 @@ Current Version:0.6
     |                                                                      |
     \'===================================================================='/
     
+    
+v0.61
+    Fixed showing empty posts
+    updated readme
 v0.6
     Bug Fixes & Other:
         eliminated ver.txt for update checking
