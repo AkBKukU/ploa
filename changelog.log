@@ -1,3 +1,4 @@
+Current Version:0.6
 
     /*===================================================================='\
     |                                                                      |
@@ -19,12 +20,24 @@
     |     p::::::pppppppp    llllllll   ooooooooooo     aaaaaaaaaa  aaaa   |
     |     p:::::p                                                          |
     |     p:::::p                                                          |
-    |    p:::::::p                                                         |
-    |    p:::::::p                                                         |
+    |    p:::::::p     Deleting this file will opt you out                 |
+    |    p:::::::p                           of update notifications.      |
     |    p:::::::p                                                         |
     |    ppppppppp                                                         |                     
     |                                                                      |
     \'===================================================================='/
+    
+v0.6
+    Bug Fixes & Other:
+        eliminated ver.txt for update checking
+        Commented on most of the code
+        broke apart manger.php
+        Fixed Login
+        Refactored code to fix object conficts
+        Rearranged files to more reasonable locations
+    
+    New Features:
+        Added option to force embedding the style for navigation
     
 v0.5    
     Settings Page Can Change Settings!

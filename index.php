@@ -3,21 +3,23 @@
     <head>
         <title>Ploa Blog Test</title>
         <meta charset=utf-8>
-        <link rel=StyleSheet href="styles/blog.css" type="text/css">
+        <link rel=StyleSheet href="content/styles/nav.css" type="text/css">
         <link rel="alternate" href="/rss/" title="My RSS feed" type="application/rss+xml" />
     </head>
      <body>
-         <h1>Blog!</h1>
+         <h1>Demonstration Blog!</h1>
          <a href="manager.php?area=posts">go to manager</a>
-<?php 
+         
+        <?php 
 
-include ('class.blog.php');
-$blog = new blog();
+        include ('./classes/class.blog.php');
+        $blog = new blog();
 
-echo $blog->posts();
-echo $blog->nav();
-?>
+        echo $blog->nav();
+        echo '<hr />';
+        echo $blog->posts();
 
-    
+        ?>
+
     </body>
 </html>

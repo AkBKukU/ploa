@@ -224,6 +224,12 @@ tbody:hover tr td a img.postctrl{
     padding-left: .5em;
 
 }
+#settingspage table td input[type="checkbox"]{
+    padding: 0em 0em;
+    width:19px;
+    height:19px;
+
+}
 
 #settingspage table td{
     background:  #ffffff;
