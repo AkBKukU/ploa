@@ -33,6 +33,28 @@
             
             <small>*Capitalization does not matter</small>
             
+            <p>Two more formating code aravailble for creating lists. You can use eiher <code>LIST</code> to use bullets or <code>NUMLIST</code> to use numbers. Example:</p>
+            <table>
+                <tr>
+                   <th><code>LIST</code></th>
+                   <th><code>NUMLIST</code></th>
+                </tr>
+                
+                <tr>
+                    <td><ul>
+                        <li>First line</li>
+                        <li>Second line</li>
+                        <li>Third line</li>
+                    </ul></td>
+                    <td><ol>
+                        <li>First line</li>
+                        <li>Second line</li>
+                        <li>Third line</li>
+                    </ol></td>
+                </tr>
+            </table>
+            
+            
             <h3 id="contact"><a href="#contact">Contact</a></h3>
             <p>If you have any questions, comment, concerns, idea, bug reports, etc please email the developer at <a href="mailto:shelbyjueden@gmail.com">shelbyjueden@gmail.com</a> and I will try to get back to you as quickly as possible.</p>
         </div>

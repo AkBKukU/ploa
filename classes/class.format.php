@@ -154,6 +154,10 @@ class format {
                     elseif($formatCodesArray[$d] == 'B'){   $formatFront .= '<strong>'; $formatBack = '</strong>'.$formatBack;}
                     elseif($formatCodesArray[$d] == 'U'){   $formatFront .= '<u>';      $formatBack = '</u>'.$formatBack;}
                     elseif($formatCodesArray[$d] == 'S'){   $formatFront .= '<strike>'; $formatBack = '</strike>'.$formatBack;}
+                    elseif($formatCodesArray[$d] == 'LIST'){$formatFront .= '</p><ul><li>'; $formatBack = '</li></ul><p> '.$formatBack;
+                            $toFormatText = str_replace("\n",'</li><li>',$toFormatText);} 
+                    elseif($formatCodesArray[$d] == 'NUMLIST'){$formatFront .= '</p><ol><li>'; $formatBack = '</li></ol><p> '.$formatBack;
+                            $toFormatText = str_replace("\n",'</li><li>',$toFormatText);}
                 }
     
                 //--Embeds formatting 
