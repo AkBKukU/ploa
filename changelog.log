@@ -1,4 +1,4 @@
-Current Version:0.62
+Current Version:0.63
 
     /*===================================================================='\
     |                                                                      |
@@ -26,6 +26,9 @@ Current Version:0.62
     |    ppppppppp                                                         |                     
     |                                                                      |
     \'===================================================================='/
+    
+v0.63
+    Can now nest format tags
     
 v0.62
     Added list format codes

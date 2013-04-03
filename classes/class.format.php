@@ -31,31 +31,41 @@ class format {
         $letter = 'none';
         $output = $input;
         
-        //--Run through string to check for special characters
-        for($c = 0; $c <= strlen($input); $c++){
-            
-            
-            $letter = substr($input,$c,1);
-            
-            //--Tests if a special character has been found
-            if($letter == '['){$first = $c;}
-            if($letter == ']' && $first != -1){
+        $found = true;
+        
+        while($found){
+        
+            $input = $output;
+            //--Run through string to check for special characters
+            for($c = 0; $c <= strlen($input); $c++){
                 
-                //--Find formatting 
-                $toFormatraw = substr($input,$first,$c - $first);
-                $toFormatArray = explode(";",$toFormatraw,2);
                 
-                $toFormatText = substr($toFormatArray[1],0,strlen($toFormatArray[1]));
+                $letter = substr($input,$c,1);
                 
-                //--Strips formatting 
-                $output = str_replace($toFormatraw.']',$toFormatText, $output);
-                $first = -1;
-                $formatFront = '';
-                $formatBack = '';
-                
+                //--Tests if a special character has been found
+                if($letter == '['){$level++;$firstBrace[$level] = $c;}
+                elseif($letter == ']' && $firstBrace[$level] != -1){
+                    
+                    //--Find formatting 
+                    $toFormatraw = substr($input,$firstBrace[$level],$c - $firstBrace[$level]);
+                    $toFormatArray = explode(";",$toFormatraw,2);
+                    
+                    $toFormatText = substr($toFormatArray[1],0,strlen($toFormatArray[1]));
+                    $formatCodesArray = explode(",",strtoupper(substr($toFormatArray[0],1,strlen($toFormatArray[0]))));
+                    
+        
+                    //--Embeds formatting 
+                    $toFormatText = str_replace("\n",$formatBack.'</p><p>'.$formatFront,$toFormatText);
+                    $output = str_replace($toFormatraw.']',$formatFront.$toFormatText.$formatBack, $output);
+                    $firstBrace[$level] = -1;
+                    $formatFront = '';
+                    $formatBack = '';
+                    $level--;
+                    $found = true;
+                    break;
+                }else{$found = false;}
                 
             }
-            
         }
         
         //--Handles the newlines
@@ -80,31 +90,41 @@ class format {
         $letter = 'none';
         $output = $input;
         
-        //--Run through string to check for special characters
-        for($c = 0; $c <= strlen($input); $c++){
-            
-            
-            $letter = substr($input,$c,1);
-            
-            //--Tests if a special character has been found
-            if($letter == '['){$first = $c;}
-            if($letter == ']' && $first != -1){
+        $found = true;
+        
+        while($found){
+        
+            $input = $output;
+            //--Run through string to check for special characters
+            for($c = 0; $c <= strlen($input); $c++){
                 
-                //--Find formatting 
-                $toFormatraw = substr($input,$first,$c - $first);
-                $toFormatArray = explode(";",$toFormatraw,2);
                 
-                $toFormatText = substr($toFormatArray[1],0,strlen($toFormatArray[1]));
+                $letter = substr($input,$c,1);
                 
-                //--Strips formatting 
-                $output = str_replace($toFormatraw.']',$toFormatText, $output);
-                $first = -1;
-                $formatFront = '';
-                $formatBack = '';
-                
+                //--Tests if a special character has been found
+                if($letter == '['){$level++;$firstBrace[$level] = $c;}
+                elseif($letter == ']' && $firstBrace[$level] != -1){
+                    
+                    //--Find formatting 
+                    $toFormatraw = substr($input,$firstBrace[$level],$c - $firstBrace[$level]);
+                    $toFormatArray = explode(";",$toFormatraw,2);
+                    
+                    $toFormatText = substr($toFormatArray[1],0,strlen($toFormatArray[1]));
+                    $formatCodesArray = explode(",",strtoupper(substr($toFormatArray[0],1,strlen($toFormatArray[0]))));
+                    
+        
+                    //--Embeds formatting 
+                    $toFormatText = str_replace("\n",$formatBack.' '.$formatFront,$toFormatText);
+                    $output = str_replace($toFormatraw.']',$formatFront.$toFormatText.$formatBack, $output);
+                    $firstBrace[$level] = -1;
+                    $formatFront = '';
+                    $formatBack = '';
+                    $level--;
+                    $found = true;
+                    break;
+                }else{$found = false;}
                 
             }
-            
         }
         
         //--Limits text length to 100 characters
@@ -124,54 +144,61 @@ class format {
     function fancy($input){
     
         //--Set intial values
-        $first = -1;
+        $level = 0;
+        $firstBrace[$level] = -2;
         $formatFront = '';
         $formatBack = '';
         $letter = 'none';
         $output = $input;
         
-        //--Run through string to check for special characters
-        for($c = 0; $c <= strlen($input); $c++){
-            
-            
-            $letter = substr($input,$c,1);
-            
-            //--Tests if a special character has been found
-            if($letter == '['){$first = $c;}
-            if($letter == ']' && $first != -1){
+        $found = true;
+        
+        while($found){
+        
+            $input = $output;
+            //--Run through string to check for special characters
+            for($c = 0; $c <= strlen($input); $c++){
                 
-                //--Find formatting 
-                $toFormatraw = substr($input,$first,$c - $first);
-                $toFormatArray = explode(";",$toFormatraw,2);
                 
-                $toFormatText = substr($toFormatArray[1],0,strlen($toFormatArray[1]));
-                $formatCodesArray = explode(",",strtoupper(substr($toFormatArray[0],1,strlen($toFormatArray[0]))));
+                $letter = substr($input,$c,1);
                 
-                //--Get formats used
-                for($d = 0; $d != count($formatCodesArray);$d++){
-                
-                    if($formatCodesArray[$d] == 'I'){       $formatFront .= '<em>';     $formatBack = '</em>'.$formatBack;}
-                    elseif($formatCodesArray[$d] == 'B'){   $formatFront .= '<strong>'; $formatBack = '</strong>'.$formatBack;}
-                    elseif($formatCodesArray[$d] == 'U'){   $formatFront .= '<u>';      $formatBack = '</u>'.$formatBack;}
-                    elseif($formatCodesArray[$d] == 'S'){   $formatFront .= '<strike>'; $formatBack = '</strike>'.$formatBack;}
-                    elseif($formatCodesArray[$d] == 'LIST'){$formatFront .= '</p><ul><li>'; $formatBack = '</li></ul><p> '.$formatBack;
-                            $toFormatText = str_replace("\n",'</li><li>',$toFormatText);} 
-                    elseif($formatCodesArray[$d] == 'NUMLIST'){$formatFront .= '</p><ol><li>'; $formatBack = '</li></ol><p> '.$formatBack;
-                            $toFormatText = str_replace("\n",'</li><li>',$toFormatText);}
-                }
-    
-                //--Embeds formatting 
-                $toFormatText = str_replace("\n",$formatBack.'</p><p>'.$formatFront,$toFormatText);
-                $output = str_replace($toFormatraw.']',$formatFront.$toFormatText.$formatBack, $output);
-                $first = -1;
-                $formatFront = '';
-                $formatBack = '';
-                
+                //--Tests if a special character has been found
+                if($letter == '['){$level++;$firstBrace[$level] = $c;}
+                elseif($letter == ']' && $firstBrace[$level] != -1){
+                    
+                    //--Find formatting 
+                    $toFormatraw = substr($input,$firstBrace[$level],$c - $firstBrace[$level]);
+                    $toFormatArray = explode(";",$toFormatraw,2);
+                    
+                    $toFormatText = substr($toFormatArray[1],0,strlen($toFormatArray[1]));
+                    $formatCodesArray = explode(",",strtoupper(substr($toFormatArray[0],1,strlen($toFormatArray[0]))));
+                    
+                    //--Get formats used
+                    for($d = 0; $d != count($formatCodesArray);$d++){
+                    
+                        if($formatCodesArray[$d] == 'I'){       $formatFront .= '<em>';     $formatBack = '</em>'.$formatBack;}
+                        elseif($formatCodesArray[$d] == 'B'){   $formatFront .= '<strong>'; $formatBack = '</strong>'.$formatBack;}
+                        elseif($formatCodesArray[$d] == 'U'){   $formatFront .= '<u>';      $formatBack = '</u>'.$formatBack;}
+                        elseif($formatCodesArray[$d] == 'S'){   $formatFront .= '<strike>'; $formatBack = '</strike>'.$formatBack;}
+                        elseif($formatCodesArray[$d] == 'LIST'){$formatFront .= '</p><ul><li>'; $formatBack = '</li></ul><p> '.$formatBack;
+                                $toFormatText = str_replace("\n",'</li><li>',$toFormatText);} 
+                        elseif($formatCodesArray[$d] == 'NUMLIST'){$formatFront .= '</p><ol><li>'; $formatBack = '</li></ol><p> '.$formatBack;
+                                $toFormatText = str_replace("\n",'</li><li>',$toFormatText);}
+                    }
+        
+                    //--Embeds formatting 
+                    $toFormatText = str_replace("\n",$formatBack.'</p><p>'.$formatFront,$toFormatText);
+                    $output = str_replace($toFormatraw.']',$formatFront.$toFormatText.$formatBack, $output);
+                    $firstBrace[$level] = -1;
+                    $formatFront = '';
+                    $formatBack = '';
+                    $level--;
+                    $found = true;
+                    break;
+                }else{$found = false;}
                 
             }
-            
         }
-    
         //--Handles the newlines
         $output = str_replace("\n",'</p><p>', $output);
         
