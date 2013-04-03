@@ -206,7 +206,7 @@ class blog {
         //--Prints all the posts if one is not specified
         }else{    
             if($this->config->getValue('blog-posts-to-show') > count($this->posts)){$postlimit = count($this->posts);}else{$postlimit = $this->config->getValue('blog-posts-to-show');}
-            for($c = count($this->posts)-1; $c > (count($this->posts)-$this->config->getValue('blog-posts-to-show')-1); $c--){
+            for($c = count($this->posts)-1; $c > (  (count($this->posts)-1)-$postlimit  ); $c--){
             
                 echo 
                     "\n            "
