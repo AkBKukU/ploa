@@ -53,6 +53,23 @@ class format {
                     $toFormatText = substr($toFormatArray[1],0,strlen($toFormatArray[1]));
                     $formatCodesArray = explode(",",strtoupper(substr($toFormatArray[0],1,strlen($toFormatArray[0]))));
                     
+                    //--Strip Formatting
+                    for($d = 0; $d != count($formatCodesArray);$d++){
+                    
+                        if($formatCodesArray[$d] == 'LINK'){
+                            
+                            $anchorArray = explode(";",$toFormatText,3);
+                            $toFormatText = $anchorArray[1];
+                            
+                        }elseif($formatCodesArray[$d] == 'IMAGE'){
+                            $imageArray = explode(";",$toFormatText,3);
+                            if(trim($imageArray[1])  == '' || !(isset($imageArray[1])) ){
+                                $toFormatText = '<strong>|You need to add an alt tag to the image!|</strong>';
+                            }else{
+                                $toFormatText = '|Image Title: '.$imageArray[2].'|';}
+                            
+                        }
+                    }
         
                     //--Embeds formatting 
                     $toFormatText = str_replace("\n",$formatBack.'</p><p>'.$formatFront,$toFormatText);
@@ -113,6 +130,24 @@ class format {
                     $formatCodesArray = explode(",",strtoupper(substr($toFormatArray[0],1,strlen($toFormatArray[0]))));
                     
         
+                    //--Strip Formatting
+                    for($d = 0; $d != count($formatCodesArray);$d++){
+                    
+                        if($formatCodesArray[$d] == 'LINK'){
+                            
+                            $anchorArray = explode(";",$toFormatText,3);
+                            $toFormatText = $anchorArray[1];
+                            
+                        }elseif($formatCodesArray[$d] == 'IMAGE'){
+                            $imageArray = explode(";",$toFormatText,3);
+                            if(trim($imageArray[1])  == '' || !(isset($imageArray[1])) ){
+                                $toFormatText = '[b;|You need to add an alt tag to the image!|]';
+                            }else{
+                                $toFormatText = '|Image Title: '.$imageArray[2].'|';}
+                            
+                        }
+                    }
+                    
                     //--Embeds formatting 
                     $toFormatText = str_replace("\n",$formatBack.' '.$formatFront,$toFormatText);
                     $output = str_replace($toFormatraw.']',$formatFront.$toFormatText.$formatBack, $output);
@@ -181,9 +216,22 @@ class format {
                         elseif($formatCodesArray[$d] == 'U'){   $formatFront .= '<u>';      $formatBack = '</u>'.$formatBack;}
                         elseif($formatCodesArray[$d] == 'S'){   $formatFront .= '<strike>'; $formatBack = '</strike>'.$formatBack;}
                         elseif($formatCodesArray[$d] == 'LIST'){$formatFront .= '</p><ul><li>'; $formatBack = '</li></ul><p> '.$formatBack;
-                                $toFormatText = str_replace("\n",'</li><li>',$toFormatText);} 
+                            $toFormatText = str_replace("\n",'</li><li>',$toFormatText);} 
                         elseif($formatCodesArray[$d] == 'NUMLIST'){$formatFront .= '</p><ol><li>'; $formatBack = '</li></ol><p> '.$formatBack;
-                                $toFormatText = str_replace("\n",'</li><li>',$toFormatText);}
+                            $toFormatText = str_replace("\n",'</li><li>',$toFormatText);} 
+                        elseif($formatCodesArray[$d] == 'LINK'){
+                            $anchorArray = explode(";",$toFormatText,3);
+                            $toFormatText = $anchorArray[1];
+                            $formatFront .= '<a href="'.$anchorArray[0].'" title="'.$anchorArray[2].'">'; $formatBack = '</a> '.$formatBack;}
+                        elseif($formatCodesArray[$d] == 'IMAGE'){
+                            $imageArray = explode(";",$toFormatText,3);
+                            if(trim($imageArray[1])  == '' || !(isset($imageArray[1])) ){
+                                $toFormatText = '[b;|You need to add an alt tag to the image!|]';
+                            }else{
+                                $formatFront .= '<img src="'.$imageArray[0].'" alt="'.$imageArray[1].'" title="'.$imageArray[2].'"'; $formatBack = '> '.$formatBack;}
+                            
+                        }
+                        
                     }
         
                     //--Embeds formatting 

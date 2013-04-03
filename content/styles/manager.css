@@ -192,12 +192,18 @@ tbody:hover tr td a img.postctrl{
 }
 #helppage table td{
     text-align: center;
+    font-size: .8em;
 }
-#helppage table td ul,#helppage table td ol{
+
+#helppage table th{
+    text-align: center;
+    font-size: .8em;
+}
+#helppage table td ul ,#helppage table td ol{
     text-align: left;
+    font-size: .8em;
 }
 #settingspage table{
-    font-size: 1.25em;
     margin: 1em 0em;
 
 }
