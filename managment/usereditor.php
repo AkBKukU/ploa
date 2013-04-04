@@ -33,6 +33,7 @@ if($_REQUEST['edit'] < 0){
             
         }
         echo'
+    <div id="usereditor" class="textarea">
         <fieldset>
             <legend>'.$writetitle.' User</legend>
                     <form method="post" action="?area=users'.$writeaction.'">
@@ -46,8 +47,10 @@ if($_REQUEST['edit'] < 0){
                             <option value="1">Author</option>
                             <option value="1">Commentor</option>
                         </select>
+                        <br />
                         <input type="submit" value="Save User"  class="button">
                     </form>
-            </fieldset>
+        </fieldset>
+    </div>
         ';
 ?>

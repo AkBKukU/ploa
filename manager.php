@@ -44,13 +44,15 @@
                     '<a title="Manage all posts" href="?area=posts">Posts</a>',
                     '<a title="Configure ploa" href="?area=settings">Settings</a>',
                     '<a title="Write a new post" href="?area=writer">Writer</a>',
-                    '<a title="Veiw how to format posts" href="?area=help">Help</a>',
-                    '<a title="Return to the blog home page" href="index.php">Back to blog</a>'
+                    '<a title="Veiw how to format posts" href="?area=help">Help</a>'
                 );
-                if($currentUser['type'] == 0){
-                    $navOptions[0] = '<a title="Manage all users" href="?area=users">Users</a>';
-                    $navOptions[2] = '<a title="Create new user" href="?area=usereditor&amp;edit=-1">User Editor</a>';
+                if($currentUser['type'] == 0 && $_SESSION['loggedin'] == 1){
+                    $navOptions[] = '<a title="Manage all users" href="?area=users">Users</a>';
+                    $navOptions[] = '<a title="Create new user" href="?area=usereditor&amp;edit=-1">User Editor</a>';
                 }
+                
+                
+                $navOptions[] = '<a title="Return to the blog home page" href="index.php">Back to blog</a>';
                 for($c = 0;$c <= count($navOptions)-1; $c++){
                     echo '<li>'.$navOptions[$c].'</li>';
                 }
