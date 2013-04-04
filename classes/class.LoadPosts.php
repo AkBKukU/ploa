@@ -15,6 +15,7 @@ class LoadPosts{
     public $posts;
     public $users;
     public $sqlConfig;
+    public $mysqli;
 
     /*
      * Constructor 
@@ -27,21 +28,21 @@ class LoadPosts{
 
 
         //--Begin sql connection
-        $mysqli = new mysqli($this->sqlConfig->getValue('sql-host'), $this->sqlConfig->getValue('sql-user'), $this->sqlConfig->getValue('sql-pass'));
+        $this->mysqli = new mysqli($this->sqlConfig->getValue('sql-host'), $this->sqlConfig->getValue('sql-user'), $this->sqlConfig->getValue('sql-pass'));
         
-        if ($mysqli->connect_errno) {
-            echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+        if ($this->mysqli->connect_errno) {
+            echo "Failed to connect to MySQL: (" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error;
         }
         
         //Check if blog database exist    
-        if(0 == $mysqli->select_db($this->sqlConfig->getValue('sql-database'))){
-            $mysqli->query('CREATE DATABASE '.$this->sqlConfig->getValue('sql-database'));
+        if(0 == $this->mysqli->select_db($this->sqlConfig->getValue('sql-database'))){
+            $this->mysqli->query('CREATE DATABASE '.$this->sqlConfig->getValue('sql-database'));
             echo 'Created '.$config->getValue('sql-database').' database';
         }
         
         //--Check if post table exist    
-        if(0 == $mysqli->query('SELECT 1 FROM '.$this->sqlConfig->getValue('sql-post-table').' LIMIT 1')){
-            $mysqli->query('CREATE TABLE '.$this->sqlConfig->getValue('sql-post-table').'(
+        if(0 == $this->mysqli->query('SELECT 1 FROM '.$this->sqlConfig->getValue('sql-post-table').' LIMIT 1')){
+            $this->mysqli->query('CREATE TABLE '.$this->sqlConfig->getValue('sql-post-table').'(
                                 id INT NOT NULL AUTO_INCREMENT, 
                                 PRIMARY KEY(id),
                                 title TEXT,
@@ -55,8 +56,8 @@ class LoadPosts{
         }
         
         //--Check if user table exist    
-        if(0 == $mysqli->query('SELECT 1 FROM '.$this->sqlConfig->getValue('sql-user-table').' LIMIT 1')){
-            $mysqli->query('CREATE TABLE '.$this->sqlConfig->getValue('sql-user-table').'(
+        if(0 == $this->mysqli->query('SELECT 1 FROM '.$this->sqlConfig->getValue('sql-user-table').' LIMIT 1')){
+            $this->mysqli->query('CREATE TABLE '.$this->sqlConfig->getValue('sql-user-table').'(
                                 id INT NOT NULL AUTO_INCREMENT, 
                                 PRIMARY KEY(id),
                                 name TEXT,
@@ -68,12 +69,12 @@ class LoadPosts{
             
             $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').' (name,pass) VALUES ("admin","password")';
             echo "Query: ".$query;
-            $mysqli->query($query);
+            $this->mysqli->query($query);
             echo 'Added admin user with pass root';
         }
         
         //--Read posts from table
-        $result =    $mysqli->query('SELECT * FROM '.$this->sqlConfig->getValue('sql-post-table'));
+        $result =    $this->mysqli->query('SELECT * FROM '.$this->sqlConfig->getValue('sql-post-table'));
         if($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $this->posts[] = array(  
@@ -88,7 +89,7 @@ class LoadPosts{
         }
         
         //--Read users from table
-        $result =    $mysqli->query('SELECT * FROM '.$this->sqlConfig->getValue('sql-user-table'));
+        $result =    $this->mysqli->query('SELECT * FROM '.$this->sqlConfig->getValue('sql-user-table'));
         if($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $this->users[] = array(  
@@ -197,7 +198,7 @@ class LoadPosts{
         
         $query = 'UPDATE '.$this->sqlConfig->getValue('sql-user-table').' SET pass="'.$newpass.'" WHERE id="'.$id.'"';    
         echo "Query: ".$query;
-        echo "Result: ".$mysqli->query($query);
+        echo "Result: ".$this->mysqli->query($query);
         
     }
     
@@ -219,7 +220,7 @@ class LoadPosts{
     function __destruct() {
         
         //--Disconnect from database
-        mysqli_close($mysqli);
+        mysqli_close($this->mysqli);
     }
 }
 ?>
