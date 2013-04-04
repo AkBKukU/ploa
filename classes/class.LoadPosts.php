@@ -66,7 +66,7 @@ class LoadPosts{
             )');
             echo 'Created '.$this->sqlConfig->getValue('sql-table').' table';
             
-            $query = 'INSERT INTO '.$config->getValue('sql-user-table').' (name,pass) VALUES ("admin","password")';
+            $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').' (name,pass) VALUES ("admin","password")';
             echo "Query: ".$query;
             $mysqli->query($query);
             echo 'Added admin user with pass root';
