@@ -81,6 +81,8 @@ class LoadPosts{
                     'title' => $row['title'], 
                     'text' => $row['text'], 
                     'id' => $row['id'],
+                    'userid' => $row['userid'],
+                    'tags' => $row['tags'],
                     "date" => $row['date'],
                     'status' => $row['status']
                     );    
@@ -119,26 +121,45 @@ class LoadPosts{
      * 
      * Returns all posts in an array that are mark with status 1
      */
-    public function getPosts(){
+    public function getPosts($username){
+        
+        for($c = 0;$c <= count($this->users)-1; $c++){
+            if($this->users[$c]['name'] == $username){
+                $userid = $this->users[$c]['id'];
+            } 
+        }
         
         for($c = 0;$c <= count($this->posts)-1; $c++){
-            if($this->posts[$c]['status'] != 0){
-                $shownPosts[] = array(  
+            if($this->posts[$c]['userid'] == $userid){
+                $userPosts[] = array(  
                             'title' => $this->posts[$c]['title'], 
                             'text' => $this->posts[$c]['text'], 
                             'id' => $this->posts[$c]['id'],
+                            'userid' => $this->posts[$c]['userid'],
                             "date" => $this->posts[$c]['date'],
+                            'tags' => $this->posts[$c]['tags'], 
                             'year' => $this->posts[$c]['year'], 
                             'month' => $this->posts[$c]['month'], 
                             'day' => $this->posts[$c]['day'],
-                            'formdate' => $this->posts[$c]['formdate']
+                            'formdate' => $this->posts[$c]['formdate'],
+                            'status' => $this->posts[$c]['status']
                             );   
             } 
         }
         
         
         
-        return $shownPosts;
+        return $userPosts;
+    }
+    
+    /*
+     * getAllPosts 
+     * 
+     * Returns all posts
+     */
+    public function getAllPosts(){
+        
+        return $this->posts;
     }
     
     /*
@@ -182,6 +203,30 @@ class LoadPosts{
     }
     
     /*
+     * getUser
+     * 
+     * Returns the users info
+     */
+    public function getUser($name){
+        
+                
+        for($c = 0;$c <= count($this->users)-1; $c++){
+            if($this->users[$c]['name'] == $name){
+                $theuser = array(  
+                    'name' => $this->users[$c]['name'], 
+                    'pass' => $this->users[$c]['pass'], 
+                    'id' => $this->users[$c]['id'],
+                    "postcount" => $this->users[$c]['postcount'],
+                    'type' => $this->users[$c]['type']
+                    );   
+                
+            } 
+        }
+        
+        return $theuser;
+    }
+    
+    /*
      * setUserPass 
      * 
      * Changes the users password
@@ -203,13 +248,26 @@ class LoadPosts{
     }
     
     /*
-     * getAllPosts 
+     * addUser
      * 
-     * Returns all posts
+     * Creates a new user
      */
-    public function getAllPosts(){
+    public function addUser($name,$pass,$type){
         
-        return $this->posts;
+        $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').' (name,pass,type,postcount) VALUES ("'.$name.'","'.$pass.'","'.$type.'","0")';
+        echo "Query: ".$query;
+        $this->mysqli->query($query);
+        
+    }
+    
+    /*
+     * getAllUsers
+     * 
+     * Returns all user info
+     */
+    public function getAllUsers(){
+        
+        return $this->users;
     }
 
     /*

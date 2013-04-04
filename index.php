@@ -13,7 +13,7 @@
         <?php 
 
         include ('./classes/class.blog.php');
-        $blog = new blog();
+        $blog = new blog('akbkuku');
 
         echo $blog->nav();
         echo '<hr />';

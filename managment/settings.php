@@ -34,56 +34,58 @@
             
             
             
-            
-            
         echo '</h2>
-            <hr />
-            <form method="post" action="?area=settings&amp;action=save">
-                <h3 id="configdatabase"><a href="#configdatabase">Database</a></h3>
-                <p> - Configure database connection</p>
-               
-                <table>
-                    <tr>
-                       <th><label for="sql-host">Host:Port</label></th>
-                       <td><input id="sql-host" name="sql-host" type="text" value="'.$config->getValue('sql-host').'"></td>
-                    </tr>
-                    <tr>
-                       <th><label for="sql-database">Database</label></th>
-                       <td><input id="sql-database" name="sql-database" type="text" value="'.$config->getValue('sql-database').'"></td>
-                    </tr>
-                    <tr>
-                       <th><label for="sql-table">Blog Table</label></th>
-                       <td><input id="sql-table" name="sql-table" type="text" value="'.$config->getValue('sql-table').'"></td>
-                    </tr>
-                    
-                    <tr>
-                       <th><label for="sql-user">User</label></th>
-                       <td><input id="sql-user" name="sql-user" type="text" value="'.$config->getValue('sql-user').'"></td>
-                    </tr>
-                    
-                    <tr>
-                       <th><label for="sql-pass">Password</label></th>
-                       <td><input id="sql-pass" name="sql-pass" type="password" value="'.$config->getValue('sql-pass').'"></td>
-                    </tr>
-                    
-                    <tr>
-                       <th><label for="sql-pass-confirm">Password Confirm</label></th>
-                       <td><input id="sql-pass-confirm" name="sql-pass-confirm" type="password" value="'.$config->getValue('sql-pass').'"></td>
-                    </tr>
-                    
-                </table>
+            <hr />';
+    
+        if($currentUser['type'] == 0){
+            echo '
+                <form method="post" action="?area=settings&amp;action=save">
+                    <h3 id="configdatabase"><a href="#configdatabase">Database</a></h3>
+                    <p> - Configure database connection</p>
+                   
+                    <table>
+                        <tr>
+                           <th><label for="sql-host">Host:Port</label></th>
+                           <td><input id="sql-host" name="sql-host" type="text" value="'.$config->getValue('sql-host').'"></td>
+                        </tr>
+                        <tr>
+                           <th><label for="sql-database">Database</label></th>
+                           <td><input id="sql-database" name="sql-database" type="text" value="'.$config->getValue('sql-database').'"></td>
+                        </tr>
+                        <tr>
+                           <th><label for="sql-table">Blog Table</label></th>
+                           <td><input id="sql-table" name="sql-table" type="text" value="'.$config->getValue('sql-table').'"></td>
+                        </tr>
+                        
+                        <tr>
+                           <th><label for="sql-user">User</label></th>
+                           <td><input id="sql-user" name="sql-user" type="text" value="'.$config->getValue('sql-user').'"></td>
+                        </tr>
+                        
+                        <tr>
+                           <th><label for="sql-pass">Password</label></th>
+                           <td><input id="sql-pass" name="sql-pass" type="password" value="'.$config->getValue('sql-pass').'"></td>
+                        </tr>
+                        
+                        <tr>
+                           <th><label for="sql-pass-confirm">Password Confirm</label></th>
+                           <td><input id="sql-pass-confirm" name="sql-pass-confirm" type="password" value="'.$config->getValue('sql-pass').'"></td>
+                        </tr>
+                        
+                    </table>';
+        }    
                 
-                
+        echo '    
                 <h3 id="configblog"><a href="#configblog">Blog</a></h3>
                 <p> - Configure Blog info</p>
                 <table>
                     <tr>
-                       <th><label for="blog-login-pass">Manager Password</label></th>
-                       <td><input id="blog-login-pass" name="blog-login-pass" type="password" value="'.$loadPosts->getUserPass($_SESSION['currentuser']).'"></td>
+                       <th><label for="blog-login-pass">Login Password</label></th>
+                       <td><input id="blog-login-pass" name="blog-login-pass" type="password" value="'.$loadPosts->getUserPass($currentUser['name']).'"></td>
                     </tr>
                     <tr>
-                       <th><label for="blog-login-pass-confirm">Manager Password Confrim</label></th>
-                       <td><input id="blog-login-pass-confirm" name="blog-login-pass-confirm" type="password" value="'.$loadPosts->getUserPass($_SESSION['currentuser']).'"></td>
+                       <th><label for="blog-login-pass-confirm">Login Password Confrim</label></th>
+                       <td><input id="blog-login-pass-confirm" name="blog-login-pass-confirm" type="password" value="'.$loadPosts->getUserPass($currentUser['name']).'"></td>
                     </tr>
                     <tr>
                        <th><label for="blog-title">Blog Title</label></th>

@@ -19,12 +19,12 @@
         $releaseversion = floatval($verArray[1]);
         $upgrade = '';
         if($currentversion < $releaseversion){$upgrade = '<li><a title="Update to Newest Release" href="'.$ploa_url.'">Update Availible!</a></li>';}
-        
         //--Check if user is logged in
         if($loadPosts->checkUser($_REQUEST['userlogin'],$_REQUEST['userpass'])){
             $_SESSION['loggedin'] = 1;
             $_SESSION['currentuser'] = $_REQUEST['userlogin'];
         }
+        $currentUser = $loadPosts->getUser( $_SESSION['currentuser']);
         ?>
         <meta charset=utf-8>
         <meta name="description" content="Ploa blog demonstration">
@@ -38,11 +38,23 @@
                  
             <div id="sidebar">
                 <ul id="nav">
-                    <li><a title="Manage all posts" href="?area=posts">Posts</a></li>
-                    <li><a title="Configure ploa" href="?area=settings">Settings</a></li>
-                    <li><a title="Write a new post" href="?area=writer">Writer</a></li>
-                    <li><a title="Veiw how to format posts" href="?area=help">Help</a></li>
-                    <li><a title="Return to the blog home page" href="index.php">Back to blog</a></li>
+                <?php
+                
+                $navOptions = array(
+                    '<a title="Manage all posts" href="?area=posts">Posts</a>',
+                    '<a title="Configure ploa" href="?area=settings">Settings</a>',
+                    '<a title="Write a new post" href="?area=writer">Writer</a>',
+                    '<a title="Veiw how to format posts" href="?area=help">Help</a>',
+                    '<a title="Return to the blog home page" href="index.php">Back to blog</a>'
+                );
+                if($currentUser['type'] == 0){
+                    $navOptions[0] = '<a title="Manage all users" href="?area=users">Users</a>';
+                    $navOptions[2] = '<a title="Create new user" href="?area=usereditor&amp;edit=-1">User Editor</a>';
+                }
+                for($c = 0;$c <= count($navOptions)-1; $c++){
+                    echo '<li>'.$navOptions[$c].'</li>';
+                }
+                ?>
                     <?php echo $upgrade; ?>
                 </ul>
                 <form class="logout" method="post" action="manager.php">
@@ -80,13 +92,16 @@
         }
         
         //--load posts to array
-        $posts  = $loadPosts->getAllPosts(); 
-
-
+        $posts  = $loadPosts->getPosts($currentUser['name']); 
+        
+        
         //--Checks what page to display   
         if($_REQUEST['area'] == 'posts'){        
             
             include('./managment/posts.php');
+        }elseif($_REQUEST['area'] == 'users'){ 
+            
+            include('./managment/users.php');
         }elseif($_REQUEST['area'] == 'post'){ 
             
             include('./managment/post.php');
@@ -96,6 +111,9 @@
         }elseif($_REQUEST['area'] == 'writer'){ 
             
             include('./managment/writer.php');    
+        }elseif($_REQUEST['area'] == 'usereditor'){ 
+            
+            include('./managment/usereditor.php');    
         }elseif($_REQUEST['area'] == 'help'){ 
             
             include('./managment/help.php');    

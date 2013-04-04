@@ -33,6 +33,7 @@ if($_REQUEST['edit'] == 0){
                         <label for="title">Title </label><input name="title" id="title" type="text" class="title"'.$writedefaultitle.'" autofocus="">
                         <label for="tags">Tags </label><input name="tags" id="tags" type="text" class="tags"  '. $writedefaultags.'"><br />
                         <div class="separater"></div>
+                        <input type="hidden" name="userid" value="'.$currentUser['id'].'">
                         '.$writeeditid.'
                         <textarea name="text" id="text" class="text" '.$writedefaulttext.'</textarea><br />
                         <div class="inputs"><input type="submit" value="Save Post"  class="button"></div>

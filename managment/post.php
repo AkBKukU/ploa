@@ -7,6 +7,7 @@
     $status = $_REQUEST['status'];
     $action = $_REQUEST['action'];
     $postid = $_REQUEST['postid'];
+    $userid = $_REQUEST['userid'];
         
     $today = getdate();
     $date=date('Y-m-d H:i:s');
@@ -22,7 +23,7 @@
     
 //Write post to database
     if($action =="update"){
-        $query = 'UPDATE '.$config->getValue('sql-post-table').' SET status="'.$status.'", title="'.$title.'", text="'.$text.'", tags="'.$tags.'" WHERE id="'.$postid.'"';    
+        $query = 'UPDATE '.$config->getValue('sql-post-table').' SET status="'.$status.'", title="'.$title.'", text="'.$text.'", tags="'.$tags.'", userid="'.$userid.'" WHERE id="'.$postid.'"';    
         echo "Query: ".$query;
         $mysqli->query($query);
             echo '
@@ -34,7 +35,7 @@
                     ';
     }elseif($action =="insert"){
     
-        $query = 'INSERT INTO '.$config->getValue('sql-post-table').' (title,text,date,tags,status) VALUES ("'.$title.'","'.$text.'","'.$date.'","'.$tags.'","'.$status.'")';
+        $query = 'INSERT INTO '.$config->getValue('sql-post-table').' (title,text,date,tags,status,userid) VALUES ("'.$title.'","'.$text.'","'.$date.'","'.$tags.'","'.$status.'","'.$userid.'")';
         echo "Query: ".$query;
         $mysqli->query($query);
             echo '

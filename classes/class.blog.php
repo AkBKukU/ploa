@@ -32,9 +32,9 @@ class blog {
      * 
      * Creates $config Object
      */
-    public function __construct(){
+    public function __construct($username){
         $loadPosts = new LoadPosts();
-        $this->posts = $loadPosts->getPosts();
+        $this->posts = $loadPosts->getPosts($username);
         $this->config = new ConfigHandler(dirname(__DIR__).'/'.'settings.cfg');
     }
    
@@ -87,41 +87,42 @@ class blog {
             //--Loop through posts and print menu for each            
             for($c = count($this->posts)-1; $c >= 0; $c--){
                 
-                //--Check if the post's year is older than the last
-                if(intval($this->posts[$c]['year']) != intval($lastyear)){
-                    $lastyear = $this->posts[$c]['year'];   
-                    $lastmonth = $this->posts[$c]['month'];
-                    $lastday = 0;      
-                    echo '
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                        <li class="navmenuitem">Y '.$this->posts[$c]['year'].'
-                            <ul class="submenua '.$navitemstyle.'">
-                                <li class="navmenuitem">M '.$this->posts[$c]['month'].'
-                                    <ul class="submenub navitemvert">
-                                ';
-                    }
-                           
-                //--Check if the post's month is older than the last
-                if(intval($this->posts[$c]['month']) != intval($lastmonth)){
-                        $lastmonth = $this->posts[$c]['month'];   
-                        $lastday = 0;       
-                    echo '
-                                    </ul>
-                                </li>
-                                
-                                <li class="navmenuitem">M '.$this->posts[$c]['month'].'
-                                    <ul class="submenub navitemvert">
-                                ';
-                    }
-                 
-            echo '
-                                        <li class="navmenuitem"><a href="?post='.$this->posts[$c]['id'].'">D '.$this->posts[$c]['day'].' - '.$this->posts[$c]['title'].' </a></li>
-                                ';
-                           
+                if($this->posts[$c]['status'] == 1){
+                    //--Check if the post's year is older than the last
+                    if(intval($this->posts[$c]['year']) != intval($lastyear)){
+                        $lastyear = $this->posts[$c]['year'];   
+                        $lastmonth = $this->posts[$c]['month'];
+                        $lastday = 0;      
+                        echo '
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="navmenuitem">Y '.$this->posts[$c]['year'].'
+                                <ul class="submenua '.$navitemstyle.'">
+                                    <li class="navmenuitem">M '.$this->posts[$c]['month'].'
+                                        <ul class="submenub navitemvert">
+                                    ';
+                        }
+                               
+                        //--Check if the post's month is older than the last
+                        if(intval($this->posts[$c]['month']) != intval($lastmonth)){
+                                $lastmonth = $this->posts[$c]['month'];   
+                                $lastday = 0;       
+                            echo '
+                                            </ul>
+                                        </li>
+                                        
+                                        <li class="navmenuitem">M '.$this->posts[$c]['month'].'
+                                            <ul class="submenub navitemvert">
+                                        ';
+                        }
+                         
+                        echo '
+                                            <li class="navmenuitem"><a href="?post='.$this->posts[$c]['id'].'">D '.$this->posts[$c]['day'].' - '.$this->posts[$c]['title'].' </a></li>
+                                    ';
+                   }
                 }
         echo '
                                     </ul>
@@ -131,7 +132,7 @@ class blog {
                     </ul>
                     
                     ';
-        
+            
         }
     }
     
@@ -207,15 +208,17 @@ class blog {
         }else{    
             if($this->config->getValue('blog-posts-to-show') > count($this->posts)){$postlimit = count($this->posts);}else{$postlimit = $this->config->getValue('blog-posts-to-show');}
             for($c = count($this->posts)-1; $c > (  (count($this->posts)-1)-$postlimit  ); $c--){
-            
-                echo 
-                    "\n            "
-                    .$this->config->getValue('blog-post').
-                        $this->config->getValue('blog-post-header').'<a href="?post='.$this->posts[$c]['id'].'">'.$this->posts[$c]['title'].' - '.$this->posts[$c]['formdate'].'</a>'.$blog_post_header_end                    
-                        .$format->fancy($this->posts[$c]['text'])
-                    ."\n            "
-                    .$blog_post_end.
-                    "\n         ";}
+                if($this->posts[$c]['status'] == 1){
+                    echo 
+                        "\n            "
+                        .$this->config->getValue('blog-post').
+                            $this->config->getValue('blog-post-header').'<a href="?post='.$this->posts[$c]['id'].'">'.$this->posts[$c]['title'].' - '.$this->posts[$c]['formdate'].'</a>'.$blog_post_header_end                    
+                            .$format->fancy($this->posts[$c]['text'])
+                        ."\n            "
+                        .$blog_post_end.
+                        "\n         ";
+                }
+            }
         
             echo 
                 "\n         "
