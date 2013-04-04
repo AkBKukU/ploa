@@ -22,7 +22,7 @@
     
 //Write post to database
     if($action =="update"){
-        $query = 'UPDATE '.$config->getValue('sql-table').' SET status="'.$status.'", title="'.$title.'", text="'.$text.'", tags="'.$tags.'" WHERE id="'.$postid.'"';    
+        $query = 'UPDATE '.$config->getValue('sql-post-table').' SET status="'.$status.'", title="'.$title.'", text="'.$text.'", tags="'.$tags.'" WHERE id="'.$postid.'"';    
         echo "Query: ".$query;
         $mysqli->query($query);
             echo '
@@ -34,7 +34,7 @@
                     ';
     }elseif($action =="insert"){
     
-        $query = 'INSERT INTO '.$config->getValue('sql-table').' (title,text,date,tags,status) VALUES ("'.$title.'","'.$text.'","'.$date.'","'.$tags.'","'.$status.'")';
+        $query = 'INSERT INTO '.$config->getValue('sql-post-table').' (title,text,date,tags,status) VALUES ("'.$title.'","'.$text.'","'.$date.'","'.$tags.'","'.$status.'")';
         echo "Query: ".$query;
         $mysqli->query($query);
             echo '
@@ -46,7 +46,7 @@
                     ';
     }elseif($action =="delete"){
     
-        $query = 'DELETE FROM '.$config->getValue('sql-table').' WHERE id='.$postid;
+        $query = 'DELETE FROM '.$config->getValue('sql-post-table').' WHERE id='.$postid;
         echo "Query: ".$query;
         $mysqli->query($query);
             echo '

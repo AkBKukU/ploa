@@ -22,7 +22,7 @@
             $config->setValue('blog-nav-usestyle',$_REQUEST['blog-nav-usestyle']);
             $config->setValue('blog-nav-type',$_REQUEST['blog-nav-type']);
             if($_REQUEST['blog-login-pass'] == $_REQUEST['blog-login-pass-confirm']){
-                $config->setValue('blog-login-pass',$_REQUEST['blog-login-pass']);
+                $loadPosts->setUserPass($_SESSION['currentuser'],$_REQUEST['blog-login-pass']);
             }else{echo " - Login Passwords Don't Match(Igorning Change)";}
             $config->setValue('blog-full',$_REQUEST['blog-full']);
             $config->setValue('blog-header',$_REQUEST['blog-header']);
@@ -39,7 +39,7 @@
         echo '</h2>
             <hr />
             <form method="post" action="?area=settings&amp;action=save">
-                <h3 id="configdatabase"><a href="#textformat">Database</a></h3>
+                <h3 id="configdatabase"><a href="#configdatabase">Database</a></h3>
                 <p> - Configure database connection</p>
                
                 <table>
@@ -74,16 +74,16 @@
                 </table>
                 
                 
-                <h3 id="configblog"><a href="#textformat">Blog</a></h3>
+                <h3 id="configblog"><a href="#configblog">Blog</a></h3>
                 <p> - Configure Blog info</p>
                 <table>
                     <tr>
                        <th><label for="blog-login-pass">Manager Password</label></th>
-                       <td><input id="blog-login-pass" name="blog-login-pass" type="password" value="'.$config->getValue('blog-login-pass').'"></td>
+                       <td><input id="blog-login-pass" name="blog-login-pass" type="password" value="'.$loadPosts->getUserPass($_SESSION['currentuser']).'"></td>
                     </tr>
                     <tr>
                        <th><label for="blog-login-pass-confirm">Manager Password Confrim</label></th>
-                       <td><input id="blog-login-pass-confirm" name="blog-login-pass-confirm" type="password" value="'.$config->getValue('blog-login-pass').'"></td>
+                       <td><input id="blog-login-pass-confirm" name="blog-login-pass-confirm" type="password" value="'.$loadPosts->getUserPass($_SESSION['currentuser']).'"></td>
                     </tr>
                     <tr>
                        <th><label for="blog-title">Blog Title</label></th>
@@ -117,7 +117,7 @@
                 </table>
                 
                 
-                <h3 id="configblogtags"><a href="#textformat">Blog HTML Tags</a></h3>
+                <h3 id="configblogtags"><a href="#configblogtags">Blog HTML Tags</a></h3>
                 <p> - Configure Blog HTML Output</p>
                 <table>
                     <tr>

@@ -190,6 +190,20 @@ tbody:hover tr td a img.postctrl{
     border: 1px solid #000;
     
 }
+#userlogin, #userpass{
+    width: 75%;
+    height: 30px;
+    margin: 0em 0em;
+}
+.alertinputlabel{
+    display: inline-block;
+    width: 20%;
+    height: 30px;
+    margin: 0em 0em;
+}
+
+
+
 #helppage table td{
     text-align: center;
     font-size: .8em;
