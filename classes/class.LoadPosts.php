@@ -37,8 +37,8 @@ class LoadPosts{
             echo 'Created '.$config->getValue('sql-database').' database';
         }
         
-        //--Check if blog table exist    
-        if(0 == $mysqli->query('SELECT 1 FROM '.$sqlConfig->getValue('sql-table').' LIMIT 1')){
+        //--Check if post table exist    
+        if(0 == $mysqli->query('SELECT 1 FROM '.$sqlConfig->getValue('sql-post-table').' LIMIT 1')){
             $mysqli->query('CREATE TABLE '.$sqlConfig->getValue('sql-table').'(
                                 id INT NOT NULL AUTO_INCREMENT, 
                                 PRIMARY KEY(id),
@@ -46,7 +46,20 @@ class LoadPosts{
                                 text TEXT,
                                 date TEXT,
                                 tags TEXT,
-                                status INT
+                                status INT,
+                                userid INT
+            )');
+            echo 'Created '.$sqlConfig->getValue('sql-table').' table';
+        }
+        
+        //--Check if user table exist    
+        if(0 == $mysqli->query('SELECT 1 FROM '.$sqlConfig->getValue('sql-user-table').' LIMIT 1')){
+            $mysqli->query('CREATE TABLE '.$sqlConfig->getValue('sql-table').'(
+                                id INT NOT NULL AUTO_INCREMENT, 
+                                PRIMARY KEY(id),
+                                name TEXT,
+                                pass TEXT,
+                                postcount INT
             )');
             echo 'Created '.$sqlConfig->getValue('sql-table').' table';
         }
