@@ -105,6 +105,7 @@ class LoadPosts{
             }
         }
         
+        //--Get individual date parts
         for($c = 0; $c < count($this->posts); $c++){    
             $this->posts[$c]['year'] = substr($this->posts[$c]['date'],0,4);
             $this->posts[$c]['month'] = substr($this->posts[$c]['date'],5,2);
@@ -113,6 +114,13 @@ class LoadPosts{
         
         }
         
+        //--Count the user posts
+        for($c = 0; $c < count($this->users); $c++){
+            
+            for($d = 0; $d < count($this->posts); $d++){    
+                if($this->users[$c]['id'] == $this->posts[$d]['userid']){$this->users[$c]['postcount']++;}
+            }
+        }
         
     }
     

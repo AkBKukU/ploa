@@ -8,12 +8,19 @@
                 //-->
             </script>
                     ';
-    }    
+    }
+        
 
     //--load users to array
     $users  = $loadPosts->getAllUsers(); 
     
-    
+    for($c = 0; $c < count($users); $c++){
+        
+        if($users[$c]['type'] == 0){$users[$c]['type'] = 'Administrator';
+        }elseif($users[$c]['type'] == 1){$users[$c]['type'] = 'Author';
+        }elseif($users[$c]['type'] == 2){$users[$c]['type'] = 'Commentor';}
+    }
+        
     include (dirname(__DIR__).'/classes/class.format.php');
     $format = new format();
         echo '<table>';    
@@ -22,7 +29,7 @@
             echo '
                 <tbody'.$even.'>
                     <tr>
-                        <td><p><strong>'.$users[$c]['name'].' - '.$posts[$c]['postcount'].'</strong></p></td>
+                        <td><p><strong>'.$users[$c]['name'].' - '.$users[$c]['type'].' - '.$users[$c]['postcount'].' Posts</strong></p></td>
                         <td><a title="Edit User" href="?area=usereditor&amp;edit='.$users[$c]['id'].'"><img class="postctrl" alt="Edit" src="content/images/edit.png"></a> 
                             <a title="Delete User" href="?area=users&amp;edit='.$users[$c]['id'].'&amp;delete=confirm"><img class="postctrl" alt="Delete" src="content/images/delete.png"></a></td>
                     </tr>
