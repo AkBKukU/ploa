@@ -79,8 +79,39 @@ class LoadPosts{
             )');
             echo 'Created '.$this->sqlConfig->getValue('sql-user-table').' table';
             
-            $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').
-                    ' (name,pass,postcount,type,blogtitle,blogurl,blogpoststoshow,blogshowtitle,blogshownav,blognavusestyle,blognavtype,blogfull,blogheader,blognav,blogpost,blogpostheader)  '.'VALUES ("admin","password","0","0","Default Blog","http://127.0.0.1:/","10","1","1","0","horizontal","<section class='."'theme'".'>","<h2>","<div class='."'nav'".'>","<article>","<h3>")';
+            $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').' (name,
+                                                                                    pass,
+                                                                                    postcount,
+                                                                                    type,
+                                                                                    blogtitle,
+                                                                                    blogurl,
+                                                                                    blogpoststoshow,
+                                                                                    blogshowtitle,
+                                                                                    blogshownav,
+                                                                                    blognavusestyle,
+                                                                                    blognavtype,
+                                                                                    blogfull,
+                                                                                    blogheader,
+                                                                                    blognav,
+                                                                                    blogpost,
+                                                                                    blogpostheader) 
+                                                                                    
+                                                                           VALUES ( "admin",
+                                                                                    "password",
+                                                                                    "0",
+                                                                                    "0",
+                                                                                    "Default Blog",
+                                                                                    "http://127.0.0.1:/",
+                                                                                    "10",
+                                                                                    "1",
+                                                                                    "1",
+                                                                                    "0",
+                                                                                    "horizontal",
+                                                                                    "&lt;section class=&quot;theme&quot;&gt;",
+                                                                                    "&lt;h2&gt;",
+                                                                                    "&lt;div class=&quot;nav&quot;&gt;",
+                                                                                    "&lt;article&gt;",
+                                                                                    "&lt;h3&gt;")';
                     
             echo "Query: ".$query;
             $this->mysqli->query($query);
@@ -257,7 +288,9 @@ class LoadPosts{
         }
         
         
-        $query = 'UPDATE '.$this->sqlConfig->getValue('sql-user-table').' SET pass="'.$newpass.'" WHERE id="'.$id.'"';    
+        $query = 'UPDATE '.$this->sqlConfig->getValue('sql-user-table').' SET pass="'.$newpass.'" WHERE id="'.$id.'"';
+        
+        $this->mysqli->query($query);
         
     }
     
@@ -266,31 +299,45 @@ class LoadPosts{
      * 
      * Changes the users password
      */
-    public function updateUserSettings($name,$blogtitle,$blogurl,$blogpoststoshow,$blogshowtitle,$blogshownav,$blognavusestyle,$blognavtype,$blogfull,$blogheader,$blognav,$blogpost,$blogpostheader){
+    public function updateUserSettings( $name,
+                                        $blogtitle,
+                                        $blogurl,
+                                        $blogpoststoshow,
+                                        $blogshowtitle,
+                                        $blogshownav,
+                                        $blognavusestyle,
+                                        $blognavtype,
+                                        $blogfull,
+                                        $blogheader,
+                                        $blognav,
+                                        $blogpost,
+                                        $blogpostheader){
         
         
         for($c = 0;$c <= count($this->users)-1; $c++){
             if($this->users[$c]['name'] == $name){
-            $id = $this->users[$c]['id'];
+                
+                $id = $this->users[$c]['id'];
             } 
         }
         
         
-        $query = 'UPDATE '.$this->sqlConfig->getValue('sql-user-table').' SET blogtitle="'.$blogtitle.
-                                                                            '",blogurl="'.$blogurl.
-                                                                            '",blogpoststoshow="'.$blogpoststoshow.
-                                                                            '",blogshowtitle="'.$blogshowtitle.
-                                                                            '",blogshownav="'.$blogshownav.
-                                                                            '",blognavusestyle="'.$blognavusestyle.
-                                                                            '",blognavtype="'.$blognavtype.
-                                                                            '",blogfull="'.$blogfull.
-                                                                            '",blogheader="'.$blogheader.
-                                                                            '",blognav="'.$blognav.
-                                                                            '",blogpost="'.$blogpost.
-                                                                            '",blogpostheader="'.$blogpostheader.
-                                                                            
-                                                                            '" WHERE id="'.$id.'"';    
-        echo "Query: ".$query;
+        $query = 'UPDATE '.$this->sqlConfig->getValue('sql-user-table').' SET   blogtitle="'.$blogtitle.'",
+                                                                                blogurl="'.$blogurl.'",
+                                                                                blogpoststoshow="'.$blogpoststoshow.'",
+                                                                                blogshowtitle="'.$blogshowtitle.'",
+                                                                                blogshownav="'.$blogshownav.'",
+                                                                                blognavusestyle="'.$blognavusestyle.'",
+                                                                                blognavtype="'.$blognavtype.'",
+                                                                                blogfull="'.$blogfull.'",
+                                                                                blogheader="'.$blogheader.'",
+                                                                                blognav="'.$blognav.'",
+                                                                                blogpost="'.$blogpost.'",
+                                                                                blogpostheader="'.$blogpostheader.'" 
+                                                                                
+                                                                                WHERE id="'.$id.'"';
+                                                                                
+                                      
         echo "Result: ".$this->mysqli->query($query);
         
     }
@@ -302,8 +349,40 @@ class LoadPosts{
      */
     public function addUser($name,$pass,$type){
         
-        $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').' (name,pass,postcount,type,blogtitle,blogurl,blogpoststoshow,blogshowtitle,blogshownav,blognavusestyle,blognavtype,blogfull,blogheader,blognav,blogpost,blogpostheader)  '.'VALUES ("'.$name.'","'.$pass.'","'.$type.'","0","Default Blog","http://127.0.0.1:/","10","1","1","0","0","<section class='."'theme'".'>","<h2>","<div class='."'nav'".'>","<article>","<h3>")';
-        echo "Query: ".$query;
+        $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').' (name,
+                                                                                pass,
+                                                                                postcount,
+                                                                                type,
+                                                                                blogtitle,
+                                                                                blogurl,
+                                                                                blogpoststoshow,
+                                                                                blogshowtitle,
+                                                                                blogshownav,
+                                                                                blognavusestyle,
+                                                                                blognavtype,
+                                                                                blogfull,
+                                                                                blogheader,
+                                                                                blognav,
+                                                                                blogpost,
+                                                                                blogpostheader)  
+                                                                                
+                                                                    VALUES (    "'.$name.'",
+                                                                                "'.$pass.'",
+                                                                                "'.$type.'",
+                                                                                "0",
+                                                                                "Default Blog",
+                                                                                "http://127.0.0.1:/",
+                                                                                "10",
+                                                                                "1",
+                                                                                "1",
+                                                                                "0",
+                                                                                "horizontal",
+                                                                                "&lt;section class=&quot;theme&quot;&gt;",
+                                                                                "&lt;h2&gt;",
+                                                                                "&lt;div class=&quot;nav&quot;&gt;",
+                                                                                "&lt;article&gt;",
+                                                                                "&lt;h3&gt;")';
+                                                                
         $this->mysqli->query($query);
         
     }

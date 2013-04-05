@@ -19,7 +19,7 @@
                 $loadPosts->setUserPass($_SESSION['currentuser'],$_REQUEST['blog-login-pass']);
             }else{echo " - Login Passwords Don't Match(Igorning Change)";}
             
-            $loadpost->updateUserSettings(  $_SESSION['currentuser'],
+            $loadPosts->updateUserSettings( $_SESSION['currentuser'],
                                             $_REQUEST['blog-title'],
                                             $_REQUEST['blog-url'],
                                             $_REQUEST['blog-posts-to-show'],
@@ -27,13 +27,16 @@
                                             $_REQUEST['blog-show-nav'],
                                             $_REQUEST['blog-nav-usestyle'],
                                             $_REQUEST['blog-nav-type'],
-                                            $_REQUEST['blog-full'],
-                                            $_REQUEST['blog-header'],
-                                            $_REQUEST['blog-nav'],
-                                            $_REQUEST['blog-post'],
-                                            $_REQUEST['blog-post-header']);
+                                            htmlentities($_REQUEST['blog-full']),
+                                            htmlentities($_REQUEST['blog-header']),
+                                            htmlentities($_REQUEST['blog-nav']),
+                                            htmlentities($_REQUEST['blog-post']),
+                                            htmlentities($_REQUEST['blog-post-header'])
+                                            );
                                             
             echo ' - Saved';
+            
+            echo '';
         }    
             
             
@@ -57,8 +60,12 @@
                            <td><input id="sql-database" name="sql-database" type="text" value="'.$config->getValue('sql-database').'"></td>
                         </tr>
                         <tr>
-                           <th><label for="sql-table">Blog Table</label></th>
-                           <td><input id="sql-table" name="sql-table" type="text" value="'.$config->getValue('sql-table').'"></td>
+                           <th><label for="sql-table">Post Table</label></th>
+                           <td><input id="sql-table" name="sql-table" type="text" value="'.$config->getValue('sql-post-table').'"></td>
+                        </tr>
+                        <tr>
+                           <th><label for="sql-table">User Table</label></th>
+                           <td><input id="sql-table" name="sql-table" type="text" value="'.$config->getValue('sql-user-table').'"></td>
                         </tr>
                         
                         <tr>
@@ -93,11 +100,13 @@
                     </tr>
                     <tr>
                        <th><label for="blog-title">Blog Title</label></th>
-                       <td><input id="blog-title" name="blog-title" type="text" value="'.$currentUser['blogtitle'].'"><p>WARNING: Changing this can mess up RSS!</p></td>
+                       <td><input id="blog-title" name="blog-title" type="text" value="'.$currentUser['blogtitle'].'">
+                       <p>WARNING: Changing this can mess up RSS!</p></td>
                     </tr>
                     <tr>
                        <th><label for="blog-url">Blog URL</label></th>
-                       <td><input id="blog-url" name="blog-url" type="text" value="'.$currentUser['blogurl'].'"><p>WARNING: Changing this can mess up RSS!</p></td>
+                       <td><input id="blog-url" name="blog-url" type="text" value="'.$currentUser['blogurl'].'">
+                       <p>WARNING: Changing this can mess up RSS!</p></td>
                     </tr>
                     <tr>
                        <th><label for="blog-posts-to-show">Number of Posts to Show</label></th>
@@ -105,15 +114,16 @@
                     </tr>
                     <tr>
                        <th><label for="blog-show-title">Display Title</label></th>
-                       <td><input id="blog-show-title" name="blog-show-title" type="checkbox" value="true"'; if($currentUser['blogshowtitle'] == 1){echo 'checked="checked"';} echo ' ></td>
+                       <td><input id="blog-show-title" name="blog-show-title" type="checkbox" value="1"'; if($currentUser['blogshowtitle'] == 1){echo 'checked="checked"';} echo ' ></td>
                     </tr>
                     <tr>
                        <th><label for="blog-show-nav">Display Navigation</label></th>
-                       <td><input id="blog-show-nav" name="blog-show-nav" type="checkbox" value="true"'; if($currentUser['blogshownav'] == 1){echo 'checked="checked"';} echo ' ></td>
+                       <td><input id="blog-show-nav" name="blog-show-nav" type="checkbox" value="1"'; if($currentUser['blogshownav'] == 1){echo 'checked="checked"';} echo ' ></td>
                     </tr>
                     <tr>
                        <th><label for="blog-nav-usestyle">Force Navigation style</label></th>
-                       <td><input id="blog-nav-usestyle" name="blog-nav-usestyle" type="checkbox" value="true"'; if($currentUser['blognavusestyle'] == 1){echo 'checked="checked"';} echo ' ><p>WARNING: Not HTML Compilent! Link to content/styles/nav.css instead!</p></td>
+                       <td><input id="blog-nav-usestyle" name="blog-nav-usestyle" type="checkbox" value="1"'; if($currentUser['blognavusestyle'] == 1){echo 'checked="checked"';} echo ' >
+                       <p>WARNING: Not HTML Complient! Link to content/styles/nav.css instead!</p></td>
                     </tr>
                     <tr>
                        <th><label for="blog-nav-type">Navigation Type</label></th>
@@ -128,23 +138,23 @@
                 <table>
                     <tr>
                        <th><label for="blog-full">Blog Surround</label></th>
-                       <td><input id="blog-full" name="blog-full" type="text" value='."'".$config->getValue('blog-full')."'".'></td>
+                       <td><input id="blog-full" name="blog-full" type="text" value="'.htmlentities ($config->getValue('blog-full')).'"></td>
                     </tr>
                     <tr>
                        <th><label for="blog-header">Blog Header</label></th>
-                       <td><input id="blog-header" name="blog-header" type="text" value="'.$config->getValue('blog-header').'"></td>
+                       <td><input id="blog-header" name="blog-header" type="text" value="'.htmlentities ($config->getValue('blog-header')).'"></td>
                     </tr>
                     <tr>
                        <th><label for="blog-nav">Blog Navigation</label></th>
-                       <td><input id="blog-nav" name="blog-nav" type="text" value='."'".$config->getValue('blog-nav')."'".'></td>
+                       <td><input id="blog-nav" name="blog-nav" type="text" value="'.htmlentities ($config->getValue('blog-nav')).'"></td>
                     </tr>
                     <tr>
                        <th><label for="blog-post">Blog Post</label></th>
-                       <td><input id="blog-post" name="blog-post" type="text" value="'.$config->getValue('blog-post').'"></td>
+                       <td><input id="blog-post" name="blog-post" type="text" value="'.htmlentities ($config->getValue('blog-post')).'"></td>
                     </tr>
                     <tr>
                        <th><label for="blog-post-header">Blog Post Header</label></th>
-                       <td><input id="blog-post-header" name="blog-post-header" type="text" value="'.$config->getValue('blog-post-header').'"></td>
+                       <td><input id="blog-post-header" name="blog-post-header" type="text" value="'.htmlentities ($config->getValue('blog-post-header')).'"></td>
                     </tr>
                     
                 </table>
