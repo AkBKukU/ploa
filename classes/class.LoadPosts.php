@@ -63,11 +63,25 @@ class LoadPosts{
                                 name TEXT,
                                 pass TEXT,
                                 postcount INT,
-                                type INT
+                                type INT,
+                                blogtitle TEXT,
+                                blogurl TEXT,
+                                blogpoststoshow INT,
+                                blogshowtitle INT,
+                                blogshownav INT,
+                                blognavusestyle INT,
+                                blognavtype TEXT,
+                                blogfull TEXT,
+                                blogheader TEXT,
+                                blognav TEXT,
+                                blogpost TEXT,
+                                blogpostheader TEXT
             )');
-            echo 'Created '.$this->sqlConfig->getValue('sql-table').' table';
+            echo 'Created '.$this->sqlConfig->getValue('sql-user-table').' table';
             
-            $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').' (name,pass) VALUES ("admin","password")';
+            $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').
+                    ' (name,pass,postcount,type,blogtitle,blogurl,blogpoststoshow,blogshowtitle,blogshownav,blognavusestyle,blognavtype,blogfull,blogheader,blognav,blogpost,blogpostheader)  '.'VALUES ("admin","password","0","0","Default Blog","http://127.0.0.1:/","10","1","1","0","horizontal","<section class='."'theme'".'>","<h2>","<div class='."'nav'".'>","<article>","<h3>")';
+                    
             echo "Query: ".$query;
             $this->mysqli->query($query);
             echo 'Added admin user with pass root';
@@ -99,7 +113,19 @@ class LoadPosts{
                     'pass' => $row['pass'], 
                     'id' => $row['id'],
                     "postcount" => $row['postcount'],
-                    'type' => $row['type']
+                    'type' => $row['type'],
+                    'blogtitle' => $row['blogtitle'],
+                    'blogurl' => $row['blogurl'],
+                    'blogpoststoshow' => $row['blogpoststoshow'],
+                    'blogshowtitle' => $row['blogshowtitle'],
+                    'blogshownav' => $row['blogshownav'],
+                    'blognavusestyle' => $row['blognavusestyle'],
+                    'blognavtype' => $row['blognavtype'],
+                    'blogfull' => $row['blogfull'],
+                    'blogheader' => $row['blogheader'],
+                    'blognav' => $row['blognav'],
+                    'blogpost' => $row['blogpost'],
+                    'blogpostheader' => $row['blogpostheader']
                     );    
                 
             }
@@ -139,19 +165,7 @@ class LoadPosts{
         
         for($c = 0;$c <= count($this->posts)-1; $c++){
             if($this->posts[$c]['userid'] == $userid){
-                $userPosts[] = array(  
-                            'title' => $this->posts[$c]['title'], 
-                            'text' => $this->posts[$c]['text'], 
-                            'id' => $this->posts[$c]['id'],
-                            'userid' => $this->posts[$c]['userid'],
-                            "date" => $this->posts[$c]['date'],
-                            'tags' => $this->posts[$c]['tags'], 
-                            'year' => $this->posts[$c]['year'], 
-                            'month' => $this->posts[$c]['month'], 
-                            'day' => $this->posts[$c]['day'],
-                            'formdate' => $this->posts[$c]['formdate'],
-                            'status' => $this->posts[$c]['status']
-                            );   
+                $userPosts[] = $this->posts[$c];   
             } 
         }
         
@@ -220,13 +234,7 @@ class LoadPosts{
                 
         for($c = 0;$c <= count($this->users)-1; $c++){
             if($this->users[$c]['name'] == $name){
-                $theuser = array(  
-                    'name' => $this->users[$c]['name'], 
-                    'pass' => $this->users[$c]['pass'], 
-                    'id' => $this->users[$c]['id'],
-                    "postcount" => $this->users[$c]['postcount'],
-                    'type' => $this->users[$c]['type']
-                    );   
+                $theuser = $this->users[$c];   
                 
             } 
         }
@@ -250,6 +258,38 @@ class LoadPosts{
         
         
         $query = 'UPDATE '.$this->sqlConfig->getValue('sql-user-table').' SET pass="'.$newpass.'" WHERE id="'.$id.'"';    
+        
+    }
+    
+    /*
+     * updateUserSettings 
+     * 
+     * Changes the users password
+     */
+    public function updateUserSettings($name,$blogtitle,$blogurl,$blogpoststoshow,$blogshowtitle,$blogshownav,$blognavusestyle,$blognavtype,$blogfull,$blogheader,$blognav,$blogpost,$blogpostheader){
+        
+        
+        for($c = 0;$c <= count($this->users)-1; $c++){
+            if($this->users[$c]['name'] == $name){
+            $id = $this->users[$c]['id'];
+            } 
+        }
+        
+        
+        $query = 'UPDATE '.$this->sqlConfig->getValue('sql-user-table').' SET blogtitle="'.$blogtitle.
+                                                                            '",blogurl="'.$blogurl.
+                                                                            '",blogpoststoshow="'.$blogpoststoshow.
+                                                                            '",blogshowtitle="'.$blogshowtitle.
+                                                                            '",blogshownav="'.$blogshownav.
+                                                                            '",blognavusestyle="'.$blognavusestyle.
+                                                                            '",blognavtype="'.$blognavtype.
+                                                                            '",blogfull="'.$blogfull.
+                                                                            '",blogheader="'.$blogheader.
+                                                                            '",blognav="'.$blognav.
+                                                                            '",blogpost="'.$blogpost.
+                                                                            '",blogpostheader="'.$blogpostheader.
+                                                                            
+                                                                            '" WHERE id="'.$id.'"';    
         echo "Query: ".$query;
         echo "Result: ".$this->mysqli->query($query);
         
@@ -262,7 +302,7 @@ class LoadPosts{
      */
     public function addUser($name,$pass,$type){
         
-        $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').' (name,pass,type,postcount) VALUES ("'.$name.'","'.$pass.'","'.$type.'","0")';
+        $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').' (name,pass,postcount,type,blogtitle,blogurl,blogpoststoshow,blogshowtitle,blogshownav,blognavusestyle,blognavtype,blogfull,blogheader,blognav,blogpost,blogpostheader)  '.'VALUES ("'.$name.'","'.$pass.'","'.$type.'","0","Default Blog","http://127.0.0.1:/","10","1","1","0","0","<section class='."'theme'".'>","<h2>","<div class='."'nav'".'>","<article>","<h3>")';
         echo "Query: ".$query;
         $this->mysqli->query($query);
         

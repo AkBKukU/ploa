@@ -1,4 +1,4 @@
-Current Version:0.651
+Current Version:0.661
 
     /*===================================================================='\
     |                                                                      |
@@ -26,6 +26,19 @@ Current Version:0.651
     |    ppppppppp                                                         |                     
     |                                                                      |
     \'===================================================================='/
+    
+v0.7-Future Update
+    New Features:
+        Added users functionality
+        Tree tier system. Admin, author, and too be implimented commentor
+        Only an admin can create new users right now
+    
+    ||===============SQL CHANGES!===============||
+    ||  - Added users table, will auto generate ||
+    ||  - Added 'userid' collom to posts table  ||
+    ||       If you are upgrading you will need ||
+    ||       manually add the colom!            ||
+    ||==========================================||
     
 v0.651
     Fixed broken RSS from refactor
