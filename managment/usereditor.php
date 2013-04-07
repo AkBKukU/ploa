@@ -27,7 +27,7 @@ if($_REQUEST['edit'] < 0){
             $writedefaulttext = '>'.$users[$userkey]['text'] ;
             $writedefaulusername = 'value="'.$users[$userkey]['name'] ;
             $writedefaulpass = 'value="'.$users[$userkey]['pass'] ;
-            $writeaction = '&amp;action=update' ;
+            $writeaction = '&amp;action=update&amp;userid='.$users[$userkey]['id'] ;
             $writeeditid = '<input type="hidden" name="postid" value="'.$_REQUEST['edit'].'">' ;
             $writedefaulttype = $users[$userkey]['type'].'">Current account type';
             

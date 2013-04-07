@@ -444,8 +444,8 @@ class LoadPosts{
                                                                                 
                                                                     VALUES (    "'.$name.'",
                                                                                 "'.$pass.'",
-                                                                                "'.$type.'",
                                                                                 "0",
+                                                                                "'.$type.'",
                                                                                 "Default Blog",
                                                                                 "http://127.0.0.1:/",
                                                                                 "10",
@@ -461,6 +461,51 @@ class LoadPosts{
                                                                 
         $this->mysqli->query($query);
         
+    }
+    
+    /*
+     * updateUser 
+     * 
+     * Returns all posts
+     */
+    public function updateUser($name,$pass,$type,$userid){
+    
+       $query = 'UPDATE '.$this->sqlConfig->getValue('sql-user-table').' SET name="'.$name.'", pass="'.$pass.'", type="'.$type.'" WHERE id="'.$userid.'"';    
+        echo "Query: ".$query;
+        If($this->mysqli->query($query) == 1){
+            echo '
+            <script type="text/javascript">
+                <!--
+                   window.location="manager.php?area=users";
+                //-->
+            </script>
+                    ';
+        }else{
+            echo 'Error - PL03U005: Failed to update user.';
+        }
+    }
+    
+    /*
+     * deleteUser 
+     * 
+     * Returns all posts
+     */
+    public function deleteUser($userid){
+    
+        $query = 'DELETE FROM '.$this->sqlConfig->getValue('sql-user-table').' WHERE id='.$userid;
+        echo "Query: ".$query;
+        
+        If($this->mysqli->query($query) == 1){
+            echo '
+            <script type="text/javascript">
+                <!--
+                   window.location="manager.php?area=users";
+                //-->
+            </script>
+                    ';
+        }else{
+            echo 'Error - PL04U004: Failed to delete user.';
+        }
     }
     
     /*

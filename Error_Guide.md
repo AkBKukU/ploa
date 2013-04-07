@@ -18,3 +18,5 @@ PL01P001
 - 001: Adding a new post - class.LoadPosts.php
 - 002: Updating a post - class.LoadPosts.php
 - 003: Deleting a post - class.LoadPosts.php
+- 004: Deleting a user - class.LoadPosts.php
+- 005: Updating a user - class.LoadPosts.php

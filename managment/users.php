@@ -9,7 +9,17 @@
             </script>
                     ';
     }
+    
+    
+    if($_REQUEST['action'] == 'update'){
+    
+        $loadPosts->updateUser($_REQUEST['username'],$_REQUEST['userpassword'],$_REQUEST['usertype'],$_REQUEST['userid']);
+    } 
         
+    if($_REQUEST['action'] == 'delete'){
+    
+        $loadPosts->deleteUser($_REQUEST['userid']);
+    } 
 
     //--load users to array
     $users  = $loadPosts->getAllUsers(); 
@@ -58,7 +68,7 @@
                         <td class="alertbody">Are sure that you want to delete the user "'.$users[$userkey]['name'].'" forever?</td>
                     
                     <tr>
-                        <td class="alertbuttons"><a href="?area=post&amp;action=delete&amp;postid='.$posts[$userkey]['id'].'">Yes</a><a href="manager.php?area=users">No</a></td>
+                        <td class="alertbuttons"><a href="?area=users&amp;action=delete&amp;userid='.$users[$userkey]['id'].'">Yes</a><a href="manager.php?area=users">No</a></td>
                     </tr>
                 </tbody>
             </table>

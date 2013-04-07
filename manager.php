@@ -104,9 +104,6 @@
         }elseif($_REQUEST['area'] == 'users'){ 
             
             include('./managment/users.php');
-        }elseif($_REQUEST['area'] == 'post'){ 
-            
-            include('./managment/post.php');
         }elseif($_REQUEST['area'] == 'settings'){ 
             
             include('./managment/settings.php');
