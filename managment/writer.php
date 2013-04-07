@@ -6,7 +6,7 @@ if($_REQUEST['edit'] == 0){
             $writedefaulttext = ' placeholder="Tell the world what you think here!">' ;
             $writedefaultitle = ' placeholder="New Post Title' ;
             $writedefaultags = ' placeholder="Tags here (ie flowers, computers, first)' ;
-            $writeaction = '&amp;action=insert' ;
+            $writeaction = '&amp;action=add' ;
             $writeeditid = '' ;
             
         }else{
@@ -29,7 +29,7 @@ if($_REQUEST['edit'] == 0){
         echo'
         <fieldset>
             <legend>'.$writetitle.' post</legend>
-                    <form method="post" action="?area=post'.$writeaction.'">
+                    <form method="post" action="?area=posts'.$writeaction.'">
                         <label for="title">Title </label><input name="title" id="title" type="text" class="title"'.$writedefaultitle.'" autofocus="">
                         <label for="tags">Tags </label><input name="tags" id="tags" type="text" class="tags"  '. $writedefaultags.'"><br />
                         <div class="separater"></div>

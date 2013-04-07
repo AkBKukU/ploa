@@ -1,4 +1,4 @@
-Current Version:0.661
+Current Version:0.671
 
     /*===================================================================='\
     |                                                                      |
@@ -40,6 +40,9 @@ v0.7-Future Update
     ||       manually add the colom!            ||
     ||==========================================||
     
+v0.671
+    Merged post.php into class.LoadPosts.php
+        
 v0.651
     Fixed broken RSS from refactor
     

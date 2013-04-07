@@ -23,6 +23,8 @@ class LoadPosts{
      * Loads all post info into an array
      */
     public function __construct(){
+    
+        
         //--Load Configuration Files
         $this->sqlConfig = new ConfigHandler(dirname(__DIR__).'/'.'settings.cfg');
 
@@ -216,6 +218,80 @@ class LoadPosts{
     }
     
     /*
+     * addPost 
+     * 
+     * Returns all posts
+     */
+    public function addPost($title,$text,$tags,$status,$userid){
+        
+        //--Set the current date
+        $date=date('Y-m-d H:i:s');
+        
+        $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-post-table').' (title,text,date,tags,status,userid) VALUES ("'.$title.'","'.$text.'","'.$date.'","'.$tags.'","'.$status.'","'.$userid.'")';
+        echo "Query: ".$query;
+        If($this->mysqli->query($query) == 1){
+            echo '
+            <script type="text/javascript">
+                <!--
+                   window.location="manager.php?area=posts";
+                //-->
+            </script>
+                    ';
+        }else{
+            echo 'Error - PL01P001: Failed to add post.';
+        }
+    }
+    
+    /*
+     * updatePost 
+     * 
+     * Returns all posts
+     */
+    public function updatePost($title,$text,$tags,$status,$postid){
+    
+       $query = 'UPDATE '.$this->sqlConfig->getValue('sql-post-table').' SET status="'.$status.'", title="'.$title.'", text="'.$text.'", tags="'.$tags.'" WHERE id="'.$postid.'"';    
+        echo "Query: ".$query;
+        If($this->mysqli->query($query) == 1){
+            echo '
+            <script type="text/javascript">
+                <!--
+                   window.location="manager.php?area=posts";
+                //-->
+            </script>
+                    ';
+        }else{
+            echo 'Error - PL03P002: Failed to update post.';
+        }
+    }
+    
+    /*
+     * deletePost 
+     * 
+     * Returns all posts
+     */
+    public function deletePost($postid){
+    
+        $query = 'DELETE FROM '.$this->sqlConfig->getValue('sql-post-table').' WHERE id='.$postid;
+        echo "Query: ".$query;
+        
+        If($this->mysqli->query($query) == 1){
+            echo '
+            <script type="text/javascript">
+                <!--
+                   window.location="manager.php?area=posts";
+                //-->
+            </script>
+                    ';
+        }else{
+            echo 'Error - PL04P003: Failed to delete post.';
+        }
+    }
+    
+    
+    
+    
+    
+    /*
      * checkUser 
      * 
      * Returns true or false if it is a valid login
@@ -322,18 +398,18 @@ class LoadPosts{
         }
         
         
-        $query = 'UPDATE '.$this->sqlConfig->getValue('sql-user-table').' SET   blogtitle="'.$blogtitle.'",
-                                                                                blogurl="'.$blogurl.'",
-                                                                                blogpoststoshow="'.$blogpoststoshow.'",
-                                                                                blogshowtitle="'.$blogshowtitle.'",
-                                                                                blogshownav="'.$blogshownav.'",
-                                                                                blognavusestyle="'.$blognavusestyle.'",
-                                                                                blognavtype="'.$blognavtype.'",
-                                                                                blogfull="'.$blogfull.'",
-                                                                                blogheader="'.$blogheader.'",
-                                                                                blognav="'.$blognav.'",
-                                                                                blogpost="'.$blogpost.'",
-                                                                                blogpostheader="'.$blogpostheader.'" 
+        $query = 'UPDATE '.$this->sqlConfig->getValue('sql-user-table').' SET   blogtitle="'        .$blogtitle         .'",
+                                                                                blogurl="'          .$blogurl           .'",
+                                                                                blogpoststoshow="'  .$blogpoststoshow   .'",
+                                                                                blogshowtitle="'    .$blogshowtitle     .'",
+                                                                                blogshownav="'      .$blogshownav       .'",
+                                                                                blognavusestyle="'  .$blognavusestyle   .'",
+                                                                                blognavtype="'      .$blognavtype       .'",
+                                                                                blogfull="'         .$blogfull          .'",
+                                                                                blogheader="'       .$blogheader        .'",
+                                                                                blognav="'          .$blognav           .'",
+                                                                                blogpost="'         .$blogpost          .'",
+                                                                                blogpostheader="'   .$blogpostheader    .'" 
                                                                                 
                                                                                 WHERE id="'.$id.'"';
                                                                                 

@@ -45,7 +45,7 @@ if($_REQUEST['edit'] < 0){
                             <option value="'.$writedefaulttype.'</option>
                             <option value="0">Administrator</option>
                             <option value="1">Author</option>
-                            <option value="1">Commentor</option>
+                            <option value="2">Commentor</option>
                         </select>
                         <br />
                         <input type="submit" value="Save User"  class="button">

@@ -36,7 +36,12 @@
                                             
             echo ' - Saved';
             
-            echo '';
+            echo '
+            <script type="text/javascript">
+                <!--
+                   window.location="manager.php?area=settings";
+                //-->
+            </script>';
         }    
             
             
