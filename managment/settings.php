@@ -1,8 +1,7 @@
 <?php
         
         echo'
-        <div id="settingspage" class="textarea">
-            <h2>Settings';
+            <h2><p>Settings';
             
         if($_REQUEST['action'] == 'save'){
         
@@ -46,8 +45,8 @@
             
             
             
-        echo '</h2>
-            <hr />';
+        echo '</p></h2>
+        <div id="settingspage" class="textarea">';
     
         if($currentUser['type'] == 0){
             echo '

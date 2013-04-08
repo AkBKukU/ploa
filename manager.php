@@ -101,6 +101,9 @@
         if($_REQUEST['area'] == 'posts'){        
             
             include('./managment/posts.php');
+        }elseif($_REQUEST['area'] == 'postview'){ 
+            
+            include('./managment/postview.php');
         }elseif($_REQUEST['area'] == 'users'){ 
             
             include('./managment/users.php');

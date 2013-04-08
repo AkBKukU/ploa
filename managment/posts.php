@@ -33,7 +33,7 @@
         echo '
             <tbody'.$even.'>
                 <tr>
-                    <td><p><strong><a title="Veiw Post" href="'.$config->getValue('blog-url').'?post='.$posts[$c]['id'].'">'.$posts[$c]['title'].' - '.$posts[$c]['date'].'</a></strong></p></td>
+                    <td><p><strong><a title="Veiw Post" href="?area=postview&amp;view='.$posts[$c]['id'].'">'.$posts[$c]['title'].' - '.$posts[$c]['date'].'</a></strong></p></td>
                     <td><a title="Edit Post" href="?area=writer&amp;edit='.$posts[$c]['id'].'"><img class="postctrl" alt="Edit" src="content/images/edit.png"></a> 
                         <a title="Delete Post" href="?area=posts&amp;edit='.$posts[$c]['id'].'&amp;delete=confirm"><img class="postctrl" alt="Delete" src="content/images/delete.png"></a></td>
                 </tr>

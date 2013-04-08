@@ -1,4 +1,4 @@
-Current Version:0.681
+Current Version:0.682
 
     /*===================================================================='\
     |                                                                      |
@@ -39,6 +39,9 @@ v0.7-Future Update
     ||       If you are upgrading you will need ||
     ||       manually add the colom!            ||
     ||==========================================||
+    
+v0.682
+    Post view page
     
 v0.681
     Admins can edit users

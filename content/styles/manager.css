@@ -3,6 +3,24 @@ h3 a:link,h3 a:visited,h3 a:hover,h3 a:focus,h3 a:active{
 
 }
 
+#content h2{
+
+    display: inline-block;
+    height: 0px;
+    margin: 0 0;
+    border-bottom: solid 2.5em #555555;
+    border-right: solid 2.5em transparent;
+}
+#content h2 p{
+    font-size: 2em;
+    color: #ffffff;
+    margin: 0 0;
+    height: 2.5em;
+    padding-left: .5em;
+    padding-right: .5em;
+    padding-top: 0em;
+}
+
 ul#nav , .logout input{
     list-style: none;
     width:100%;
@@ -201,7 +219,36 @@ tbody:hover tr td a img.postctrl{
     height: 30px;
     margin: 0em 0em;
 }
+.controls{
 
+    display: block;
+    background: #555555;
+}
+.controls p{
+
+    display: inline-block;
+    margin: auto 0em;
+}
+.controls p a, 
+.controls p a:link, 
+.controls p a:hover, 
+.controls p a:focus, 
+.controls p a:visited{
+
+    float: left;
+    font-size: 1.5em;
+    
+    padding: .5em;
+    border-left: solid 1px #444444;
+    border-right: solid 1px #666666;
+    color: #ffffff;
+    background: #555555;
+    
+}
+#content .controls a{
+
+    background: #555555;
+}
 
 
 #helppage table td{
@@ -291,8 +338,6 @@ tbody:hover tr td a img.postctrl{
     margin: 0em 0em;
 }
 #content{
-    
-    overflow:       auto;
 }
 #sidebar{
     
