@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <title>Ploa Blog Test</title>
+        <title>ploa</title>
         <?php session_start(); 
         
         //--Load other classes to be used
