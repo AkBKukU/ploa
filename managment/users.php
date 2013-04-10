@@ -33,13 +33,14 @@
         
     include (dirname(__DIR__).'/classes/class.format.php');
     $format = new format();
-        echo '<table>';    
+        echo '<h2><p>Registered Users</p></h2>
+    <table class="listtable">';    
         for($c = count($users)-1; $c > -1; $c--){
             if($c % 2 == 0){$even=' class="even"';}else{$even='';}
             echo '
                 <tbody'.$even.'>
                     <tr>
-                        <td><p><strong>'.$users[$c]['name'].' - '.$users[$c]['type'].' - '.$users[$c]['postcount'].' Posts</strong></p></td>
+                        <td><p><strong><a title="Veiw User" href="?area=userview&amp;view='.$users[$c]['id'].'">'.$users[$c]['name'].' - '.$users[$c]['type'].' - '.$users[$c]['postcount'].' Posts</a></strong></p></td>
                         <td><a title="Edit User" href="?area=usereditor&amp;edit='.$users[$c]['id'].'"><img class="postctrl" alt="Edit" src="content/images/edit.png"></a> 
                             <a title="Delete User" href="?area=users&amp;edit='.$users[$c]['id'].'&amp;delete=confirm"><img class="postctrl" alt="Delete" src="content/images/delete.png"></a></td>
                     </tr>
@@ -66,6 +67,7 @@
                     
                     <tr>
                         <td class="alertbody">Are sure that you want to delete the user "'.$users[$userkey]['name'].'" forever?</td>
+                    </tr>
                     
                     <tr>
                         <td class="alertbuttons"><a href="?area=users&amp;action=delete&amp;userid='.$users[$userkey]['id'].'">Yes</a><a href="manager.php?area=users">No</a></td>

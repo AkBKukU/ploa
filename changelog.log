@@ -1,4 +1,4 @@
-Current Version:0.682
+Current Version:0.691
 
     /*===================================================================='\
     |                                                                      |
@@ -37,8 +37,15 @@ v0.7-Future Update
     ||  - Added users table, will auto generate ||
     ||  - Added 'userid' collom to posts table  ||
     ||       If you are upgrading you will need ||
-    ||       manually add the colom!            ||
+    ||       manually add the collom!           ||
     ||==========================================||
+    
+v0.691
+    CSS Overhaul
+    More consistent visuals
+    
+v0.69
+    User veiw page
     
 v0.683 
     Preliminary Documentation

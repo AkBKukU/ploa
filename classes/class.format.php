@@ -66,7 +66,7 @@ class format {
                             if(trim($imageArray[1])  == '' || !(isset($imageArray[1])) ){
                                 $toFormatText = '<strong>|You need to add an alt tag to the image!|</strong>';
                             }else{
-                                $toFormatText = '|Image Title: '.$imageArray[2].'|';}
+                                $toFormatText = '|Image Alt: '.$imageArray[1].'|';}
                             
                         }
                     }
@@ -143,7 +143,7 @@ class format {
                             if(trim($imageArray[1])  == '' || !(isset($imageArray[1])) ){
                                 $toFormatText = '[b;|You need to add an alt tag to the image!|]';
                             }else{
-                                $toFormatText = '|Image Title: '.$imageArray[2].'|';}
+                                $toFormatText = '|Image Alt: '.$imageArray[1].'|';}
                             
                         }
                     }

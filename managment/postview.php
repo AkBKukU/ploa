@@ -22,10 +22,10 @@
     ."\n            "
     .'</div>'.
     "\n         ".
-    '<div class="controls">
-        <p><a href="index.php?post='.$posts[$postkey]['id'].'">View on blog</a></p>
-        <p><a href="?area=writer&amp;edit='.$posts[$postkey]['id'].'">Edit</a></p>
-        <p><a title="Delete Post" href="?area=posts&amp;edit='.$posts[$postkey]['id'].'&amp;delete=confirm">Delete</a></p>
-    </div>'
+    '<ul class="controls">
+        <li><a href="index.php?post='.$posts[$postkey]['id'].'">View on blog</a></li>
+        <li><a href="?area=writer&amp;edit='.$posts[$postkey]['id'].'">Edit</a></li>
+        <li><a title="Delete Post" href="?area=posts&amp;edit='.$posts[$postkey]['id'].'&amp;delete=confirm">Delete</a></li>
+    </ul>'
     ;
 ?>

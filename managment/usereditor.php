@@ -33,22 +33,44 @@ if($_REQUEST['edit'] < 0){
             
         }
         echo'
-    <div id="usereditor" class="textarea">
-        <fieldset>
-            <legend>'.$writetitle.' User</legend>
+    <div id="usereditor">
+            <h2><p>'.$writetitle.' User</p></h2>
+        <fieldset class="textarea">
                     <form method="post" action="?area=users'.$writeaction.'">
-                        <label for="username">Username </label><input name="username" id="username" type="text" '.$writedefaulusername.'" autofocus=""><br />
-                        <label for="userpassword">Password </label><input name="userpassword" id="userpassword" type="password"  '. $writedefaulpass.'"><br />
-                        <label for="userpasswordconfirm">Password Confirm</label><input name="userpasswordconfirm" id="userpasswordconfirm" type="password"  '. $writedefaulpass.'"><br />
-                        <label for="usertype">User Type</label>
-                        <select name="usertype" id="usertype">
-                            <option value="'.$writedefaulttype.'</option>
-                            <option value="0">Administrator</option>
-                            <option value="1">Author</option>
-                            <option value="2">Commentor</option>
-                        </select>
-                        <br />
-                        <input type="submit" value="Save User"  class="button">
+                        
+                        <table class="inputtable">
+                            <tr>
+                                <th><label for="username">Username </label></th>
+                                <td><input name="username" id="username" type="text" '.$writedefaulusername.'" autofocus=""></td>
+                            </tr>
+                            
+                        
+                            <tr>
+                                <th><label for="userpassword">Password </label></th>
+                                <td><input name="userpassword" id="userpassword" type="password"  '. $writedefaulpass.'"></td>
+                            </tr>
+                            
+                        
+                            <tr>
+                                <th><label for="userpasswordconfirm">Password Confirm</label></th>
+                                <td><input name="userpasswordconfirm" id="userpasswordconfirm" type="password"  '. $writedefaulpass.'"></td>
+                            </tr>
+                            
+                        
+                            <tr>
+                                <th><label for="usertype">User Type</label></th>
+                                <td><select name="usertype" id="usertype">
+                                        <option value="'.$writedefaulttype.'</option>
+                                        <option value="0">Administrator</option>
+                                        <option value="1">Author</option>
+                                        <option value="2">Commentor</option>
+                                    </select></td>
+                            </tr>
+                            
+                            <tr>
+                                <td colspan="2" class="savebutton"><input type="submit" value="Save User"  class="button"></td>
+                            </tr>
+                        </table>
                     </form>
         </fieldset>
     </div>

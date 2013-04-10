@@ -190,16 +190,37 @@ class LoadPosts{
      */
     public function getPosts($username){
         
-        for($c = 0;$c <= count($this->users)-1; $c++){
-            if($this->users[$c]['name'] == $username){
-                $userid = $this->users[$c]['id'];
-            } 
-        }
+        if(is_array($username)){
         
-        for($c = 0;$c <= count($this->posts)-1; $c++){
-            if($this->posts[$c]['userid'] == $userid){
-                $userPosts[] = $this->posts[$c];   
-            } 
+            for($c = 0;$c <= count($this->users)-1; $c++){
+                for($d = 0;$d <= count($username); $d++){
+                    if($this->users[$c]['name'] == $username[$d]){
+                        $userid[] = $this->users[$c]['id'];
+                    } 
+                }
+            }
+            
+            for($c = 0;$c <= count($this->posts)-1; $c++){
+                for($d = 0;$d <= count($username); $d++){
+                    if($this->posts[$c]['userid'] == $userid[$d]){
+                        $userPosts[] = $this->posts[$c];   
+                    }
+                } 
+            }
+        
+        }else{
+        
+            for($c = 0;$c <= count($this->users)-1; $c++){
+                if($this->users[$c]['name'] == $username){
+                    $userid = $this->users[$c]['id'];
+                } 
+            }
+            
+            for($c = 0;$c <= count($this->posts)-1; $c++){
+                if($this->posts[$c]['userid'] == $userid){
+                    $userPosts[] = $this->posts[$c];   
+                } 
+            }
         }
         
         

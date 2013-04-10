@@ -28,8 +28,6 @@
         ?>
         <meta charset=utf-8>
         <meta name="description" content="Ploa blog demonstration">
-        <link rel=StyleSheet href="content/styles/global.css" type="text/css">
-        <link rel=StyleSheet href="content/styles/writer.css" type="text/css">
         <link rel=StyleSheet href="content/styles/manager.css" type="text/css">
     </head>
      <body>
@@ -94,7 +92,7 @@
         }
         
         //--load posts to array
-        $posts  = $loadPosts->getPosts($currentUser['name']); 
+        $posts  = $loadPosts->getAllPosts(); 
         
         
         //--Checks what page to display   
@@ -107,6 +105,9 @@
         }elseif($_REQUEST['area'] == 'users'){ 
             
             include('./managment/users.php');
+        }elseif($_REQUEST['area'] == 'userview'){ 
+            
+            include('./managment/userview.php');
         }elseif($_REQUEST['area'] == 'settings'){ 
             
             include('./managment/settings.php');
@@ -168,9 +169,19 @@
                             <tr>
                                 <td class="alertbody">
                                     <p>Please login to continue</p>
-                                    <label class="alertinputlabel" for="userlogin">User</label><input id="userlogin" name="userlogin" type="text" placeholder="Username" autofocus=""><br />
-                                    <label class="alertinputlabel" for="userpass">Pass</label><input id="userpass" name="userpass" type="password" placeholder="Password">
+                                    <table class="inputtable">
+                                        <tr>
+                                            <th><label class="alertinputlabel" for="userlogin">User</label></th>
+                                            <td><input id="userlogin" name="userlogin" type="text" placeholder="Username" autofocus=""></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <th><label class="alertinputlabel" for="userpass">Pass</label></th>
+                                            <td><input id="userpass" name="userpass" type="password" placeholder="Password"></td>
+                                        </tr>
+                                    </table>
                                 </td>
+                            </tr>
                                 
                             
                             <tr>

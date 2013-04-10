@@ -1,8 +1,29 @@
-h3 a:link,h3 a:visited,h3 a:hover,h3 a:focus,h3 a:active{
-    color:#000000;
+/*--------------------------------------General Styling--------------------------------------*/
+body{
+    background: #cccccc;
+    font-size: 62.5%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#sitewrapper{
+    box-shadow: 0px 0px 10px #111111;
+    background: #888888;
+}
+h1{
+    background: #333333;
+    font-size: 3em;
+    color: #eeeeee;
+    padding:  .25em .5em;
+    margin: 0;
+    border: 0;
+}
+fieldset{
+    background: #eeeeee;
+    padding: 2em;
+    border: 0;
 
 }
 
+/*-----Page Header-----*/
 #content h2{
 
     display: inline-block;
@@ -21,6 +42,8 @@ h3 a:link,h3 a:visited,h3 a:hover,h3 a:focus,h3 a:active{
     padding-top: 0em;
 }
 
+
+/*-----Navigation-----*/
 ul#nav , .logout input{
     list-style: none;
     width:100%;
@@ -31,8 +54,9 @@ ul#nav , .logout input{
     padding-right:5em;
     background: #888888;
 }
-
+ul#nav a{text-decoration: none;}
 ul#nav li a, .logout input{
+    display: block;
     padding:1em 1em 1em 1em;
     margin: 0 0;
     border: none;
@@ -69,188 +93,67 @@ ul#nav li:active, .logout input:active{
     padding-right:            0em;
 }
 
-a{
-    
-    text-decoration: none;
-}
 
-table{
-    width:100%;
+
+
+/*--------------------------------------Pages--------------------------------------*/
+
+
+/*-----Writer-----*/
+#writer .tags, #writer .title, #writer input, #writer label{
+    border: 0;
+    background: #ffffff;
+    color: #000000;
     font-size: 1.5em;
-    border-collapse: collapse;
-    border: none;
-    padding-left: .5em;
-
+    padding: .15em;
+    width: 20em;
 }
 
-tbody{
-    border-bottom: 1px solid #bbbbbb;
-    background: #d2d2d2;
+#writer .separater{
+    border-bottom: 2px solid #555555;
 }
-.even{
-    background: #dddddd;
-}
-tbody:hover{
-    background: #eeeeee;
-}
-tr{
+#writer input[type=checkbox]{
     
-    background:transparent;
+    margin: 0em;
+	 width : 1.5em ; 
+	 height : 1.5em ; 
 }
-td{
-    background:transparent;
-    padding-left: .5em;
-}
-strong a:link ,strong a:visited {
-    color:#000000;
-}
+#writer input[type=submit] ,#writer input[type=checkbox], #writer label[for="status"]{
 
-.postctrl{
-    visibility: hidden;
-}
-tbody:hover tr td a img.postctrl{
-    visibility: visible;
-}
-.postctrl:hover{
-}
-
-.huge{
-    font-size:250px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    
-}
-.notfound{
-    font-size:25px;
-    color: #ffffff;
-    text-align:center;
-}
-.coverpage{
-    position: absolute;
+    text-align: center;
     background: #888888;
-    background: rgba(30,30,30,.6);
-    width:100%;
-    height:100%;
-    margin-left: -1px;
-    margin-top: -1px;
-    left: 1px;
-    top:1px;
-    
-    
-    
+    border: 0;
+    color: #ffffff;
 }
-.alertbuttons input{
-    width: 5em;
-    font-size: 1em;
-    font-weight:        normal;
-}    
-.alerttable, table.alerttable:hover{
-    position: absolute;
-    margin-left: -200px;
-    top: 20em;
-    left:50%;
-    width: 400px;
-    box-shadow: 0px 0px 10px #000000;
-    background: #d2d2d2;
+#writer input[type=submit]:hover,
+#writer input[type=checkbox]:hover,
+#writer label[for="status"]:hover{background: #999999;}
+
+#writer input[type=submit]:focus,
+#writer input[type=checkbox]:focus,
+#writer label[for="status"]:focus{background: #999999;}
+
+#writer input[type=submit]:active,
+#writer input[type=checkbox]:active,
+#writer label[for="status"]:active{background: #666666;}
+
+#writer textarea{
+    width: 100%;
+    height: 400px;
+    border: 0;
+    background: #ffffff;
+    color: #000000;
+    font-size: 15px;
+    margin-bottom:.5em;
 }
-.alerttable tbody:hover{background: #d2d2d2;}
-.alertheader, .alertheader:hover{
-    background: #333333;
-    font-size: 2em;
+#writer label{
+    background: #555555;
     color: #eeeeee;
-    padding:  .25em .5em;
-    margin: 0;
-    border: 0;
-}
-.alertbody{
-    height: 30px;
-    font-size: 1.1em;
-    padding:  1em 1em;
-}
-.alertbuttons, .alertbuttons input{
-    height: 30px;
-}
-
-.alertbuttons a, .alertbuttons input{
-    text-align:center;
-    
-    background: #888888;
-    border: 0;
-    display:inline;
-    color: #ffffff;
-    padding: 6px 20px;
-    margin:  1em;
-}
-.alertbuttons a:hover, .alertbuttons input:hover{
-    background: #999999;
-}
-
-.alertbuttons a:focus, .alertbuttons input:focus{
-    background: #999999;
-}
-
-.alertbuttons a:active, .alertbuttons input:active{
-    background: #666666;
-}
-.textarea h2{
-    margin: 0em 0em;
-}
-.textarea table tbody, .textarea table tbody:hover{
-    background: #dddddd;
-}
-.textarea{
-    font-size: 1.5em;
-    margin: 0em 0em;
-    padding: 1em;
-    background: #d2d2d2;
-}
-.textarea table th,.textarea table{
-    border: 1px solid #000;
-    
-}
-#userlogin, #userpass{
-    width: 75%;
-    height: 30px;
-    margin: 0em 0em;
-}
-.alertinputlabel{
-    display: inline-block;
-    width: 20%;
-    height: 30px;
-    margin: 0em 0em;
-}
-.controls{
-
-    display: block;
-    background: #555555;
-}
-.controls p{
-
-    display: inline-block;
-    margin: auto 0em;
-}
-.controls p a, 
-.controls p a:link, 
-.controls p a:hover, 
-.controls p a:focus, 
-.controls p a:visited{
-
-    float: left;
-    font-size: 1.5em;
-    
-    padding: .5em;
-    border-left: solid 1px #444444;
-    border-right: solid 1px #666666;
-    color: #ffffff;
-    background: #555555;
-    
-}
-#content .controls a{
-
-    background: #555555;
 }
 
 
+
+/*-----Help-----*/
 #helppage table td{
     text-align: center;
     font-size: .8em;
@@ -264,88 +167,312 @@ tbody:hover tr td a img.postctrl{
     text-align: left;
     font-size: .8em;
 }
-#settingspage table{
-    margin: 1em 0em;
 
-}
-
+/*-----Settings-----*/
 #settingspage h3,#settingspage p{
     display: inline;
 
 }
 
-#settingspage table td p{
-    display: block;
-    margin: 0em 0em;
+#settingspage table.inputtable {
+    
+    margin: 1em 0;
+    font-size: 1em;
+}
+
+/*-----User View-----*/
+#userview .textarea table{
+    width:100%;
+    font-size: 1.25em;
+    border-collapse: collapse;
+    border: none;
+    padding-left: .5em;
+    background:transparent;
 
 }
-#settingspage table th, #settingspage table th label{
-    color:#000000;
-    background: transparent;
-    font-size: 1em;
+
+#userview .textarea table tbody{
+    background:transparent;
+    border: none;
+
+}
+#userview .textarea table td, #userview table th{
+    font-size: 1.25em;
+    text-align:left;
+    border-collapse: collapse;
+    border: none;
+    padding: 0;
+    background:transparent;
+
+}
+#userview table th{
     width: 10em;
+}
+
+
+/*-----404-----*/
+.huge{
+    font-size:250px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    
+}
+.notfound{
+    font-size:25px;
+    color: #ffffff;
+    text-align:center;
+}
+/*--------------------------------------Classes--------------------------------------*/
+
+/*-----Plain Text Area-----*/
+.textarea table {
+    width:100%;
+    font-size: 1.5em;
+    border-collapse: collapse;
+    border: none;
+}
+
+.textarea table tbody, .textarea table tbody:hover{
+    background: #dddddd;
+}
+.textarea{
+    font-size: 1.5em;
     margin: 0em 0em;
+    padding: 1em;
+    background: #d2d2d2;
+}
+.textarea table th,.textarea table{
+    border: 1px solid #000;
+    
+}
+
+.textarea h3 a:link,.textarea h3 a:visited,.textarea h3 a:hover,.textarea h3 a:focus,.textarea h3 a:active{
+    color:#000000;
 
 }
-#settingspage table td input{
-    padding: 0em 0em;
+
+/*-----Input Table-----*/
+table.inputtable {
+
+    width:100%;
+    font-size: 1.5em;
+    border-collapse: collapse;
+    border: none;
+}
+table.inputtable  label, table.inputtable  input[type=text], table.inputtable  select, table.inputtable  input[type=submit], table.inputtable  input[type=password]{
+    margin: 0em;
     font-size: 1em;
+    border: none;
+    padding: 0.25em 0;
+    width: 100%;
+}
+
+table.inputtable  th{
+
+    background: #555555;
+    border: none;
+    color: #eeeeee;
+    width: 25%;
+}
+table.inputtable  td{
+
+    background: #ffffff;
+    color: #000000;
+}
+
+table.inputtable  td, table.inputtable  th{
+
+    margin: 0em;
+    padding: 0;
+    border-bottom: 1px solid #333333;
+}
+table.inputtable  td.savebutton{
+    text-align: center;
+    background: #888888;
+    border: 0;
+    color: #ffffff;
+    width: 100%;
+
+}
+table.inputtable  td.savebutton input{
+    width: 100%;
+    background: transparent;
+    color: #ffffff;
+    margin: 0em;
+
+}
+table.inputtable  td.savebutton:hover{background: #999999;}
+table.inputtable  td.savebutton:focus{background: #999999;}
+table.inputtable  td.savebutton:active{background: #666666;}
+
+table.inputtable  tbody{
+
+    border: none;
+}
+table.inputtable  input[type=text], table.inputtable select, table.inputtable input[type=password]{
+    background: #ffffff;
+    color: #000000;
+    vertical-align: bottom;
+
+}
+table.inputtable label{
+         
+    background: transparent;
+}
+
+/*-----List Table-----*/
+table.listtable {
+    width:100%;
+    font-size: 1.5em;
+    border-collapse: collapse;
+    border: none;
     padding-left: .5em;
 
 }
-#settingspage table td input[type="checkbox"]{
-    padding: 0em 0em;
-    width:19px;
-    height:19px;
 
+table.listtable a{text-decoration: none;}
+
+table.listtable tbody{
+    border-bottom: 1px solid #bbbbbb;
+    background: #d2d2d2;
 }
-
-#settingspage table td{
-    background:  #ffffff;
-
+table.listtable .even{
+    background: #dddddd;
 }
-#settingspage table th,#settingspage table td{
-    border: 1px solid #000;
-    padding-left: 0em;
+table.listtable tbody:hover{
+    background: #eeeeee;
+}
+table.listtable tr{
     
+    background:transparent;
 }
-
-
-#usereditor label{
-    display: inline-block;
-    width: 25%;
-    height: 30px;
-    margin: 0em 0em;
+table.listtable td{
+    background:transparent;
+    padding-left: .5em;
 }
-
-#usereditor input[type=text]{
-    display: inline-block;
-    width: 70%;
-    height: 30px;
-    margin: 0em 0em;
-}
-#usereditor select {
-    font-size: 1.5em;
-    display: inline-block;
-    width: 70%;
-    height: 30px;
-    margin: 0em 0em;
-}
-#usereditor input[type=submit]{
-    display: inline-block;
-    width: 25%;
-    height: 30px;
-    margin: 0em 0em;
-}
-#content{
-}
-#sidebar{
-    
+table.listtable strong a:link ,table.listtable strong a:visited {
     color:#000000;
-    
 }
 
-/*------Layout------*/
+table.listtable .postctrl{
+    visibility: hidden;
+}
+table.listtable tbody:hover tr td a img.postctrl{
+    visibility: visible;
+}
+
+/*-----Alert Table Popup-----*/
+
+.coverpage{
+    position: absolute;
+    background: #888888;
+    background: rgba(30,30,30,.6);
+    width:100%;
+    height:100%;
+    margin-left: -1px;
+    margin-top: -1px;
+    left: 1px;
+    top:1px;
+}
+
+table.alerttable{
+    font-size: 1.5em;
+    border-collapse: collapse;
+    border: none;
+}  
+table.alerttable .alertbuttons input{
+    width: 5em;
+    font-size: 1em;
+    font-weight:        normal;
+}    
+table.alerttable, table.alerttable:hover{
+    position: absolute;
+    margin-left: -200px;
+    top: 20em;
+    left:50%;
+    width: 400px;
+    box-shadow: 0px 0px 10px #000000;
+    background: #d2d2d2;
+}
+table.alerttable tbody:hover{background: #d2d2d2;}
+.alertheader, .alertheader:hover{
+    background: #333333;
+    font-size: 2em;
+    color: #eeeeee;
+    padding:  .25em .5em;
+    margin: 0;
+    border: 0;
+}
+.alertbody{
+    height: 30px;
+    font-size: 1.1em;
+    padding:  1em 1em;
+}
+table.alerttable .alertbuttons, table.alerttable .alertbuttons input{
+    height: 30px;
+}
+
+table.alerttable .alertbuttons a, table.alerttable .alertbuttons input{
+    text-align:center;
+    
+    background: #888888;
+    border: 0;
+    display:inline;
+    color: #ffffff;
+    padding: 6px 20px;
+    margin:  1em;
+}
+table.alerttable .alertbuttons a:hover, table.alerttable .alertbuttons input:hover{
+    background: #999999;
+}
+
+table.alerttable .alertbuttons a:focus, table.alerttable .alertbuttons input:focus{
+    background: #999999;
+}
+
+table.alerttable .alertbuttons a:active, table.alerttable .alertbuttons input:active{
+    background: #666666;
+}
+
+/*-----Control Buttons-----*/
+ul.controls{
+    
+    margin: 0;
+    padding: 10px 0;
+    list-style-type: none;
+    background: #555555;
+}
+ul.controls li a{text-decoration: none;}
+ul.controls li{
+
+    display: inline;
+}
+ul.controls li a, 
+ul.controls li a:link, 
+ul.controls li a:hover, 
+ul.controls li a:focus, 
+ul.controls li a:visited{
+
+    color: #ffffff;
+    font-size: 1.5em;
+    margin: auto -3px auto 0;
+    padding: 10px;
+    border-left: solid 1px #444444;
+    border-right: solid 1px #666666;
+    background: #555555;
+    
+}
+ul.controls a{
+
+    background: #555555;
+}
+/*--------------------------------------Layout--------------------------------------*/
+body {
+    margin: 0 auto;
+    padding: 2em;
+    min-width:60em;
+    max-width: 110em;
+}
 #content{
     float: right;
     width:80%;

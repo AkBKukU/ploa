@@ -32,7 +32,7 @@ class blog {
      * 
      * Creates $config Object
      */
-    public function __construct($username){
+    public function __construct($username = array("admin")){
         $loadPosts = new LoadPosts();
         $this->posts = $loadPosts->getPosts($username);
         $this->config = new ConfigHandler(dirname(__DIR__).'/'.'settings.cfg');
@@ -43,7 +43,7 @@ class blog {
      * 
      * Prints Navigation to HTML File
      */
-    function nav(){
+    function nav($inlinetype){
     
         //--Test to Show Nav
         if($this->config->getValue('blog-show-nav') == 'true'){
@@ -59,19 +59,31 @@ class blog {
             $lastmonth = $this->posts[count($this->posts)-1]['month'];
             $lastday = $this->posts[count($this->posts)-1]['day'];
         
-        
+            
             //--Determine which Oriantation to use
-            if($this->config->getValue('blog-nav-type') == 'vertical'){
-                $navitemstyle = 'navitemvert';
-                $navsuperstyle = 'navsupervert';
-            
-            }elseif($this->config->getValue('blog-nav-type') == 'horizontal'){
-                $navitemstyle = 'navitemhori';
-                $navsuperstyle = 'navsuperhori';
-            
-            
+            If(isset($inlinetype)){
+                if($inlinetype == 'vertical'){
+                    $navitemstyle = 'navitemvert';
+                    $navsuperstyle = 'navsupervert';
+                
+                }elseif($inlinetype == 'horizontal'){
+                    $navitemstyle = 'navitemhori';
+                    $navsuperstyle = 'navsuperhori';
+                
+                
+                }
+            }else{
+                if($this->config->getValue('blog-nav-type') == 'vertical'){
+                    $navitemstyle = 'navitemvert';
+                    $navsuperstyle = 'navsupervert';
+                
+                }elseif($this->config->getValue('blog-nav-type') == 'horizontal'){
+                    $navitemstyle = 'navitemhori';
+                    $navsuperstyle = 'navsuperhori';
+                
+                
+                }
             }
-            
             //--Print first menu
             echo '
                         <ul class="supermenu '.$navsuperstyle.'">';
@@ -180,7 +192,7 @@ class blog {
             
         //--Tests whether or not to show the blog header    
         if($this->config->getValue('blog-show-title') == 'true'){
-            echo '<a href="'.$this->config->getValue('blog-url').'">'.$this->config->getValue('blog-header').$this->config->getValue('blog-title').$blog_header_end.'</a>';
+            echo $this->config->getValue('blog-header').'<a href="'.$this->config->getValue('blog-url').'">'.$this->config->getValue('blog-title').'</a>'.$blog_header_end;
         }
         
         //--Tests if only one post it to be shown

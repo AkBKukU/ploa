@@ -54,7 +54,7 @@
                     <h3 id="configdatabase"><a href="#configdatabase">Database</a></h3>
                     <p> - Configure database connection</p>
                    
-                    <table>
+                    <table class="inputtable">
                         <tr>
                            <th><label for="sql-host">Host:Port</label></th>
                            <td><input id="sql-host" name="sql-host" type="text" value="'.$config->getValue('sql-host').'"></td>
@@ -93,7 +93,7 @@
         echo '    
                 <h3 id="configblog"><a href="#configblog">Blog</a></h3>
                 <p> - Configure Blog info</p>
-                <table>
+                <table class="inputtable">
                     <tr>
                        <th><label for="blog-login-pass">Login Password</label></th>
                        <td><input id="blog-login-pass" name="blog-login-pass" type="password" value="'.$loadPosts->getUserPass($currentUser['name']).'"></td>
@@ -127,7 +127,7 @@
                     <tr>
                        <th><label for="blog-nav-usestyle">Force Navigation style</label></th>
                        <td><input id="blog-nav-usestyle" name="blog-nav-usestyle" type="checkbox" value="1"'; if($currentUser['blognavusestyle'] == 1){echo 'checked="checked"';} echo ' >
-                       <p>WARNING: Not HTML Complient! Link to content/styles/nav.css instead!</p></td>
+                       <p>WARNING: Not HTML Compliant! Link to content/styles/nav.css instead!</p></td>
                     </tr>
                     <tr>
                        <th><label for="blog-nav-type">Navigation Type</label></th>
@@ -139,7 +139,7 @@
                 
                 <h3 id="configblogtags"><a href="#configblogtags">Blog HTML Tags</a></h3>
                 <p> - Configure Blog HTML Output</p>
-                <table>
+                <table class="inputtable">
                     <tr>
                        <th><label for="blog-full">Blog Surround</label></th>
                        <td><input id="blog-full" name="blog-full" type="text" value="'.htmlentities ($config->getValue('blog-full')).'"></td>
@@ -161,8 +161,10 @@
                        <td><input id="blog-post-header" name="blog-post-header" type="text" value="'.htmlentities ($config->getValue('blog-post-header')).'"></td>
                     </tr>
                     
+                    <tr>
+                        <td colspan="2" class="savebutton"><input type="submit" value="Save Changes"  class="button"></td>
+                    </tr>
                 </table>
-                <input type="submit" value="Save Changes"  class="button">
             </form>
             
         </div>

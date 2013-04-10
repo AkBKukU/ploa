@@ -27,8 +27,8 @@ if($_REQUEST['edit'] == 0){
             
         }
         echo'
-        <fieldset>
-            <legend>'.$writetitle.' post</legend>
+            <h2><p>'.$writetitle.' Post</p></h2>
+        <fieldset id="writer">
                     <form method="post" action="?area=posts'.$writeaction.'">
                         <label for="title">Title </label><input name="title" id="title" type="text" class="title"'.$writedefaultitle.'" autofocus="">
                         <label for="tags">Tags </label><input name="tags" id="tags" type="text" class="tags"  '. $writedefaultags.'"><br />
@@ -36,8 +36,8 @@ if($_REQUEST['edit'] == 0){
                         <input type="hidden" name="userid" value="'.$currentUser['id'].'">
                         '.$writeeditid.'
                         <textarea name="text" id="text" class="text" '.$writedefaulttext.'</textarea><br />
-                        <div class="inputs"><input type="submit" value="Save Post"  class="button"></div>
-                        <div class="inputs"> <input type="checkbox" name="status" id="status" value="1" ' .$writecheckbox.' class="checkbox"><label for="status" >Publish Post </label></div>    
+                        <input type="submit" value="Save Post"  class="button">
+                        <input type="checkbox" name="status" id="status" value="1" ' .$writecheckbox.' class="checkbox"><label for="status" >Publish Post </label>
                     </form>
             </fieldset>
         ';
