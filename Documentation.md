@@ -26,3 +26,5 @@ Advanced Features
 ================
 
 It is possible to display more than one user's posts on a blog. To do so put all users in an `array()` like this `$blog = new blog(array('akbkuku','admin'));` during the declaration.
+
+You can create a shortcut to thee manegment page that will log you in automattically. You set your username and password in the URL like this 'http://www.blog.com/manager.php?userlogin=%username%&userpass=%password%'. If you plan to emmbed a link using that(It would be a bad idea if it cn be publiclly accessed!) you will need to replace the ampersand(&) in the URL with '&amp;' because HTML treats the ampersand as an escape character and will try to parse.

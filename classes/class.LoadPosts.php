@@ -52,7 +52,9 @@ class LoadPosts{
                                 date TEXT,
                                 tags TEXT,
                                 status INT,
-                                userid INT
+                                userid INT,
+                                displaydate TEXT,
+                                allowcomments INT
             )');
             echo 'Created '.$this->sqlConfig->getValue('sql-table').' table';
         }
