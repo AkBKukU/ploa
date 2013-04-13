@@ -43,7 +43,7 @@ class LoadPosts{
         }
         
         //--Check if post table exist    
-        if(0 == $this->mysqli->query('SELECT 1 FROM '.$this->sqlConfig->getValue('sql-post-table').' LIMIT 1')){
+        if(0 === $this->mysqli->query('SELECT 1 FROM '.$this->sqlConfig->getValue('sql-post-table').' LIMIT 1')){
             $this->mysqli->query('CREATE TABLE '.$this->sqlConfig->getValue('sql-post-table').'(
                                 id INT NOT NULL AUTO_INCREMENT, 
                                 PRIMARY KEY(id),
@@ -56,11 +56,69 @@ class LoadPosts{
                                 displaydate TEXT,
                                 allowcomments INT
             )');
-            echo 'Created '.$this->sqlConfig->getValue('sql-table').' table';
+            echo 'Created '.$this->sqlConfig->getValue('sql-post-table').' table';
+        }
+        
+        //--Check for Update v0.7 columns
+        $result =    $this->mysqli->query('SELECT * FROM '.$this->sqlConfig->getValue('sql-post-table'));
+        if($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            
+                if( !(isset($row['userid'])) ){
+                    $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-post-table').' ADD userid INT NOT NULL DEFAULT 0';
+                    echo "Query: ".$query;
+                    
+                    If($this->mysqli->query($query) == 1){
+                        echo '
+                        <script type="text/javascript">
+                            <!--
+                               window.location="#";
+                            //-->
+                        </script>
+                                ';
+                    }else{
+                        echo 'Error - PL01S006: Failed to add userid column.';
+                    }
+                }
+                if( !(isset($row['displaydate'])) ){
+                    $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-post-table').' ADD displaydate TEXT NOT NULL';
+                    echo "Query: ".$query;
+                    
+                    If($this->mysqli->query($query) == 1){
+                        echo '
+                        <script type="text/javascript">
+                            <!--
+                               window.location="#";
+                            //-->
+                        </script>
+                                ';
+                    }else{
+                        echo 'Error - PL01S007: Failed to add displaydate column.';
+                    }
+                    
+                }
+                if( !(isset($row['allowcomments'])) ){
+                    $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-post-table').' ADD allowcomments INT NOT NULL DEFAULT 1';
+                    echo "Query: ".$query;
+                    
+                    If($this->mysqli->query($query) == 1){
+                        echo '
+                        <script type="text/javascript">
+                            <!--
+                               window.location="#";
+                            //-->
+                        </script>
+                                ';
+                    }else{
+                        echo 'Error - PL01S008: Failed to add allowcomments column.';
+                    }
+                    
+                
+            }
         }
         
         //--Check if user table exist    
-        if(0 == $this->mysqli->query('SELECT 1 FROM '.$this->sqlConfig->getValue('sql-user-table').' LIMIT 1')){
+        if(0 === $this->mysqli->query('SELECT 1 FROM '.$this->sqlConfig->getValue('sql-user-table').' LIMIT 1')){
             $this->mysqli->query('CREATE TABLE '.$this->sqlConfig->getValue('sql-user-table').'(
                                 id INT NOT NULL AUTO_INCREMENT, 
                                 PRIMARY KEY(id),
@@ -195,7 +253,7 @@ class LoadPosts{
         if(is_array($username)){
         
             for($c = 0;$c <= count($this->users)-1; $c++){
-                for($d = 0;$d <= count($username); $d++){
+                for($d = 0;$d <= count($username)-1; $d++){
                     if($this->users[$c]['name'] == $username[$d]){
                         $userid[] = $this->users[$c]['id'];
                     } 
@@ -203,7 +261,7 @@ class LoadPosts{
             }
             
             for($c = 0;$c <= count($this->posts)-1; $c++){
-                for($d = 0;$d <= count($username); $d++){
+                for($d = 0;$d <= count($username)-1; $d++){
                     if($this->posts[$c]['userid'] == $userid[$d]){
                         $userPosts[] = $this->posts[$c];   
                     }
@@ -362,11 +420,21 @@ class LoadPosts{
     public function getUser($name){
         
                 
-        for($c = 0;$c <= count($this->users)-1; $c++){
-            if($this->users[$c]['name'] == $name){
-                $theuser = $this->users[$c];   
-                
-            } 
+        if(is_array($name)){
+            for($c = 0;$c <= count($this->users)-1; $c++){
+                if($this->users[$c]['name'] == $name[0]){
+                    $theuser = $this->users[$c];   
+                    
+                } 
+            }
+        }else{
+            for($c = 0;$c <= count($this->users)-1; $c++){
+                if($this->users[$c]['name'] == $name){
+                    $theuser = $this->users[$c];   
+                    
+                } 
+            }
+        
         }
         
         return $theuser;

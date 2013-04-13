@@ -49,8 +49,8 @@ class ConfigHandler{
             //--Splits the array at the ":" and removes whitespaces
             if(trim(substr($rawSetingsArray[$c],0,1)) != '#'){
                 $toTrim = explode(':',$rawSetingsArray[$c],2);
-                $toTrim[0] = trim($toTrim[0]);
-                $toTrim[1] = trim($toTrim[1]);
+                if(isset($toTrim[0])){$toTrim[0] = trim($toTrim[0]);}
+                if(isset($toTrim[1])){$toTrim[1] = trim($toTrim[1]);}
                 
                 $this->settings[] = $toTrim;
             }
@@ -69,7 +69,7 @@ class ConfigHandler{
         $value = 'Not found';
         
         //--Checks array for the name of the setting
-        for($c = 0; $c <= count($this->settings); $c++){
+        for($c = 0; $c <= count($this->settings)-1; $c++){
             
             if($this->settings[$c][0] == $name){
                 $value = $this->settings[$c][1];

@@ -225,10 +225,12 @@ class format {
                             $formatFront .= '<a href="'.$anchorArray[0].'" title="'.$anchorArray[2].'">'; $formatBack = '</a> '.$formatBack;}
                         elseif($formatCodesArray[$d] == 'IMAGE'){
                             $imageArray = explode(";",$toFormatText,3);
+                            $toFormatText = '';
                             if(trim($imageArray[1])  == '' || !(isset($imageArray[1])) ){
                                 $toFormatText = '[b;|You need to add an alt tag to the image!|]';
                             }else{
-                                $formatFront .= '<img src="'.$imageArray[0].'" alt="'.$imageArray[1].'" title="'.$imageArray[2].'"'; $formatBack = '> '.$formatBack;}
+                                $formatFront .= '<img src="'.$imageArray[0].'" alt="'.$imageArray[1].'" title="'.$imageArray[2].'">';
+                                ;}
                             
                         }
                         

@@ -26,16 +26,20 @@ class blog {
     //--Declare Feilds
     public $posts;
     public $config;
+    public $currentUser;
 
     /*
      * Constructor 
      * 
      * Creates $config Object
      */
-    public function __construct($username = array("admin")){
+    public function __construct($username = "admin"){
+    
+        $username = explode(',',$username);
         $loadPosts = new LoadPosts();
         $this->posts = $loadPosts->getPosts($username);
         $this->config = new ConfigHandler(dirname(__DIR__).'/'.'settings.cfg');
+        $this->currentUser = $loadPosts->getUser($username);
     }
    
     /*
@@ -46,12 +50,12 @@ class blog {
     function nav($inlinetype){
     
         //--Test to Show Nav
-        if($this->config->getValue('blog-show-nav') == 'true'){
+        if($this->currentUser['blogshownav'] == 1){
         
             //--Test to use forced stylesheet
-            if($this->config->getValue('blog-nav-usestyle') == 'true'){
+            if($this->currentUser['blognavusestyle'] == 1){
                 echo '
-                    <style>'.file_get_contents("content/styles/blog.css").'</style>';
+                    <style>'.file_get_contents("content/styles/nav.css").'</style>';
             }
             
             //--Set test menu variables
@@ -73,11 +77,11 @@ class blog {
                 
                 }
             }else{
-                if($this->config->getValue('blog-nav-type') == 'vertical'){
+                if($this->currentUser['blognavtype'] == 'vertical'){
                     $navitemstyle = 'navitemvert';
                     $navsuperstyle = 'navsupervert';
                 
-                }elseif($this->config->getValue('blog-nav-type') == 'horizontal'){
+                }elseif($this->currentUser['blognavtype'] == 'horizontal'){
                     $navitemstyle = 'navitemhori';
                     $navsuperstyle = 'navsuperhori';
                 
@@ -191,8 +195,8 @@ class blog {
             .$this->config->getValue('blog-full');
             
         //--Tests whether or not to show the blog header    
-        if($this->config->getValue('blog-show-title') == 'true'){
-            echo $this->config->getValue('blog-header').'<a href="'.$this->config->getValue('blog-url').'">'.$this->config->getValue('blog-title').'</a>'.$blog_header_end;
+        if($this->currentUser['blogshowtitle'] == 1){
+            echo $this->config->getValue('blog-header').'<a href="'.$this->currentUser['blogurl'].'">'.$this->currentUser['blogtitle'].'</a>'.$blog_header_end;
         }
         
         //--Tests if only one post it to be shown
@@ -218,7 +222,7 @@ class blog {
                  
         //--Prints all the posts if one is not specified
         }else{    
-            if($this->config->getValue('blog-posts-to-show') > count($this->posts)){$postlimit = count($this->posts);}else{$postlimit = $this->config->getValue('blog-posts-to-show');}
+            if($this->currentUser['blogpoststoshow'] > count($this->posts)){$postlimit = count($this->posts);}else{$postlimit = $this->currentUser['blogpoststoshow'];}
             for($c = count($this->posts)-1; $c > (  (count($this->posts)-1)-$postlimit  ); $c--){
                 if($this->posts[$c]['status'] == 1){
                     echo 

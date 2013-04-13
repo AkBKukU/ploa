@@ -1,4 +1,4 @@
-Current Version:0.691
+Current Version:0.7
 
     /*===================================================================='\
     |                                                                      |
@@ -27,18 +27,25 @@ Current Version:0.691
     |                                                                      |
     \'===================================================================='/
     
-v0.7-Future Update
+v0.7
     New Features:
         Added users functionality
-        Tree tier system. Admin, author, and too be implimented commentor
+        Tier system. Admin, author, and too be implimented commentor
         Only an admin can create new users right now
+        View pages for users and posts
+        code cleanup
+        CSS Overhaul for better visuals
+        Blog settings are now stored on a per user basis in the database
+            - But the HTML settings are still loaded from settings.cfg due to issue
+        
+        All existing posts will be inherited by the default 'admin' user
     
-    ||===============SQL CHANGES!===============||
-    ||  - Added users table, will auto generate ||
-    ||  - Added 'userid' collom to posts table  ||
-    ||       If you are upgrading you will need ||
-    ||       manually add the collom!           ||
-    ||==========================================||
+    ||=====================SQL CHANGES!=====================||
+    ||  - Added users table                                 ||
+    ||  - Added 'userid' collom to posts table              ||
+    ||  - Added 'displaydate' collom to posts table         ||
+    ||  - Added 'allowcomments' collom to posts table       ||
+    ||======================================================||
     
 v0.691
     CSS Overhaul

@@ -13,7 +13,7 @@ PL01P001
 - 03: Modify
 - 04: Delete
 
-[P] The next character identifies whether is was a post(P) or user(U).
+[P] The next character identifies whether is was a post(P), user(U), or raw SQL(S).
 
 [001] The next three numbers identify a particular peice  of code. They will show where the error happened. Here are the identities:
 
@@ -22,3 +22,6 @@ PL01P001
 - 003: Deleting a post - class.LoadPosts.php
 - 004: Deleting a user - class.LoadPosts.php
 - 005: Updating a user - class.LoadPosts.php
+- 006: Adding userid column  - class.LoadPosts.php
+- 007: Adding displaydate column  - class.LoadPosts.php
+- 008: Adding allowcomments column  - class.LoadPosts.php
