@@ -66,6 +66,12 @@ ul.supermenu li:hover ul.submenua {
  display: block; 
  z-index:2;
 }
+ 
+ul.supermenu li:hover ul.submenub { 
+ display: normal;
+ display: block; 
+ z-index:2;
+}
 ul.submenua li:hover ul.submenub {
  display: normal;
  display: block; 

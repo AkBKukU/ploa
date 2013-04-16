@@ -111,7 +111,7 @@
         <?php 
 
         include ('./classes/class.blog.php');
-        $blog = new blog('akbkuku,admin');
+        $blog = new blog('admin');
         ?>
         <div id="sitewrapper">
             <div id="sidebar">

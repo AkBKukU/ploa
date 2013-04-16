@@ -32,17 +32,29 @@
     </head>
      <body>
          <div id="sitewrapper">
-             <h1>ploa v<?php echo $currentversion;?> - Manage!</h1>
-                 
+            <header>
+                <h1>ploa v<?php echo $currentversion;?> - Manage!</h1>
+                
+                <ul class="supermenu navsuperhori">
+                  <li class="navmenuitem">
+                    <img class="navmenuitem" alt="Open Menu" title="Open the Menu" src="content/images/menu.png">
+                                    
+                    <ul class="submenua navitemhori">
+                        <li class="navmenuitem"><a title="Configure ploa" href="?area=settings"><img alt="Setting Icon" src="content/images/settings.png"><p>Settings</p></a></li>
+                        <li class="navmenuitem"><a title="Veiw how to format posts" href="?area=help"><img alt="About Icon" src="content/images/help.png"><p>Help</p></a></li>
+                        <li class="navmenuitem"><a title="Info about ploa" href="?area=about"><img alt="Info Icon" src="content/images/info.png"><p>About ploa</p></a></li>
+                    </ul>
+                  </li>
+                </ul>
+            </header>
+             
             <div id="sidebar">
                 <ul id="nav">
                 <?php
                 
                 $navOptions = array(
                     '<a title="Manage all posts" href="?area=posts">Posts</a>',
-                    '<a title="Configure ploa" href="?area=settings">Settings</a>',
-                    '<a title="Write a new post" href="?area=writer">Writer</a>',
-                    '<a title="Veiw how to format posts" href="?area=help">Help</a>'
+                    '<a title="Write a new post" href="?area=writer">Writer</a>'
                 );
                 if($currentUser['type'] == 0 && $_SESSION['loggedin'] == 1){
                     $navOptions[] = '<a title="Manage all users" href="?area=users">Users</a>';
@@ -111,6 +123,9 @@
         }elseif($_REQUEST['area'] == 'settings'){ 
             
             include('./managment/settings.php');
+        }elseif($_REQUEST['area'] == 'about'){ 
+            
+            include('./managment/about.php');
         }elseif($_REQUEST['area'] == 'writer'){ 
             
             include('./managment/writer.php');    

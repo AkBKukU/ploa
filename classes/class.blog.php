@@ -92,11 +92,13 @@ class blog {
             echo '
                         <ul class="supermenu '.$navsuperstyle.'">';
             
-            echo '
-                        <li class="navmenuitem">Y '.$lastyear.'
+            if($this->posts[count($this->posts)-1]['year']==date('Y-m-d H:i:s')){
+                echo '
+                        <li class="navmenuitem">'.$lastyear.'
                                 <ul class="submenua '.$navitemstyle.'">';
+            }
             echo '
-                                    <li class="navmenuitem">M '.$lastmonth.'
+                                    <li class="navmenuitem">'.$lastmonth.' - '.$this->numMonth($lastmonth).'
                                         <ul class="submenub navitemvert">';
                         
                         
@@ -111,13 +113,16 @@ class blog {
                         $lastday = 0;      
                         echo '
                                         </ul>
-                                    </li>
-                                </ul>
+                                    </li>';
+            if($this->posts[count($this->posts)-1]['year']==date('Y-m-d H:i:s')){
+                echo'           </ul>';
+            }
+            echo '
                             </li>
                             
-                            <li class="navmenuitem">Y '.$this->posts[$c]['year'].'
+                            <li class="navmenuitem">'.$this->posts[$c]['year'].'
                                 <ul class="submenua '.$navitemstyle.'">
-                                    <li class="navmenuitem">M '.$this->posts[$c]['month'].'
+                                    <li class="navmenuitem">'.$this->posts[$c]['month'].' - '.$this->numMonth($this->posts[$c]['month']).'
                                         <ul class="submenub navitemvert">
                                     ';
                         }
@@ -130,21 +135,23 @@ class blog {
                                             </ul>
                                         </li>
                                         
-                                        <li class="navmenuitem">M '.$this->posts[$c]['month'].'
+                                        <li class="navmenuitem">'.$this->posts[$c]['month'].' - '.$this->numMonth($this->posts[$c]['month']).'
                                             <ul class="submenub navitemvert">
                                         ';
                         }
                          
                         echo '
-                                            <li class="navmenuitem"><a href="?post='.$this->posts[$c]['id'].'">D '.$this->posts[$c]['day'].' - '.$this->posts[$c]['title'].' </a></li>
+                                            <li class="navmenuitem"><a href="?post='.$this->posts[$c]['id'].'">'.$this->posts[$c]['day'].' - '.$this->posts[$c]['title'].' </a></li>
                                     ';
                    }
                 }
         echo '
                                     </ul>
-                                </li>
-                            </ul>
-                        </li>
+                                </li>';
+            if($this->posts[count($this->posts)-1]['year']==date('Y-m-d H:i:s')){
+                echo'       </ul>';
+            }
+            echo'      </li>
                     </ul>
                     
                     ';
@@ -155,9 +162,9 @@ class blog {
     
     
     /*
-     * Nav 
+     * posts 
      * 
-     * Prints Navigation to HTML File
+     * Prints users posts to HTML File
      */
     function posts(){
     
@@ -241,6 +248,42 @@ class blog {
                 .$blog_full_end;
         }
         
+    }
+    
+    /*
+     * Nav 
+     * 
+     * Prints Navigation to HTML File
+     */
+    function numMonth($month){
+        
+        if     ($month == '01'){
+            $output = 'January';
+        }elseif($month == '02'){
+            $output = 'February';
+        }elseif($month == '03'){
+            $output = 'March';
+        }elseif($month == '04'){
+            $output = 'April';
+        }elseif($month == '05'){
+            $output = 'May';
+        }elseif($month == '06'){
+            $output = 'June';
+        }elseif($month == '07'){
+            $output = 'July';
+        }elseif($month == '08'){
+            $output = 'August';
+        }elseif($month == '09'){
+            $output = 'September';
+        }elseif($month == '10'){
+            $output = 'October';
+        }elseif($month == '11'){
+            $output = 'November';
+        }elseif($month == '12'){
+            $output = 'December';
+        }
+        
+        return $output;
     }
 }
 ?>

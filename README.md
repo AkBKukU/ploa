@@ -25,7 +25,7 @@ Installation
         
         <?php 
             include ('./classes/class.blog.php');
-            $blog = new blog();
+            $blog = new blog('admin');
 
             echo $blog->nav();
             echo $blog->posts();
@@ -33,7 +33,9 @@ Installation
 
 to your PHP file where you would like the blog to appear.
 
-You can include the class in the begining of the file and the add the "echo $blog->nav();" and "echo $blog->posts();" where ever you would like for more options.
+You can include the class in the begining of the file and the add the `echo $blog->nav();` and `echo $blog->posts();` where ever you would like for more options.
+
+You will need to include a link to `manager.php?area=posts` so you can log into the managment page.
 
 Downloading
 -----------

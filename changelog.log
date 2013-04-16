@@ -1,4 +1,4 @@
-Current Version:0.7
+Current Version:0.71
 
     /*===================================================================='\
     |                                                                      |
@@ -27,7 +27,13 @@ Current Version:0.7
     |                                                                      |
     \'===================================================================='/
     
-v0.7
+v0.71 - Development Version
+    Months in nav now show names
+    Color format
+    width format
+    placement format
+    
+v0.7 - Revelese Version
     New Features:
         Added users functionality
         Tier system. Admin, author, and too be implimented commentor
@@ -47,50 +53,50 @@ v0.7
     ||  - Added 'allowcomments' collom to posts table       ||
     ||======================================================||
     
-v0.691
+v0.691 - Development Version
     CSS Overhaul
     More consistent visuals
     
-v0.69
+v0.69 - Development Version
     User veiw page
     
-v0.683 
+v0.683 - Development Version
     Preliminary Documentation
     
-v0.682
+v0.682 - Development Version
     Post view page
     
-v0.681
+v0.681 - Development Version
     Admins can edit users
     
-v0.671
+v0.671 - Development Version
     Merged post.php into class.LoadPosts.php
         
-v0.651
+v0.651 - Development Version
     Fixed broken RSS from refactor
     
-v0.65
+v0.65 - Development Version
     Added links to format codes
     Added images to format codes
     Updated help page
         
-v0.632
+v0.632 - Development Version
     Bug fix for empty posts AGAIN :P
        
-v0.631
+v0.631 - Development Version
     Bug fix for empty posts
     
-v0.63
+v0.63 - Revelese Version
     Can now nest format tags
     
-v0.62
+v0.62 - Revelese Version
     Added list format codes
 
     
-v0.61
+v0.61 - Revelese Version
     Fixed showing empty posts
     updated readme
-v0.6
+v0.6 - Revelese Version
     Bug Fixes & Other:
         eliminated ver.txt for update checking
         Commented on most of the code
@@ -102,36 +108,35 @@ v0.6
     New Features:
         Added option to force embedding the style for navigation
     
-v0.5    
+v0.5 - Revelese Version
     Settings Page Can Change Settings!
     Validated all html - with the exeption of strike
     actually settings that are used are now loaded from settings.cfg
     You now declare the full tag (ie "<h2>" instead of "h2")
     
-v0.4
+v0.4 - Revelese Version
     Load Setting from settings.cfg but aren't used yet
     Fixed last letter being dropped from formatted text
 
-v0.31
+v0.31 - Revelese Version
     Fixed Single post display bug~
 
-v0.3
+v0.3 - Revelese Version
     Added text formating
 
-v0.22
+v0.22 - Revelese Version
     Autofucus login and writer title
-v0.21 
+    
+v0.21  - Revelese Version
     Added version checking to alert user to updates
     
-v0.2 - Starting to log
+v0.2 - Starting to log - Revelese Version
     New Features:
         - RSS feed of posts
         - Ability to change the HTML tags used to output blog posts
         - Hidding posts
         - Navigation menu for posts
         
-Changelog start.
-
 v0.1 - First usable state
      - Basic Features have been created
      - Manage page

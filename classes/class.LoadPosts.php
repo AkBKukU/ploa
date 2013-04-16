@@ -65,7 +65,7 @@ class LoadPosts{
             $row = $result->fetch_assoc();
             
                 if( !(isset($row['userid'])) ){
-                    $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-post-table').' ADD userid INT NOT NULL DEFAULT 0';
+                    $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-post-table').' ADD userid INT NOT NULL DEFAULT 1';
                     echo "Query: ".$query;
                     
                     If($this->mysqli->query($query) == 1){

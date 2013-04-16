@@ -230,10 +230,86 @@ class format {
                                 $toFormatText = '[b;|You need to add an alt tag to the image!|]';
                             }else{
                                 $formatFront .= '<img src="'.$imageArray[0].'" alt="'.$imageArray[1].'" title="'.$imageArray[2].'">';
-                                ;}
-                            
+                                ;}  
                         }
-                        
+                        elseif($formatCodesArray[$d] == 'PLACE'){
+                            $placeArray = explode(";",$toFormatText,2);
+                            if( strtoupper($placeArray[0]) == 'CENTER'){
+                                $styleType = 'text-align:center;';
+                            }elseif(strtoupper($placeArray[0]) == 'LEFT'){
+                                $styleType = 'text-align:left;';
+                            }elseif(strtoupper($placeArray[0]) == 'RIGHT'){
+                                $styleType = 'text-align:right;';
+                            }elseif(strtoupper($placeArray[0]) == 'WRAPLEFT'){
+                                $styleType = 'display:inline-block;float:left;margin: 0 1em;';
+                            }elseif(strtoupper($placeArray[0]) == 'WRAPRIGHT'){
+                                $styleType = 'display:inline-block;float:right;margin: 0 1em;';
+                            }
+                            $formatFront .= '<div style="'.$styleType.'" >';
+                            $formatBack = '</div> '.$formatBack;
+                            $toFormatText = $placeArray[1];
+                            $styleType = '';
+                        } 
+                         
+                        elseif($formatCodesArray[$d] == 'WIDTH'){
+                            $styleType = '';
+                            $widthArray = explode(";",$toFormatText,3);
+                            if( strtoupper($widthArray[0]) == 'EM'){
+                                $styleType = 'width: '.$widthArray[1].'em;';
+                            }elseif(strtoupper($widthArray[0]) == 'CHAR'){
+                                $styleType = 'width: '.$widthArray[1].'em;';
+                            }elseif(strtoupper($widthArray[0]) == 'PX'){
+                                $styleType = 'width: '.$widthArray[1].'px;';
+                            }elseif(strtoupper($widthArray[0]) == 'PIXELS'){
+                                $styleType = 'width: '.$widthArray[1].'px;';
+                            }elseif(strtoupper($widthArray[0]) == 'PERCENT'){
+                                $styleType = 'width: '.$widthArray[1].'%;';
+                            }elseif(strtoupper($widthArray[0]) == '%'){
+                                $styleType = 'width: '.$widthArray[1].'%;';
+                            }
+                            $formatFront .= '<div style="'.$styleType.'" >';
+                            $formatBack = '</div> '.$formatBack;
+                            $toFormatText = $widthArray[2];
+                        } 
+                          
+                        elseif($formatCodesArray[$d] == 'COLOR' || $formatCodesArray[$d] == 'COLOUR' ){
+                            $colourArray = explode(";",$toFormatText,2);
+                            if( strtoupper($colourArray[0]) == 'RED'){
+                                $styleType = 'color: #ff0000;';
+                            }elseif(strtoupper($colourArray[0]) == 'GREEN'){
+                                $styleType = 'color: #00ff00;';
+                            }elseif(strtoupper($colourArray[0]) == 'BLUE'){
+                                $styleType = 'color: #0000ff;';
+                            }elseif(strtoupper($colourArray[0]) == 'YELLOW'){
+                                $styleType = 'color: #ffff00;';
+                            }elseif(strtoupper($colourArray[0]) == 'CYAN'){
+                                $styleType = 'color: #00ffff;';
+                            }elseif(strtoupper($colourArray[0]) == 'PURPLE'){
+                                $styleType = 'color: #ff00ff;';
+                            }
+                            $formatFront .= '<div style="'.$styleType.'" >';
+                            $formatBack = '</div> '.$formatBack;
+                            $toFormatText = $colourArray[1];
+                            $styleType = '';
+                        }
+                        elseif($formatCodesArray[$d] == 'SIZE'){
+                            $colourArray = explode(";",$toFormatText,2);
+                            if( strtoupper($colourArray[0]) == 'HUGE'){
+                                $styleType = 'display:inline;font-size: 4em;';
+                            }elseif( strtoupper($colourArray[0]) == 'BIG'){
+                                $styleType = 'display:inline;font-size: 2em;';
+                            }elseif(strtoupper($colourArray[0]) == 'NORMAL'){
+                                $styleType = 'display:inline;font-size: 1em;';
+                            }elseif(strtoupper($colourArray[0]) == 'SMALL'){
+                                $styleType = 'display:inline;font-size: 0.5em;';
+                            }elseif(strtoupper($colourArray[0]) == 'TINY'){
+                                $styleType = 'display:inline;font-size: 0.25em;';
+                            }
+                            $formatFront .= '<div style="'.$styleType.'" >';
+                            $formatBack = '</div> '.$formatBack;
+                            $toFormatText = $colourArray[1];
+                            $styleType = '';
+                        }
                     }
         
                     //--Embeds formatting 
