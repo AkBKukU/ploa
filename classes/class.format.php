@@ -286,6 +286,8 @@ class format {
                                 $styleType = 'color: #00ffff;';
                             }elseif(strtoupper($colourArray[0]) == 'PURPLE'){
                                 $styleType = 'color: #ff00ff;';
+                            }else{
+                                $styleType = 'color: '.$colourArray[0].';';
                             }
                             $formatFront .= '<div style="'.$styleType.'" >';
                             $formatBack = '</div> '.$formatBack;
@@ -308,6 +310,15 @@ class format {
                             $formatFront .= '<div style="'.$styleType.'" >';
                             $formatBack = '</div> '.$formatBack;
                             $toFormatText = $colourArray[1];
+                            $styleType = '';
+                        }
+                        elseif($formatCodesArray[$d] == 'CSS'){
+                            $cssArray = explode(";",$toFormatText,2);
+                            
+                            
+                            $formatFront .= '<div style="'.str_replace(',',';',$cssArray[0]).'" >';
+                            $formatBack = '</div> '.$formatBack;
+                            $toFormatText = $cssArray[1];
                             $styleType = '';
                         }
                     }

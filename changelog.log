@@ -1,4 +1,4 @@
-Current Version:0.71
+Current Version:0.711
 
     /*===================================================================='\
     |                                                                      |
@@ -26,7 +26,11 @@ Current Version:0.71
     |    ppppppppp                                                         |                     
     |                                                                      |
     \'===================================================================='/
-    
+       
+v0.711 - Development Version
+    CSS format
+    Help documentation on all new format codes.
+     
 v0.71 - Development Version
     Months in nav now show names
     Color format

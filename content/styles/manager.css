@@ -294,9 +294,18 @@ ul#nav li:active, .logout input:active{
     text-align: center;
     font-size: .8em;
 }
+#helppage table .tablesubheader{
+    text-align: center;
+    border: 1px solid #000000;
+    font-size: .8em;
+}
 #helppage table td ul ,#helppage table td ol{
     text-align: left;
     font-size: .8em;
+}
+#helppage .toplink{
+    font-size: 0.75em;
+    text-decoration: none;
 }
 
 /*-----Settings-----*/
@@ -574,11 +583,9 @@ table.alerttable .alertbuttons a:active, table.alerttable .alertbuttons input:ac
 ul.controls{
     
     margin: 0;
-    padding: 10px 0;
+    padding: 11px 0;
     list-style-type: none;
     background: #555555;
-    border-top: solid 1px #666666;
-    border-bottom: solid 1px #444444;
 }
 ul.controls li a{text-decoration: none;}
 ul.controls li{
@@ -594,10 +601,12 @@ ul.controls li a:visited{
 
     color: #ffffff;
     font-size: 1.5em;
-    margin: auto -3px auto 0;
+    margin: 0 -3px 0 0;
     padding: 10px;
     border-left: solid 1px #666666;
     border-right: solid 1px #444444;
+    border-top: solid 1px #666666;
+    border-bottom: solid 1px #444444;
     background: #555555;
     
 }
@@ -608,6 +617,11 @@ ul.controls li a:focus{
 }
 ul.controls li a:active{
     background: #444444;
+    border-left: solid 1px #444444;
+    border-right: solid 1px #666666;
+    border-top: solid 1px #444444;
+    border-bottom: solid 1px #666666;
+    
     
 }
 ul.controls a{
