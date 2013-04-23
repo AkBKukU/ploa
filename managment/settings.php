@@ -14,11 +14,7 @@
             $config->setValue('sql-database',$_REQUEST['sql-database']);
             $config->setValue('sql-table',$_REQUEST['sql-table']);
             
-            
-            if($_REQUEST['blog-login-pass'] == $_REQUEST['blog-login-pass-confirm']){
-                $loadPosts->setUserPass($_SESSION['currentuser'],$_REQUEST['blog-login-pass']);
-            }else{echo " - Login Passwords Don't Match(Igorning Change)";}
-            
+                        
             $loadPosts->updateUserSettings( $_SESSION['currentuser'],
                                             $_REQUEST['blog-title'],
                                             $_REQUEST['blog-url'],
