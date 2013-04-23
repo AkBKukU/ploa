@@ -1,4 +1,4 @@
-Current Version:0.711
+Current Version:0.712
 
     /*===================================================================='\
     |                                                                      |
@@ -26,7 +26,16 @@ Current Version:0.711
     |    ppppppppp                                                         |                     
     |                                                                      |
     \'===================================================================='/
-       
+
+v0.72 - Future Revelese Version
+    New Features:
+        Pages for viewing posts
+        More format codes
+        settings.cfg is now only used for sql access info
+         
+v0.712 - Development Version
+     Testing format code for issues
+
 v0.711 - Development Version
     CSS format
     Help documentation on all new format codes.

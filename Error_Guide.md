@@ -13,15 +13,18 @@ PL01P001
 - 03: Modify
 - 04: Delete
 
-[P] The next character identifies whether is was a post(P), user(U), or raw SQL(S).
+[P] The next character identifies whether is was a post(P), user(U), settings(C), or raw SQL(S).
 
 [001] The next three numbers identify a particular peice  of code. They will show where the error happened. Here are the identities:
 
-- 001: Adding a new post - class.LoadPosts.php
-- 002: Updating a post - class.LoadPosts.php
-- 003: Deleting a post - class.LoadPosts.php
-- 004: Deleting a user - class.LoadPosts.php
-- 005: Updating a user - class.LoadPosts.php
-- 006: Adding userid column  - class.LoadPosts.php
-- 007: Adding displaydate column  - class.LoadPosts.php
-- 008: Adding allowcomments column  - class.LoadPosts.php
+- 001: Adding a new post
+- 002: Updating a post
+- 003: Deleting a post
+- 004: Deleting a user
+- 005: Updating a user
+- 006: Adding userid column
+- 007: Adding displaydate column
+- 008: Adding allowcomments column
+- 009: Failed to update user Settings
+- 010: User already exists
+- 011: Failed to add user

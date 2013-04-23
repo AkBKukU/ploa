@@ -163,13 +163,13 @@ class LoadPosts{
                                                                                     "0",
                                                                                     "0",
                                                                                     "Default Blog",
-                                                                                    "http://127.0.0.1:/",
+                                                                                    "http://127.0.0.1/",
                                                                                     "10",
                                                                                     "1",
                                                                                     "1",
                                                                                     "0",
                                                                                     "horizontal",
-                                                                                    "&lt;section class=&quot;theme&quot;&gt;",
+                                                                                    "&lt;section&gt;",
                                                                                     "&lt;h2&gt;",
                                                                                     "&lt;div class=&quot;nav&quot;&gt;",
                                                                                     "&lt;article&gt;",
@@ -186,7 +186,7 @@ class LoadPosts{
             while($row = $result->fetch_assoc()) {
                 $this->posts[] = array(  
                     'title' => $row['title'], 
-                    'text' => $row['text'], 
+                    'text' => html_entity_decode($row['text']), 
                     'id' => $row['id'],
                     'userid' => $row['userid'],
                     'tags' => $row['tags'],
@@ -308,7 +308,7 @@ class LoadPosts{
         //--Set the current date
         $date=date('Y-m-d H:i:s');
         
-        $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-post-table').' (title,text,date,tags,status,userid) VALUES ("'.$title.'","'.$text.'","'.$date.'","'.$tags.'","'.$status.'","'.$userid.'")';
+        $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-post-table').' (title,text,date,tags,status,userid) VALUES ("'.$title.'","'. htmlentities($text).'","'.$date.'","'.$tags.'","'.$status.'","'.$userid.'")';
         echo "Query: ".$query;
         If($this->mysqli->query($query) == 1){
             echo '
@@ -330,7 +330,7 @@ class LoadPosts{
      */
     public function updatePost($title,$text,$tags,$status,$postid){
     
-       $query = 'UPDATE '.$this->sqlConfig->getValue('sql-post-table').' SET status="'.$status.'", title="'.$title.'", text="'.$text.'", tags="'.$tags.'" WHERE id="'.$postid.'"';    
+       $query = 'UPDATE '.$this->sqlConfig->getValue('sql-post-table').' SET status="'.$status.'", title="'.$title.'", text="'.htmlentities($text).'", tags="'.$tags.'" WHERE id="'.$postid.'"';    
         echo "Query: ".$query;
         If($this->mysqli->query($query) == 1){
             echo '
@@ -504,8 +504,17 @@ class LoadPosts{
                                                                                 
                                                                                 WHERE id="'.$id.'"';
                                                                                 
-                                      
-        echo "Result: ".$this->mysqli->query($query);
+        If($this->mysqli->query($query) == 1){
+            echo '
+            <script type="text/javascript">
+                <!--
+                   window.location="manager.php?area=settings&notify=saved";
+                //-->
+            </script>
+                    ';
+        }else{
+            echo 'Error - PL03C009';
+        }
         
     }
     
@@ -516,42 +525,63 @@ class LoadPosts{
      */
     public function addUser($name,$pass,$type){
         
-        $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').' (name,
-                                                                                pass,
-                                                                                postcount,
-                                                                                type,
-                                                                                blogtitle,
-                                                                                blogurl,
-                                                                                blogpoststoshow,
-                                                                                blogshowtitle,
-                                                                                blogshownav,
-                                                                                blognavusestyle,
-                                                                                blognavtype,
-                                                                                blogfull,
-                                                                                blogheader,
-                                                                                blognav,
-                                                                                blogpost,
-                                                                                blogpostheader)  
-                                                                                
-                                                                    VALUES (    "'.$name.'",
-                                                                                "'.$pass.'",
-                                                                                "0",
-                                                                                "'.$type.'",
-                                                                                "Default Blog",
-                                                                                "http://127.0.0.1:/",
-                                                                                "10",
-                                                                                "1",
-                                                                                "1",
-                                                                                "0",
-                                                                                "horizontal",
-                                                                                "&lt;section class=&quot;theme&quot;&gt;",
-                                                                                "&lt;h2&gt;",
-                                                                                "&lt;div class=&quot;nav&quot;&gt;",
-                                                                                "&lt;article&gt;",
-                                                                                "&lt;h3&gt;")';
-                                                                
-        $this->mysqli->query($query);
+        for($c = 0;$c <= count($this->users)-1; $c++){
+            if($this->users[$c]['name'] == $name){
+                $exists = true;
+            }else{
+                $exists = false;            
+            } 
+        }
         
+        if(!($exists)){
+            $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').' (name,
+                                                                                    pass,
+                                                                                    postcount,
+                                                                                    type,
+                                                                                    blogtitle,
+                                                                                    blogurl,
+                                                                                    blogpoststoshow,
+                                                                                    blogshowtitle,
+                                                                                    blogshownav,
+                                                                                    blognavusestyle,
+                                                                                    blognavtype,
+                                                                                    blogfull,
+                                                                                    blogheader,
+                                                                                    blognav,
+                                                                                    blogpost,
+                                                                                    blogpostheader)  
+                                                                                    
+                                                                        VALUES (    "'.$name.'",
+                                                                                    "'.$pass.'",
+                                                                                    "0",
+                                                                                    "'.$type.'",
+                                                                                    "Default Blog",
+                                                                                    "http://127.0.0.1:/",
+                                                                                    "10",
+                                                                                    "1",
+                                                                                    "1",
+                                                                                    "0",
+                                                                                    "horizontal",
+                                                                                    "&lt;section class=&quot;theme&quot;&gt;",
+                                                                                    "&lt;h2&gt;",
+                                                                                    "&lt;div class=&quot;nav&quot;&gt;",
+                                                                                    "&lt;article&gt;",
+                                                                                    "&lt;h3&gt;")';
+                                                                    
+            If($this->mysqli->query($query) == 1){
+                echo '
+                <script type="text/javascript">
+                    <!--
+                       window.location="manager.php?area=users";
+                    //-->
+                </script>
+                        ';
+            }else{
+                echo 'Error - PL01U011: Failed to add user';
+            }
+        }else{
+            echo 'Error - PL01U010: User already exists';
+        }
     }
     
     /*
@@ -572,7 +602,7 @@ class LoadPosts{
             </script>
                     ';
         }else{
-            echo 'Error - PL03U005: Failed to update user.';
+            echo 'Error - PL03U005: Failed to update user';
         }
     }
     

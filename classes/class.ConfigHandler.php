@@ -1,6 +1,6 @@
 <?php
 //include ('class.ConfigHandler.php');
-//$config = new ConfigHandler();
+//$config = new ConfigHandler('file.cfg');
 
 
 //--How to use
@@ -90,7 +90,7 @@ class ConfigHandler{
     public function setValue($name,$newValue){
                 
         $this->changeSettings = 'save';
-    $key = 'nope';
+        $key = 'nope';
         for($c = 0; $c <= count($this->settings); $c++){
             
             if($this->settings[$c][0] == $name){
@@ -100,13 +100,30 @@ class ConfigHandler{
        
         }
         
+        if($key == 'nope'){
+            $this->addValue($name,$newValue);
+        }
+            
         return $this->settings[$key][1].'hi';
     }
     
     /*
-     * getValue 
+     * addValue 
      * 
-     * Returns the value of the array of settings
+     * Adds a new value to the settings array
+     */
+    public function addValue($newname,$newValue){
+                
+        $this->settings[][0] = $newname;
+        $this->settings[][1] = $newValue;
+            
+        
+    }
+    
+    /*
+     * dumpValues 
+     * 
+     * Returns all values of the array of settings
      */
     public function dumpValues(){
         

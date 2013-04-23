@@ -68,6 +68,25 @@ class format {
                             }else{
                                 $toFormatText = '|Image Alt: '.$imageArray[1].'|';}
                             
+                        }elseif($formatCodesArray[$d] == 'PLACE'){
+                            $placeArray = explode(";",$toFormatText,2);
+                            $toFormatText = $placeArray[1];
+                            
+                        }elseif($formatCodesArray[$d] == 'WIDTH'){
+                            $widthArray = explode(";",$toFormatText,3);
+                            $toFormatText = $widthArray[2];
+                            
+                        }elseif($formatCodesArray[$d] == 'COLOR' || $formatCodesArray[$d] == 'COLOUR' ){
+                            $colourArray = explode(";",$toFormatText,2);
+                            $toFormatText = $colourArray[1];
+                            
+                        }elseif($formatCodesArray[$d] == 'SIZE'){
+                            $colourArray = explode(";",$toFormatText,2);
+                            $toFormatText = $colourArray[1];
+                            
+                        }elseif($formatCodesArray[$d] == 'CSS'){
+                            $cssArray = explode(";",$toFormatText,2);
+                            $toFormatText = $cssArray[1];
                         }
                     }
         
@@ -134,7 +153,6 @@ class format {
                     for($d = 0; $d != count($formatCodesArray);$d++){
                     
                         if($formatCodesArray[$d] == 'LINK'){
-                            
                             $anchorArray = explode(";",$toFormatText,3);
                             $toFormatText = $anchorArray[1];
                             
@@ -145,6 +163,25 @@ class format {
                             }else{
                                 $toFormatText = '|Image Alt: '.$imageArray[1].'|';}
                             
+                        }elseif($formatCodesArray[$d] == 'PLACE'){
+                            $placeArray = explode(";",$toFormatText,2);
+                            $toFormatText = $placeArray[1];
+                            
+                        }elseif($formatCodesArray[$d] == 'WIDTH'){
+                            $widthArray = explode(";",$toFormatText,3);
+                            $toFormatText = $widthArray[2];
+                            
+                        }elseif($formatCodesArray[$d] == 'COLOR' || $formatCodesArray[$d] == 'COLOUR' ){
+                            $colourArray = explode(";",$toFormatText,2);
+                            $toFormatText = $colourArray[1];
+                            
+                        }elseif($formatCodesArray[$d] == 'SIZE'){
+                            $colourArray = explode(";",$toFormatText,2);
+                            $toFormatText = $colourArray[1];
+                            
+                        }elseif($formatCodesArray[$d] == 'CSS'){
+                            $cssArray = explode(";",$toFormatText,2);
+                            $toFormatText = $cssArray[1];
                         }
                     }
                     

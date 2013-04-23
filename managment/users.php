@@ -1,13 +1,7 @@
 <?php
     if($_REQUEST['newuser'] == 'yes'){
         $loadPosts->addUser($_REQUEST['username'],$_REQUEST['userpassword'],$_REQUEST['usertype']);
-            echo '
-            <script type="text/javascript">
-                <!--
-                   window.location="manager.php?area=users";
-                //-->
-            </script>
-                    ';
+            
     }
     
     

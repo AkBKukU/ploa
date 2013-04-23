@@ -11,14 +11,20 @@
         
         //--Check ploa version to the one on github to check for an update
         $loadPosts = new LoadPosts();
-        $changelogArray = explode("\n",file_get_contents('./changelog.log'),2);
-        $verArray = explode(':',$changelogArray[0],2);
-        $currentversion = floatval($verArray[1]);
-        $changelogArray = explode("\n",file_get_contents('https://raw.github.com/AkBKukU/ploa/master/changelog.log'),2);
-        $verArray = explode(':',$changelogArray[0],2);
-        $releaseversion = floatval($verArray[1]);
-        $upgrade = '';
-        if($currentversion < $releaseversion){$upgrade = '<li><a title="Update to Newest Release" href="'.$ploa_url.'">Update Availible!</a></li>';}
+        if(file_exists ('./changelog.log')){
+            $changelogArray = explode("\n",file_get_contents('./changelog.log'),2);
+            $verArray = explode(':',$changelogArray[0],2);
+            $currentversion = floatval($verArray[1]);
+            $changelogArray = explode("\n",file_get_contents('https://raw.github.com/AkBKukU/ploa/master/changelog.log'),2);
+            $verArray = explode(':',$changelogArray[0],2);
+            $releaseversion = floatval($verArray[1]);
+            $upgrade = '';
+            if($currentversion < $releaseversion){$upgrade = '<li><a title="Update to Newest Release" href="'.$ploa_url.'">Update Availible!</a></li>';}
+        }else{
+            $upgrade = '';
+            $currentversion = 0;
+        
+        }
         //--Check if user is logged in
         if($loadPosts->checkUser($_REQUEST['userlogin'],$_REQUEST['userpass'])){
             $_SESSION['loggedin'] = 1;

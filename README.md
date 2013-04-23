@@ -37,6 +37,8 @@ You can include the class in the begining of the file and the add the `echo $blo
 
 You will need to include a link to `manager.php?area=posts` so you can log into the managment page.
 
+After it is installed you can log in with the default user. Username: admin - Password: password
+
 Downloading
 -----------
 

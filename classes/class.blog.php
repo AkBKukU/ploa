@@ -92,9 +92,9 @@ class blog {
             echo '
                         <ul class="supermenu '.$navsuperstyle.'">';
             
-            if($this->posts[count($this->posts)-1]['year']==date('Y-m-d H:i:s')){
+            if($this->posts[count($this->posts)-1]['year'] != date('Y')){
                 echo '
-                        <li class="navmenuitem">'.$lastyear.'
+                            <li class="navmenuitem">'.$lastyear.'
                                 <ul class="submenua '.$navitemstyle.'">';
             }
             echo '
@@ -114,11 +114,12 @@ class blog {
                         echo '
                                         </ul>
                                     </li>';
-            if($this->posts[count($this->posts)-1]['year']==date('Y-m-d H:i:s')){
-                echo'           </ul>';
+            if($this->posts[$c+1]['year'] != date('Y')){
+                echo'           
+                                </ul>
+                            </li>';
             }
             echo '
-                            </li>
                             
                             <li class="navmenuitem">'.$this->posts[$c]['year'].'
                                 <ul class="submenua '.$navitemstyle.'">
@@ -132,11 +133,11 @@ class blog {
                                 $lastmonth = $this->posts[$c]['month'];   
                                 $lastday = 0;       
                             echo '
-                                            </ul>
-                                        </li>
+                                        </ul>
+                                    </li>
                                         
-                                        <li class="navmenuitem">'.$this->posts[$c]['month'].' - '.$this->numMonth($this->posts[$c]['month']).'
-                                            <ul class="submenub navitemvert">
+                                    <li class="navmenuitem">'.$this->posts[$c]['month'].' - '.$this->numMonth($this->posts[$c]['month']).'
+                                        <ul class="submenub navitemvert">
                                         ';
                         }
                          
@@ -146,13 +147,15 @@ class blog {
                    }
                 }
         echo '
-                                    </ul>
-                                </li>';
-            if($this->posts[count($this->posts)-1]['year']==date('Y-m-d H:i:s')){
-                echo'       </ul>';
+                                        </ul>
+                                    </li>';
+            if($lastyear!=date('Y')){
+                echo'
+                                </ul>';
             }
-            echo'      </li>
-                    </ul>
+            echo'      
+                            </li>
+                        </ul>
                     
                     ';
             
@@ -168,6 +171,16 @@ class blog {
      */
     function posts(){
     
+        //--Handel page limits
+        if(!(isset($_REQUEST['page']))){
+            $_REQUEST['page'] = 1;
+        }
+        if($_REQUEST['page'] < 1){
+            $_REQUEST['page'] = 1;
+        }
+        if( (count($this->posts)-1 + $this->currentUser['blogpoststoshow']-1) < ($this->currentUser['blogpoststoshow'] * $_REQUEST['page']) ){
+            $_REQUEST['page']--;
+        }
         //--Load other classes to be used
         include ('class.format.php');
         
@@ -176,34 +189,35 @@ class blog {
         //--Get first word of tags to be used as end tags
                                                                
         #Blog Outline Tag:              
-        $blog_ol_tagar = explode(" ",$this->config->getValue('blog-full'),2);
-         $blog_full_end = '</'.str_replace('>','',substr($blog_ol_tagar[0],1)).'>';                 
+        $blog_ol_tagar = explode(" ",html_entity_decode($this->currentUser['blogfull']),2);
+        $blog_full_end = '</'.str_replace('>','',substr($blog_ol_tagar[0],1)).'>';                 
                                                         
         #Blog Header Tag:             
-        $blog_ol_htagar = explode(" ",$this->config->getValue('blog-header'),2);
-         $blog_header_end = '</'.str_replace('>','',substr($blog_ol_htagar[0],1)).'>';                
+        $blog_ol_htagar = explode(" ",html_entity_decode($this->currentUser['blogheader']),2);
+        $blog_header_end = '</'.str_replace('>','',substr($blog_ol_htagar[0],1)).'>';                
                                                         
         #Blog Nav Tag:             
-        $blog_ol_navtagar = explode(" ",$this->config->getValue('blog-nav'),2);
-         $blog_nav_end = '</'.str_replace('>','',substr($blog_ol_htagar[0],1)).'>';                      
+        $blog_ol_navtagar = explode(" ",html_entity_decode($this->currentUser['blognav']),2);
+        $blog_nav_end = '</'.str_replace('>','',substr($blog_ol_htagar[0],1)).'>';                      
                                                         
         #Post Tag:                                       
-        $blog_ps_tagar = explode(" ",$this->config->getValue('blog-post'),2);
-         $blog_post_end = '</'.str_replace('>','',substr($blog_ps_tagar[0],1)).'>';                       
+        $blog_ps_tagar = explode(" ", html_entity_decode($this->currentUser['blogpost']),2);
+        $blog_post_end = '</'.str_replace('>','',substr($blog_ps_tagar[0],1)).'>';                       
                                                         
         #Post Header Tag:                   
-        $blog_ps_htagar = explode(" ",$this->config->getValue('blog-post-header'),2);
+        $blog_ps_htagar = explode(" ",html_entity_decode($this->currentUser['blogpostheader']),2);
         $blog_post_header_end = '</'.str_replace('>','',substr($blog_ps_htagar[0],1)).'>';    
     
         //--Print Out Posts
         echo 
         
             "\n         "
-            .$this->config->getValue('blog-full');
+            .'<a href="?page='.($_REQUEST['page']+1).'">Prev</a><a href="?page='.($_REQUEST['page']-1).'">Next</a>'
+            .html_entity_decode($this->currentUser['blogfull']);
             
         //--Tests whether or not to show the blog header    
         if($this->currentUser['blogshowtitle'] == 1){
-            echo $this->config->getValue('blog-header').'<a href="'.$this->currentUser['blogurl'].'">'.$this->currentUser['blogtitle'].'</a>'.$blog_header_end;
+            echo html_entity_decode($this->currentUser['blogheader']).'<a href="'.$this->currentUser['blogurl'].'">'.$this->currentUser['blogtitle'].'</a>'.$blog_header_end;
         }
         
         //--Tests if only one post it to be shown
@@ -221,21 +235,27 @@ class blog {
             //--Prints single post
             echo  
                  "\n            "
-                 .$this->config->getValue('blog-post').
-                            $this->config->getValue('blog-post-header').$this->posts[$postkey]['title'].' - '.$this->posts[$postkey]['formdate'].$blog_post_header_end                    
+                 . html_entity_decode($this->currentUser['blogpost']).
+                            html_entity_decode($this->currentUser['blogpostheader']).$this->posts[$postkey]['title'].' - '.$this->posts[$postkey]['formdate'].$blog_post_header_end                    
                             .$format->fancy($this->posts[$postkey]['text'])
                  ."\n            "
                  .$blog_post_end;
                  
         //--Prints all the posts if one is not specified
-        }else{    
+        }else{
+            if(isset($_REQUEST['page']) && $_REQUEST['page'] != 0){
+                $startpos = (count($this->posts)-1) - ($this->currentUser['blogpoststoshow'] * ($_REQUEST['page']-1)) ;
+            }else{
+                $startpos = count($this->posts)-1;
+                $_REQUEST['page'] = 1;
+            }
             if($this->currentUser['blogpoststoshow'] > count($this->posts)){$postlimit = count($this->posts);}else{$postlimit = $this->currentUser['blogpoststoshow'];}
-            for($c = count($this->posts)-1; $c > (  (count($this->posts)-1)-$postlimit  ); $c--){
+            for($c = $startpos; $c > (  $startpos-$postlimit  ); $c--){
                 if($this->posts[$c]['status'] == 1){
                     echo 
                         "\n            "
-                        .$this->config->getValue('blog-post').
-                            $this->config->getValue('blog-post-header').'<a href="?post='.$this->posts[$c]['id'].'">'.$this->posts[$c]['title'].' - '.$this->posts[$c]['formdate'].'</a>'.$blog_post_header_end                    
+                        .html_entity_decode($this->currentUser['blogpost']).
+                            html_entity_decode($this->currentUser['blogpostheader']).'<a href="?post='.$this->posts[$c]['id'].'">'.$this->posts[$c]['title'].' - '.$this->posts[$c]['formdate'].'</a>'.$blog_post_header_end                    
                             .$format->fancy($this->posts[$c]['text'])
                         ."\n            "
                         .$blog_post_end.
@@ -245,7 +265,8 @@ class blog {
         
             echo 
                 "\n         "
-                .$blog_full_end;
+                .$blog_full_end
+                .'<a href="?page='.($_REQUEST['page']+1).'">Prev</a><a href="?page='.($_REQUEST['page']-1).'">Next</a>';
         }
         
     }

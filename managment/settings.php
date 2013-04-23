@@ -2,6 +2,7 @@
         
         echo'
             <h2><p>Settings';
+        if($_REQUEST['notify'] == 'saved'){echo ' - Saved';}
             
         if($_REQUEST['action'] == 'save'){
         
@@ -33,14 +34,8 @@
                                             htmlentities($_REQUEST['blog-post-header'])
                                             );
                                             
-            echo ' - Saved';
             
-            echo '
-            <script type="text/javascript">
-                <!--
-                   window.location="manager.php?area=settings";
-                //-->
-            </script>';
+            
         }    
             
             
@@ -142,23 +137,23 @@
                 <table class="inputtable">
                     <tr>
                        <th><label for="blog-full">Blog Surround</label></th>
-                       <td><input id="blog-full" name="blog-full" type="text" value="'.htmlentities ($config->getValue('blog-full')).'"></td>
+                       <td><input id="blog-full" name="blog-full" type="text" value="'.$currentUser['blogfull'].'"></td>
                     </tr>
                     <tr>
                        <th><label for="blog-header">Blog Header</label></th>
-                       <td><input id="blog-header" name="blog-header" type="text" value="'.htmlentities ($config->getValue('blog-header')).'"></td>
+                       <td><input id="blog-header" name="blog-header" type="text" value="'.$currentUser['blogheader'].'"></td>
                     </tr>
                     <tr>
                        <th><label for="blog-nav">Blog Navigation</label></th>
-                       <td><input id="blog-nav" name="blog-nav" type="text" value="'.htmlentities ($config->getValue('blog-nav')).'"></td>
+                       <td><input id="blog-nav" name="blog-nav" type="text" value="'.$currentUser['blognav'].'"></td>
                     </tr>
                     <tr>
                        <th><label for="blog-post">Blog Post</label></th>
-                       <td><input id="blog-post" name="blog-post" type="text" value="'.htmlentities ($config->getValue('blog-post')).'"></td>
+                       <td><input id="blog-post" name="blog-post" type="text" value="'.$currentUser['blogpost'].'"></td>
                     </tr>
                     <tr>
                        <th><label for="blog-post-header">Blog Post Header</label></th>
-                       <td><input id="blog-post-header" name="blog-post-header" type="text" value="'.htmlentities ($config->getValue('blog-post-header')).'"></td>
+                       <td><input id="blog-post-header" name="blog-post-header" type="text" value="'.$currentUser['blogpostheader'].'"></td>
                     </tr>
                     
                     <tr>

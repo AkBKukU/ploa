@@ -12,12 +12,12 @@
             <li><a href="#textcss"><code>CSS</code></a></li>
         </ul>
         <div id="helppage" class="textarea">
-            <p>This page will show you how to add various type of formatting and objects to your posts. Before covering the different formmating tags let's cover how to add formatting to some text. To declare a section of text for formatting you put it in braces and add the appropriate tags like this:</p>
+            <p>This page will show you how to add various types of formatting and objects to your posts. Before covering the different formmating tags let's cover how to add formatting to some text. To declare a section of text for formatting you put it in braces and add the appropriate tags like this:</p>
             
             <table>
                 <tr>
                    <th>Open Brace</th>
-                   <th>Format Tags</th>
+                   <th>Format Tag(s)</th>
                    <th>Semi-Colon</th>
                    <th>Text</th>
                    <th>Close Brace</th>
@@ -31,10 +31,10 @@
                     <td>]</td>
                 </tr>
             </table>
-            <p>You see that there is a comma seperated list of tags followed by a semi-colon and then the text. This is the general way to add formatting although other tags like <a href="#textlinks" ><code>LINK</code></a> & <a href="#textimage" ><code>IMAGE</code></a> can have modified versions of this. The above text is what you would type directly into the writer page while making a post. So it would look like this, [u;This text would be bold and underlined]. After is is save and displayed on the blog it would show like this, <strong><u>This text would be bold and underlined </u></strong>. Also note that you can nest braces so if you want to achive this, <strong> bold <u>bold and underlined</u> bold</strong>, you can type it like this, [b; bold [u;bold and underlined] bold]. It does not matter if you capitalize the tags.</p>
+            <p>You see that there is a comma seperated list of tags followed by a semi-colon and then the text. This is the general way to add formatting although other tags like <a href="#textlinks" ><code>LINK</code></a> & <a href="#textimage" ><code>IMAGE</code></a> can have modified versions of this. The above text is what you would type directly into the writer page while making a post. So it would look like this, [b,u;This text would be bold and underlined]. After it is saved and displayed on the blog it would show like this, <strong><u>This text would be bold and underlined </u></strong>. Also note that you can nest braces so if you want to achive this, <strong> bold <u>bold and underlined</u> bold</strong>, you can type it like this, [b; bold [u;bold and underlined] bold]. It does not matter if you capitalize the tags.</p>
             <hr />
             <h3 id="textstyle"><a href="#textstyle">Styling</a><a class="toplink" href="#"> - Top</a></h3>
-            <p>With these you can add styling such as being bold to your text when you post.</p>
+            <p>With these you can add styling such as being bold to your text when you post. These are the only tags that you can put in one brace set.</p>
                         
             <p>Here are the avaible tags:</p>
             <ul>
@@ -47,7 +47,7 @@
             
             <hr />
             <h3 id="textlists"><a href="#textlists">Lists</a><a class="toplink" href="#"> - Top</a></h3>
-            <p>Two more formating code aravailble for creating lists. You can use either <code>LIST</code> to use bullets or <code>NUMLIST</code> to use numbers. Example:</p>
+            <p>Two formating tags are availble for creating lists. You can use either <code>LIST</code> to use bullets or <code>NUMLIST</code> to use numbers. Example:</p>
             <table>
                 <tr>
                    <th><code>LIST</code></th>
@@ -75,7 +75,7 @@
             
             <hr />
             <h3 id="textlinks"><a href="#textlinks">Links</a><a class="toplink" href="#"> - Top</a></h3>
-            <p>You can add links to your post with the <code>LINK</code> tag. Unlike the other tags this one can use up to three semi-colons when declaring it. The reason is because you can add a "title" atribute to the link. The title atribute makes text show up on something when you have over it. For example if you hover over <a href="https://www.google.com/" title="A popular search engine">this link</a> title text that describes where it goes apears. You do not have to set title text when you declare a link. Here is how the link tag works using the google link as an example:</p>
+            <p>You can add links to your post with the <code>LINK</code> tag. Unlike some of the other tags this one can use up to three semi-colons when declaring it. The reason is because you can add a "title" atribute to the link. The title atribute makes text show up on something when you have over it. For example if you hover over <a href="http://www.google.com/" title="A popular search engine">this link</a> title text appears that describes where it goes apears. You do not have to set title text when you declare a link. Here is how the link tag works using the google link as an example:</p>
             
             <table>
                 <tr>
@@ -94,7 +94,7 @@
                     <td>[</td>
                     <td>link</td>
                     <td>;</td>
-                    <td>https://www.google.com/</td>
+                    <td>http://www.google.com/</td>
                     <td>;</td>
                     <td>this link</td>
                     <td>;</td>
@@ -134,11 +134,11 @@
                 </tr>
             </table>
             <p>The result of that would look like this:</p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Intertec_Superbrain.jpg/287px-Intertec_Superbrain.jpg" alt="An old computer" title="Intertec Superbrain">
-            <p>The alt text is what you see if the image doesn't load like this: <img scr="no-image" alt="Image would go here" title="Missing image example.">. It should be a breif description of the image. You may or may not think that the alt text is optional but it is actually invalid HTML to not have is. This is because people who are visualy impaired or have some other form of obstruction that doesn't allow them to see the image need to be able to know what it is. When using this blog tool you must provide an alt text description.</p>
+            <p>The alt text is what you see if the image doesn't load like this: <img scr="no-image" alt="Image would go here" title="Missing image example.">. It should be a breif description of the image. You may or may not think that the alt text is optional but it is actually invalid HTML to not have it. This is because people who are visualy impaired or have some other form of obstruction that doesn't allow them to see the image need to be able to know what it is. When using this blog tool you must provide an alt text description.</p>
              
             <hr />
             <h3 id="textplace"><a href="#textplace">Placement</a><a class="toplink" href="#"> - Top</a></h3>
-            <p>The <code>PLACE</code> lets you add some layout to you post. You can use it to change what side text and images are aligned to and have them be on the sides with text wrapping around them. This tag uses another value to determine wher to place the text or image. Here is the proper format:</p>
+            <p>The <code>PLACE</code> tag lets you add some layout to your post. You can use it to change what side text and images are aligned to and have them be on the sides with text wrapping around them. This tag uses another value to determine where to place the text or image. Here is the proper format:</p>
             
             <table>
                 <tr>
@@ -201,7 +201,7 @@
                 <li><code>WRAPRIGHT</code>: This causes the text/image to be stuck to the right. Text not in the braces will wrap around it.</li>
             </ul>
             
-            <p>It is important to know that when you use <code>WRAPLEFT</code> or <code>WRAPRIGHT</code> the text or image will run off the end of the post if the not wrapped text is not long enough. Here is an example where the blue box represents a post'
+            <p>It is important to know that when you use <code>WRAPLEFT</code> or <code>WRAPRIGHT</code> the text or image will run off the end of the post if the other text is not long enough. Here is an example where the blue box represents a post'
             s intended area:</p>
             
             <table>
@@ -302,7 +302,7 @@
             
             <hr />
             <h3 id="textwidth"><a href="#textwidth">Width</a><a class="toplink" href="#"> - Top</a></h3>
-            <p>This <code>WIDTH</code> code lets you define a set width for an image or block of text. This is mostly usefull when used with the <a href="#textimage" ><code>IMAGE</code></a> & <a href="#textplace" ><code>PLACE</code></a> codes. When you declare the tag you will also declare two other values, the unit of measurement, and the amount. Here is the proper format:</p>
+            <p>This <code>WIDTH</code> tag lets you define a set width for an image or block of text. This is mostly usefull when used with the <a href="#textimage" ><code>IMAGE</code></a> & <a href="#textplace" ><code>PLACE</code></a> codes. When you declare the tag you will also declare two other values, the unit of measurement, and the amount. Here is the proper format:</p>
             <table>
                 <tr>
                    <th>Open Brace</th>
@@ -338,7 +338,7 @@
             
             <hr />
             <h3 id="textcss"><a href="#textcss">CSS</a><a class="toplink" href="#"> - Top</a></h3>
-            <p>The <code>CSS</code> tag lets you use straight CSS styling by putting text in a div with inline styling. Put the desired styles in the styles field with comma seeprators.:</p>
+            <p>The <code>CSS</code> tag lets you use straight CSS styling by putting text in a div with inline styling. Put the desired styles in the styles field with comma seeprators.</p>
             <table>
                 <tr>
                    <th>Open Brace</th>
