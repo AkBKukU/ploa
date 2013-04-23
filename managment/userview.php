@@ -45,9 +45,15 @@
         <li><a title="Delete User" href="?area=users&amp;edit='.$users[$userkey]['id'].'&amp;delete=confirm">Delete</a></li>
     </ul>'
     ;
-
     //--load posts to array
-    $theirposts  = $loadPosts->getPosts($users[$userkey]['name']); 
+    $allposts   = $loadPosts->getAllPosts($users[$userkey]['name']);
+    
+    for($c = 0;$c <= count($allposts)-1; $c++){
+        if($currentUser['id'] == $allposts[$c]['userid']){
+            $theirposts[] = $allposts[$c];
+        } 
+        
+    }
     
     
     echo '

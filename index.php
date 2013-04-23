@@ -23,7 +23,7 @@
         
         }
         h1{
-            background: #5566cc;
+            background: #4455bb;
             font-size: 3em;
             color: #eeeeee;
             padding:  .25em .5em;
@@ -33,10 +33,10 @@
 
         h2{
             background: #5566cc;
-            font-size: 2em;
+            font-size: 2.5em;
             color: #eeeeee;
             padding:  .25em .5em;
-            margin: -10px -10px 10px -10px;
+            margin: 0;
             border: 0;
         }
 
@@ -82,6 +82,52 @@
             transform: scale(1);
             background: #ccc;
         }
+        
+        .button{
+            display: inline-block;
+            background: #6677dd;
+            font-size: 1.5em;
+            color: #eeeeee;
+            width: 3em;
+            padding:  .25em .5em;
+            text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.251);
+            text-align: center;
+            
+        }
+        .button a,
+        .button a:link,
+        .button a:visited{
+            text-decoration: none;
+            color: #eeeeee;
+        }
+        
+        .button:hover,
+        .button:focus{
+        
+            background: #7788ee;
+        }
+        .buttonnext,
+        .buttonlast{
+            float: right;
+        }
+        .buttonnext{
+            margin-right: 4em;
+        }
+        .buttonlast{
+            margin-right: -7.9em;
+        }
+        
+        .buttonfirst,
+        .buttonprev{
+            float: left;
+        }
+        .pagebuttons{
+            display: block;
+            height: 2.5em;
+            background: #6677dd;
+        
+        }
+        
 
         /*------Layout------*/
 
@@ -120,7 +166,11 @@
             </div>
             
             <div id="main">
-                <?php echo $blog->posts(); ?>
+                <?php 
+                
+                echo $blog->posts(); 
+                
+                ?>
             </div>
         </div>
      

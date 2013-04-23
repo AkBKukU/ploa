@@ -338,7 +338,7 @@
             
             <hr />
             <h3 id="textcss"><a href="#textcss">CSS</a><a class="toplink" href="#"> - Top</a></h3>
-            <p>The <code>CSS</code> tag lets you use straight CSS styling by putting text in a div with inline styling. Put the desired styles in the styles field with comma seeprators.</p>
+            <p>The <code>CSS</code> tag lets you use straight CSS styling by putting text in a div with inline styling. Put the desired styles in the styles field with comma seperators.</p>
             <table>
                 <tr>
                    <th>Open Brace</th>

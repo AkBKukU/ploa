@@ -1,4 +1,4 @@
-Current Version:0.712
+Current Version:0.72
 
     /*===================================================================='\
     |                                                                      |
@@ -27,11 +27,21 @@ Current Version:0.712
     |                                                                      |
     \'===================================================================='/
 
-v0.72 - Future Revelese Version
+v0.72 - Release Version
     New Features:
-        Pages for viewing posts
+        Pages with next/prev buttons for viewing posts
         More format codes
         settings.cfg is now only used for sql access info
+        Tags are now hidden in HTML to improve SEO
+        
+    ||====================HTML CHANGES!=====================||
+    ||  - Moved h2 out of section                           ||
+    ||======================================================||
+    
+    ||=====================SQL CHANGES!=====================||
+    ||  - Added 'pagebuttons' collom to users table         ||
+    ||  - Added 'buttonsinblog' collom to users table       ||
+    ||======================================================||
          
 v0.712 - Development Version
      Testing format code for issues

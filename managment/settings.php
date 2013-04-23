@@ -31,7 +31,9 @@
                                             htmlentities($_REQUEST['blog-header']),
                                             htmlentities($_REQUEST['blog-nav']),
                                             htmlentities($_REQUEST['blog-post']),
-                                            htmlentities($_REQUEST['blog-post-header'])
+                                            htmlentities($_REQUEST['blog-post-header']),
+                                            htmlentities($_REQUEST['pagebuttons']),
+                                            htmlentities($_REQUEST['buttonsinblog'])
                                             );
                                             
             
@@ -90,14 +92,6 @@
                 <p> - Configure Blog info</p>
                 <table class="inputtable">
                     <tr>
-                       <th><label for="blog-login-pass">Login Password</label></th>
-                       <td><input id="blog-login-pass" name="blog-login-pass" type="password" value="'.$loadPosts->getUserPass($currentUser['name']).'"></td>
-                    </tr>
-                    <tr>
-                       <th><label for="blog-login-pass-confirm">Login Password Confrim</label></th>
-                       <td><input id="blog-login-pass-confirm" name="blog-login-pass-confirm" type="password" value="'.$loadPosts->getUserPass($currentUser['name']).'"></td>
-                    </tr>
-                    <tr>
                        <th><label for="blog-title">Blog Title</label></th>
                        <td><input id="blog-title" name="blog-title" type="text" value="'.$currentUser['blogtitle'].'">
                        <p>WARNING: Changing this can mess up RSS!</p></td>
@@ -116,11 +110,15 @@
                        <td><input id="blog-show-title" name="blog-show-title" type="checkbox" value="1"'; if($currentUser['blogshowtitle'] == 1){echo 'checked="checked"';} echo ' ></td>
                     </tr>
                     <tr>
+                       <th><label for="buttonsinblog">Display Page Buttons in Blog</label></th>
+                       <td><input id="buttonsinblog" name="buttonsinblog" type="checkbox" value="1"'; if($currentUser['buttonsinblog'] == 1){echo 'checked="checked"';} echo ' ></td>
+                    </tr>
+                    <tr>
                        <th><label for="blog-show-nav">Display Navigation</label></th>
                        <td><input id="blog-show-nav" name="blog-show-nav" type="checkbox" value="1"'; if($currentUser['blogshownav'] == 1){echo 'checked="checked"';} echo ' ></td>
                     </tr>
                     <tr>
-                       <th><label for="blog-nav-usestyle">Force Navigation style</label></th>
+                       <th><label for="blog-nav-usestyle">Force Default Navigation style</label></th>
                        <td><input id="blog-nav-usestyle" name="blog-nav-usestyle" type="checkbox" value="1"'; if($currentUser['blognavusestyle'] == 1){echo 'checked="checked"';} echo ' >
                        <p>WARNING: Not HTML Compliant! Link to content/styles/nav.css instead!</p></td>
                     </tr>
@@ -154,6 +152,10 @@
                     <tr>
                        <th><label for="blog-post-header">Blog Post Header</label></th>
                        <td><input id="blog-post-header" name="blog-post-header" type="text" value="'.$currentUser['blogpostheader'].'"></td>
+                    </tr>
+                    <tr>
+                       <th><label for="pagebuttons">Page Button</label></th>
+                       <td><input id="pagebuttons" name="pagebuttons" type="text" value="'.$currentUser['pagebuttons'].'"></td>
                     </tr>
                     
                     <tr>

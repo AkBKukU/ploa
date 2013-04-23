@@ -3,7 +3,15 @@
     $format = new format();
     
     //--load posts to array
-    $theirposts  = $loadPosts->getPosts($currentUser['name']); 
+    $allposts   = $loadPosts->getAllPosts($currentUser['name']);
+    
+    for($c = 0;$c <= count($allposts)-1; $c++){
+        if($currentUser['id'] == $allposts[$c]['userid']){
+            $theirposts[] = $allposts[$c];
+        } 
+        
+    }
+    
 
     if(isset($_REQUEST['action'])){
         //--Colect given info    

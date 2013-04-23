@@ -12,6 +12,10 @@
 //--Print post(s)
 //echo $blog->posts();
 
+//--Print Page Buttons
+//echo $blog->pageButtons(); 
+
+
 //--Load other classes to be used
 include('class.ConfigHandler.php');
 include('class.LoadPosts.php');
@@ -171,16 +175,6 @@ class blog {
      */
     function posts(){
     
-        //--Handel page limits
-        if(!(isset($_REQUEST['page']))){
-            $_REQUEST['page'] = 1;
-        }
-        if($_REQUEST['page'] < 1){
-            $_REQUEST['page'] = 1;
-        }
-        if( (count($this->posts)-1 + $this->currentUser['blogpoststoshow']-1) < ($this->currentUser['blogpoststoshow'] * $_REQUEST['page']) ){
-            $_REQUEST['page']--;
-        }
         //--Load other classes to be used
         include ('class.format.php');
         
@@ -208,17 +202,23 @@ class blog {
         $blog_ps_htagar = explode(" ",html_entity_decode($this->currentUser['blogpostheader']),2);
         $blog_post_header_end = '</'.str_replace('>','',substr($blog_ps_htagar[0],1)).'>';    
     
-        //--Print Out Posts
-        echo 
         
-            "\n         "
-            .'<a href="?page='.($_REQUEST['page']+1).'">Prev</a><a href="?page='.($_REQUEST['page']-1).'">Next</a>'
-            .html_entity_decode($this->currentUser['blogfull']);
-            
         //--Tests whether or not to show the blog header    
         if($this->currentUser['blogshowtitle'] == 1){
             echo html_entity_decode($this->currentUser['blogheader']).'<a href="'.$this->currentUser['blogurl'].'">'.$this->currentUser['blogtitle'].'</a>'.$blog_header_end;
         }
+        if(!(isset($_REQUEST['post']))){
+            if($this->currentUser['buttonsinblog'] == 1){
+                echo $this->pageButtons();
+            }
+        }
+        
+        //--Print Out Posts
+        echo 
+        
+            "\n         "
+            .html_entity_decode($this->currentUser['blogfull']);
+            
         
         //--Tests if only one post it to be shown
         if(isset($_REQUEST['post'])){
@@ -238,6 +238,7 @@ class blog {
                  . html_entity_decode($this->currentUser['blogpost']).
                             html_entity_decode($this->currentUser['blogpostheader']).$this->posts[$postkey]['title'].' - '.$this->posts[$postkey]['formdate'].$blog_post_header_end                    
                             .$format->fancy($this->posts[$postkey]['text'])
+                 .'<div style="display: none">'.$this->posts[$c]['tags'].'</div>'
                  ."\n            "
                  .$blog_post_end;
                  
@@ -249,15 +250,23 @@ class blog {
                 $startpos = count($this->posts)-1;
                 $_REQUEST['page'] = 1;
             }
-            if($this->currentUser['blogpoststoshow'] > count($this->posts)){$postlimit = count($this->posts);}else{$postlimit = $this->currentUser['blogpoststoshow'];}
+            
+            if($this->currentUser['blogpoststoshow'] > count($this->posts)){
+                $postlimit = count($this->posts);
+            }else{
+                $postlimit = $this->currentUser['blogpoststoshow'];
+            }
+            
+            
             for($c = $startpos; $c > (  $startpos-$postlimit  ); $c--){
                 if($this->posts[$c]['status'] == 1){
                     echo 
                         "\n            "
                         .html_entity_decode($this->currentUser['blogpost']).
-                            html_entity_decode($this->currentUser['blogpostheader']).'<a href="?post='.$this->posts[$c]['id'].'">'.$this->posts[$c]['title'].' - '.$this->posts[$c]['formdate'].'</a>'.$blog_post_header_end                    
+                            html_entity_decode($this->currentUser['blogpostheader']).'<a href="?post='.$this->posts[$c]['id'].'">'.$this->posts[$c]['title'].' - '.$this->posts[$c]['formdate'].' By: '.$this->currentUser['name'].'</a>'.$blog_post_header_end                    
                             .$format->fancy($this->posts[$c]['text'])
                         ."\n            "
+                        .'<div style="display: none">'.$this->posts[$c]['tags'].'</div>'
                         .$blog_post_end.
                         "\n         ";
                 }
@@ -265,10 +274,61 @@ class blog {
         
             echo 
                 "\n         "
-                .$blog_full_end
-                .'<a href="?page='.($_REQUEST['page']+1).'">Prev</a><a href="?page='.($_REQUEST['page']-1).'">Next</a>';
+                .$blog_full_end;
+                
+        
+            if($this->currentUser['buttonsinblog'] == 1){
+                echo $this->pageButtons();
+            }
         }
         
+    }
+    
+    /*
+     * Nav 
+     * 
+     * Prints Navigation to HTML File
+     */
+    function pageButtons(){
+    
+        //--Handel page limits
+        if(!(isset($_REQUEST['page']))){
+            $_REQUEST['page'] = 1;
+        }
+        if($_REQUEST['page'] < 1){
+            $_REQUEST['page'] = 1;
+        }
+        if( (count($this->posts)-1 + $this->currentUser['blogpoststoshow']) < ($this->currentUser['blogpoststoshow'] * $_REQUEST['page']) ){
+            $_REQUEST['page']--;
+        }
+        
+        #Button Tag:                   
+        $blog_button_tagar = explode(" ",html_entity_decode($this->currentUser['pagebuttons']),2);
+        $blog_button_end = '</'.str_replace('>','',substr($blog_button_tagar[0],1)).'>'; 
+        $first = '';
+        for($c=0;$c < count($blog_button_tagar); $c++){
+            if(substr($blog_button_tagar[$c],0,7) == 'class="'){
+                $first .= ' '.substr($blog_button_tagar[$c],0,7).' buttonfirst '. substr($blog_button_tagar[$c],7);
+                $prev .= ' '.substr($blog_button_tagar[$c],0,7).' buttonprev '. substr($blog_button_tagar[$c],7);
+                $next .= ' '.substr($blog_button_tagar[$c],0,7).' buttonnext '. substr($blog_button_tagar[$c],7);
+                $last .= ' '.substr($blog_button_tagar[$c],0,7).' buttonlast '. substr($blog_button_tagar[$c],7);
+            
+            
+            }else{
+                $first .= html_entity_decode($blog_button_tagar[$c]);
+                $prev .= html_entity_decode($blog_button_tagar[$c]);
+                $next .= html_entity_decode($blog_button_tagar[$c]);
+                $last .= html_entity_decode($blog_button_tagar[$c]);
+            }
+        } 
+        $pagebuttons = '<div class="pagebuttons">'.
+        $first.'<a class="afirst" href="?page='.ceil( (count($this->posts)) / $this->currentUser['blogpoststoshow'] ) .'">First</a>'.$blog_button_end
+        .$prev.'<a class="aprev" href="?page='.($_REQUEST['page']+1).'">Prev</a>'.$blog_button_end
+        .$next.'<a class="anext" href="?page='.($_REQUEST['page']-1).'">Next</a>'.$blog_button_end
+        .$last.'<a class="alast" href="?page=0">Last</a>'.$blog_button_end
+        .'</div>';
+        
+        return $pagebuttons;
     }
     
     /*

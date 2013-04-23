@@ -28,3 +28,5 @@ PL01P001
 - 009: Failed to update user Settings
 - 010: User already exists
 - 011: Failed to add user
+- 012: Failed to add pagebuttons column
+- 013: Failed to add buttonsinblog column

@@ -64,56 +64,98 @@ class LoadPosts{
         if($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             
-                if( !(isset($row['userid'])) ){
-                    $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-post-table').' ADD userid INT NOT NULL DEFAULT 1';
-                    echo "Query: ".$query;
-                    
-                    If($this->mysqli->query($query) == 1){
-                        echo '
-                        <script type="text/javascript">
-                            <!--
-                               window.location="#";
-                            //-->
-                        </script>
-                                ';
-                    }else{
-                        echo 'Error - PL01S006: Failed to add userid column.';
-                    }
-                }
-                if( !(isset($row['displaydate'])) ){
-                    $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-post-table').' ADD displaydate TEXT NOT NULL';
-                    echo "Query: ".$query;
-                    
-                    If($this->mysqli->query($query) == 1){
-                        echo '
-                        <script type="text/javascript">
-                            <!--
-                               window.location="#";
-                            //-->
-                        </script>
-                                ';
-                    }else{
-                        echo 'Error - PL01S007: Failed to add displaydate column.';
-                    }
-                    
-                }
-                if( !(isset($row['allowcomments'])) ){
-                    $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-post-table').' ADD allowcomments INT NOT NULL DEFAULT 1';
-                    echo "Query: ".$query;
-                    
-                    If($this->mysqli->query($query) == 1){
-                        echo '
-                        <script type="text/javascript">
-                            <!--
-                               window.location="#";
-                            //-->
-                        </script>
-                                ';
-                    }else{
-                        echo 'Error - PL01S008: Failed to add allowcomments column.';
-                    }
-                    
+            if( !(isset($row['userid'])) ){
+                $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-post-table').' ADD userid INT NOT NULL DEFAULT 1';
+                echo "Query: ".$query;
                 
+                If($this->mysqli->query($query) == 1){
+                    echo '
+                    <script type="text/javascript">
+                        <!--
+                           window.location="#";
+                        //-->
+                    </script>
+                            ';
+                }else{
+                    echo 'Error - PL01S006: Failed to add userid column.';
+                }
+            }
+            if( !(isset($row['displaydate'])) ){
+                $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-post-table').' ADD displaydate TEXT NOT NULL';
+                echo "Query: ".$query;
+                
+                If($this->mysqli->query($query) == 1){
+                    echo '
+                    <script type="text/javascript">
+                        <!--
+                           window.location="#";
+                        //-->
+                    </script>
+                            ';
+                }else{
+                    echo 'Error - PL01S007: Failed to add displaydate column.';
+                }
+                
+            }
+            if( !(isset($row['allowcomments'])) ){
+                $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-post-table').' ADD allowcomments INT NOT NULL DEFAULT 1';
+                echo "Query: ".$query;
+                
+                If($this->mysqli->query($query) == 1){
+                    echo '
+                    <script type="text/javascript">
+                        <!--
+                           window.location="#";
+                        //-->
+                    </script>
+                            ';
+                }else{
+                    echo 'Error - PL01S008: Failed to add allowcomments column.';
+                }
+                
+            
+            }
+        }
+        
+        $result =    $this->mysqli->query('SELECT * FROM '.$this->sqlConfig->getValue('sql-user-table'));
+        if($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            
+            if( !(isset($row['pagebuttons'])) ){
+                $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-user-table').' ADD pagebuttons TEXT NOT NULL';
+                echo "Query: ".$query;
+                
+                If($this->mysqli->query($query) == 1){
+                    echo '
+                    <script type="text/javascript">
+                        <!--
+                           window.location="#";
+                        //-->
+                    </script>
+                            ';
+                }else{
+                    echo 'Error - PL01S012: Failed to add pagebuttons column.';
+                }
+                
+            
+            }
+            if( !(isset($row['buttonsinblog'])) ){
+                $query = 'ALTER TABLE '.$this->sqlConfig->getValue('sql-user-table').' ADD buttonsinblog INT NOT NULL DEFAULT 1';
+                echo "Query: ".$query;
+                
+                If($this->mysqli->query($query) == 1){
+                    echo '
+                    <script type="text/javascript">
+                        <!--
+                           window.location="#";
+                        //-->
+                    </script>
+                            ';
+                }else{
+                    echo 'Error - PL01S013: Failed to add buttonsinblog column.';
+                }
+                
+            
             }
         }
         
@@ -137,43 +179,12 @@ class LoadPosts{
                                 blogheader TEXT,
                                 blognav TEXT,
                                 blogpost TEXT,
-                                blogpostheader TEXT
+                                blogpostheader TEXT,
+                                pagebuttons TEXT,
+                                buttonsinblog INT
             )');
             echo 'Created '.$this->sqlConfig->getValue('sql-user-table').' table';
-            
-            $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-user-table').' (name,
-                                                                                    pass,
-                                                                                    postcount,
-                                                                                    type,
-                                                                                    blogtitle,
-                                                                                    blogurl,
-                                                                                    blogpoststoshow,
-                                                                                    blogshowtitle,
-                                                                                    blogshownav,
-                                                                                    blognavusestyle,
-                                                                                    blognavtype,
-                                                                                    blogfull,
-                                                                                    blogheader,
-                                                                                    blognav,
-                                                                                    blogpost,
-                                                                                    blogpostheader) 
-                                                                                    
-                                                                           VALUES ( "admin",
-                                                                                    "password",
-                                                                                    "0",
-                                                                                    "0",
-                                                                                    "Default Blog",
-                                                                                    "http://127.0.0.1/",
-                                                                                    "10",
-                                                                                    "1",
-                                                                                    "1",
-                                                                                    "0",
-                                                                                    "horizontal",
-                                                                                    "&lt;section&gt;",
-                                                                                    "&lt;h2&gt;",
-                                                                                    "&lt;div class=&quot;nav&quot;&gt;",
-                                                                                    "&lt;article&gt;",
-                                                                                    "&lt;h3&gt;")';
+            $this->addUser('admin','password','0');
                     
             echo "Query: ".$query;
             $this->mysqli->query($query);
@@ -218,7 +229,9 @@ class LoadPosts{
                     'blogheader' => $row['blogheader'],
                     'blognav' => $row['blognav'],
                     'blogpost' => $row['blogpost'],
-                    'blogpostheader' => $row['blogpostheader']
+                    'blogpostheader' => $row['blogpostheader'],
+                    'pagebuttons' => $row['pagebuttons'],
+                    'buttonsinblog' => $row['buttonsinblog']
                     );    
                 
             }
@@ -262,7 +275,7 @@ class LoadPosts{
             
             for($c = 0;$c <= count($this->posts)-1; $c++){
                 for($d = 0;$d <= count($username)-1; $d++){
-                    if($this->posts[$c]['userid'] == $userid[$d]){
+                    if($this->posts[$c]['userid'] == $userid[$d] && $this->posts[$c]['status'] == 1){
                         $userPosts[] = $this->posts[$c];   
                     }
                 } 
@@ -277,7 +290,7 @@ class LoadPosts{
             }
             
             for($c = 0;$c <= count($this->posts)-1; $c++){
-                if($this->posts[$c]['userid'] == $userid){
+                if($this->posts[$c]['userid'] == $userid && $this->posts[$c]['status'] == 1){
                     $userPosts[] = $this->posts[$c];   
                 } 
             }
@@ -314,7 +327,7 @@ class LoadPosts{
             echo '
             <script type="text/javascript">
                 <!--
-                   window.location="manager.php?area=posts";
+                   window.location="manager.php?area=postview&view='.($this->posts[count($this->posts)-1]['id'] + 1) .'";
                 //-->
             </script>
                     ';
@@ -336,7 +349,7 @@ class LoadPosts{
             echo '
             <script type="text/javascript">
                 <!--
-                   window.location="manager.php?area=posts";
+                   window.location="manager.php?area=postview&view='.$postid.'";
                 //-->
             </script>
                     ';
@@ -478,7 +491,9 @@ class LoadPosts{
                                         $blogheader,
                                         $blognav,
                                         $blogpost,
-                                        $blogpostheader){
+                                        $blogpostheader,
+                                        $pagebuttons,
+                                        $buttonsinblog){
         
         
         for($c = 0;$c <= count($this->users)-1; $c++){
@@ -500,7 +515,9 @@ class LoadPosts{
                                                                                 blogheader="'       .$blogheader        .'",
                                                                                 blognav="'          .$blognav           .'",
                                                                                 blogpost="'         .$blogpost          .'",
-                                                                                blogpostheader="'   .$blogpostheader    .'" 
+                                                                                blogpostheader="'   .$blogpostheader    .'",
+                                                                                pagebuttons="'      .$pagebuttons       .'",
+                                                                                buttonsinblog="'    .$buttonsinblog   .'"    
                                                                                 
                                                                                 WHERE id="'.$id.'"';
                                                                                 
@@ -549,24 +566,28 @@ class LoadPosts{
                                                                                     blogheader,
                                                                                     blognav,
                                                                                     blogpost,
-                                                                                    blogpostheader)  
+                                                                                    blogpostheader,
+                                                                                    pagebuttons,
+                                                                                    buttonsinblog) 
                                                                                     
-                                                                        VALUES (    "'.$name.'",
+                                                                           VALUES ( "'.$name.'",
                                                                                     "'.$pass.'",
-                                                                                    "0",
                                                                                     "'.$type.'",
+                                                                                    "0",
                                                                                     "Default Blog",
-                                                                                    "http://127.0.0.1:/",
+                                                                                    "http://127.0.0.1/",
                                                                                     "10",
-                                                                                    "1",
+                                                                                    "0",
                                                                                     "1",
                                                                                     "0",
                                                                                     "horizontal",
-                                                                                    "&lt;section class=&quot;theme&quot;&gt;",
+                                                                                    "&lt;section&gt;",
                                                                                     "&lt;h2&gt;",
                                                                                     "&lt;div class=&quot;nav&quot;&gt;",
                                                                                     "&lt;article&gt;",
-                                                                                    "&lt;h3&gt;")';
+                                                                                    "&lt;h3&gt;",
+                                                                                    "&lt;div class=&quot;button&quot;&gt;"),
+                                                                                    "1"';
                                                                     
             If($this->mysqli->query($query) == 1){
                 echo '
