@@ -6,10 +6,13 @@
 //--How to use
 
 //--Returns a single setting entry
-//echo $config->getValue();
+// echo $config->getValue();
 
 //--Sets a single setting entry
-//echo $config->setValue();
+// echo $config->setValue();
+
+//--Adds a new value to the settings array
+// $config->addValue($newname,$newValue)
 
 //--Print all settings in array
 //echo $config->dumpValues();
@@ -49,10 +52,24 @@ class ConfigHandler{
             //--Splits the array at the ":" and removes whitespaces
             if(trim(substr($rawSetingsArray[$c],0,1)) != '#'){
                 $toTrim = explode(':',$rawSetingsArray[$c],2);
-                if(isset($toTrim[0])){$toTrim[0] = trim($toTrim[0]);}
-                if(isset($toTrim[1])){$toTrim[1] = trim($toTrim[1]);}
                 
-                $this->settings[] = $toTrim;
+                $isnewentry = true;
+                
+                for($d = 0; $d <= count($this->settings)-1; $d++){
+                
+                    if($this->settings[$d][0] == trim($toTrim[0])){
+                    
+                        $isnewentry = false;
+                    }
+                }
+                
+                if($isnewentry && $toTrim[0] != '' && $toTrim[1] != ''){
+                    if(isset($toTrim[0])){$toTrim[0] = trim($toTrim[0]);}
+                    if(isset($toTrim[1])){$toTrim[1] = trim($toTrim[1]);}
+                    
+                    $this->settings[] = $toTrim;
+                
+                }
             }
        
         }
@@ -104,7 +121,6 @@ class ConfigHandler{
             $this->addValue($name,$newValue);
         }
             
-        return $this->settings[$key][1].'hi';
     }
     
     /*
@@ -113,9 +129,21 @@ class ConfigHandler{
      * Adds a new value to the settings array
      */
     public function addValue($newname,$newValue){
-                
-        $this->settings[][0] = $newname;
-        $this->settings[][1] = $newValue;
+    
+        $isnewentry = true;
+        
+        for($d = 0; $d <= count($this->settings)-1; $d++){
+        
+            if($this->settings[$d][0] == $newname){
+            
+                $isnewentry = false;
+            }
+        }
+        
+        if($isnewentry){
+            $this->settings[] = array($newname,$newValue);
+        
+        }
             
         
     }
@@ -144,12 +172,15 @@ class ConfigHandler{
             //--Creates new file in a string
             for($c = 0; $c <= count($this->settings)-1; $c++){
 
-                $newSettingsString .= $this->settings[$c][0].':'.$this->settings[$c][1]."\n";
+                if($c+1 > count($this->settings)-1){
+                    $newSettingsString .= $this->settings[$c][0].':'.$this->settings[$c][1];
+                }else{
+                    $newSettingsString .= $this->settings[$c][0].':'.$this->settings[$c][1]."\n";
+                }
 
             }
-            
             //--Prints new file
-            file_put_contents($this->filename,substr($newSettingsString,0,strlen($newSettingsString)-2));
+            file_put_contents($this->filename,substr($newSettingsString,0,strlen($newSettingsString)));
          
                 
         }

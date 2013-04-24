@@ -1,4 +1,4 @@
-Current Version:0.721
+Current Version:0.731
 
     /*===================================================================='\
     |                                                                      |
@@ -26,6 +26,13 @@ Current Version:0.721
     |    ppppppppp                                                         |                     
     |                                                                      |
     \'===================================================================='/
+    
+    
+    
+v0.731 - Development Version
+    Created class.MySQLHandler.php
+    
+    
 v0.721 - Release Version
     Bugfix for Password
 
