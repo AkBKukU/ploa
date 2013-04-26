@@ -24,13 +24,13 @@
         $userid = $_REQUEST['userid'];
     }
     if($_REQUEST['action'] == 'add'){
-    
-        $loadPosts->addPost($title,$text,$tags,$status,$userid);
+        
+        $ploaData->addPost($title,$text,$tags,$status,$userid);
     }  
     
     if($_REQUEST['action'] == 'update'){
     
-        $loadPosts->updatePost($title,$text,$tags,$status,$postid);
+        $ploaData->uptadeEntry($title,$text,$tags,$status,$postid);
     } 
     
     if($_REQUEST['action'] == 'delete'){

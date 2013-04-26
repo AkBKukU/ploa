@@ -1,4 +1,4 @@
-Current Version:0.731
+Current Version:0.733
 
     /*===================================================================='\
     |                                                                      |
@@ -29,7 +29,11 @@ Current Version:0.731
     
     
     
-v0.731 - Development Version
+v0.733 - Development Version
+    Implimenting some databse access changes
+    
+    
+v0.732 - Development Version
     Created class.PloaData.php
     
     

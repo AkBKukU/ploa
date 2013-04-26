@@ -319,7 +319,7 @@ class LoadPosts{
     public function addPost($title,$text,$tags,$status,$userid){
         
         //--Set the current date
-        $date=date('Y-m-d H:i:s');
+        $date=date('Y-m-d').'T'.date('H:i:s');
         
         $query = 'INSERT INTO '.$this->sqlConfig->getValue('sql-post-table').' (title,text,date,tags,status,userid) VALUES ("'.$title.'","'. htmlentities($text).'","'.$date.'","'.$tags.'","'.$status.'","'.$userid.'")';
         echo "Query: ".$query;

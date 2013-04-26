@@ -10,79 +10,10 @@
         //--Load other classes to be used
         include('./classes/class.LoadPosts.php');
         include('./classes/class.ConfigHandler.php');
-        include('./classes/class.MySQLHandler.php');
         $config = new ConfigHandler(__DIR__.'/'.'settings.cfg');
         
-        $tableSturcture ['tables'] = array('main','users','posts');
-
-        $tableSturcture ['collumns'] =   array(
-                                    array(
-                                        'id INT NOT NULL AUTO_INCREMENT',
-                                        'title TEXT',
-                                        'text TEXT',
-                                        'date TEXT',
-                                        'tags TEXT',
-                                        'status INT',
-                                        'userid INT',
-                                        'displaydate TEXT',
-                                        'allowcomments INT'
-                                    ),
-                                    array(
-                                        'id INT NOT NULL AUTO_INCREMENT',
-                                        'name TEXT',
-                                        'pass TEXT',
-                                        'postcount INT',
-                                        'type INT',
-                                        'blogtitle TEXT',
-                                        'blogurl TEXT',
-                                        'blogpoststoshow INT',
-                                        'blogshowtitle INT',
-                                        'blogshownav INT',
-                                        'blognavusestyle INT',
-                                        'blognavtype TEXT',
-                                        'blogfull TEXT',
-                                        'blogheader TEXT',
-                                        'blognav TEXT',
-                                        'blogpost TEXT',
-                                        'blogpostheader TEXT',
-                                        'pagebuttons TEXT',
-                                        'buttonsinblog INT'
-                                    ),
-                                    array(
-                                        'id INT NOT NULL AUTO_INCREMENT',
-                                        'title TEXT',
-                                        'text TEXT',
-                                        'date TEXT',
-                                        'tags TEXT',
-                                        'status INT',
-                                        'userid INT',
-                                        'displaydate TEXT',
-                                        'allowcomments INT'
-                                    )
-                                );
-                                
-        $tableSturcture ['keys'] = array('id','id','id');
-
-        
-        $MySQLHandler = new MySQLHandler(
-                                $config->getValue('sql-host'),
-                                $config->getValue('sql-user'),
-                                $config->getValue('sql-pass'),
-                                $config->getValue('sql-database'),
-                                $tableSturcture
-                            );
-        
-        $data = array(
-                    'new title',
-                    'new all the text goes here',
-                    'new rfol you want a date',
-                    'new youre it',
-                    '1',
-                    '12',
-                    'new doesnt exist',
-                    '1'
-                );
-        
+        include('./classes/class.PloaData.php');
+        $ploaData = new PloaData('DONT_INCLUDE_CONFIG');
         
         
         //--Check ploa version to the one on github to check for an update
@@ -186,9 +117,8 @@
         }
         
         //--load posts to array
-        $posts  = $loadPosts->getAllPosts(); 
-        
-        
+        $posts  = $ploaData->getPosts();
+                
         //--Checks what page to display   
         if($_REQUEST['area'] == 'posts'){        
             

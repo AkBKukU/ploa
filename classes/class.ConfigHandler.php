@@ -108,7 +108,7 @@ class ConfigHandler{
                 
         $this->changeSettings = 'save';
         $key = 'nope';
-        for($c = 0; $c <= count($this->settings); $c++){
+        for($c = 0; $c <= count($this->settings)-1; $c++){
             
             if($this->settings[$c][0] == $name){
                 $this->settings[$c][1] = $newValue;
