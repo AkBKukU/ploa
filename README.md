@@ -3,7 +3,7 @@ ploa
 
 ploa is designed to be a simple embeddable blog software written in php. 
 
-This was my first project in PHP and as such has some flaws. I plan on correcting them in a complete rewrite with version 2. Until then I recomened either not using this or putting your database login information directly into the php files rather than the configuration file.
+This was my first project in PHP and as such has some flaws. I plan on correcting them in a complete rewrite with version 1.0. Until then I recomened either not using this or putting your database login information directly into the php files rather than the configuration file.
 
 
 Features
